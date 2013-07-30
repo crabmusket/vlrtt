@@ -31,14 +31,14 @@ exec("sys/main.cs");
 
 // The canvas needs to be initialized before any gui scripts are run since
 // some of the controls assume that the canvas exists at load time.
-createCanvas("T3Dbones");
+createCanvas("vlrtt");
 
 // Start rendering and stuff.
 initRenderManager();
-initLightingSystems("Basic Lighting"); 
+initLightingSystems("Advanced Lighting"); 
 
 // Start PostFX. If you use "Advanced Lighting" above, uncomment this.
-//initPostEffects();
+initPostEffects();
 
 // Start audio.
 sfxStartup();
@@ -48,8 +48,7 @@ sfxStartup();
 exec("console/main.cs");
 
 // Load up game code.
-//exec("tutorials/02_camera_movement/main.cs");
-exec("tutorials/03_add_a_player/main.cs");
+exec("game/main.cs");
 
 // Called when we connect to the local game.
 function GameConnection::onConnect(%client) {

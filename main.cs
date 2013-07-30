@@ -68,4 +68,19 @@ new GameConnection(ServerConnection);
 // This calls GameConnection::onConnect.
 ServerConnection.connectLocal();
 
+// Start game-specific scripts.
 onStart();
+
+//-----------------------------------------------------------------------------
+// Called when the engine is shutting down.
+function onExit() {
+   // Clean up game objects and so on.
+   onEnd();
+
+   // Delete the connection if it's still there.
+   ServerConnection.delete();
+   ServerGroup.delete();
+
+   // Delete all the datablocks.
+   deleteDataBlocks();
+}

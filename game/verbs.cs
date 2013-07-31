@@ -1,12 +1,20 @@
-new ScriptObject(Verbs);
+new ScriptObject(Verbs) {
+   class = StateMachine;
+
+   state = null;
+   transition[null, ready] = ready;
+
+   transition[ready, knightSelected] = selected;
+
+   transition[selected, and] = ready;
+   transition[selected, test] = test;
+
+   transition["*", finish] = ready;
+   transition["*", cancel] = ready;
+};
 
 function Verbs::define(%this, %key, %verb) {
-   Verbs.map.bindCmd(keyboard, %key, "Verbs." @ %verb @ "();", "");
-}
-
-function Verbs::endVerb() {
-   Verbs.map.pop();
-   Knights.selectMap.push();
+   Verbs.map.bindCmd(keyboard, %key, "Verbs.onEvent(" @ %verb @ ");", "");
 }
 
 function Verbs::onStart(%this) {
@@ -19,30 +27,49 @@ function Verbs::onStart(%this) {
    %this.define(",", "And");
    %this.define(".", "Test");
    %this.define("backspace", "Cancel");
+
+   // Start up the state machine.
+   %this.onEvent(ready);
 }
 
 function Verbs::onEnd(%this) {
    %this.map.delete();
 }
 
-function Verbs::and(%this) {
-   // Give the user the chance to select another knight.
-   %this.endVerb();
+function Verbs::onFinish(%this) {
+   Knights.deselectAll();
+}
+function Verbs::onCancel(%this) {
+   Knights.deselectAll();
 }
 
-function Verbs::test(%this) {
+function Verbs::endVerb(%this) {
+   %this.onEvent(finish);
+}
+
+//-----------------------------------------------------------------------------
+// Event scripts
+
+function Verbs::enterReady(%this) {
+   Knights.selectMap.push();
+}
+function Verbs::leaveReady(%this) {
+   Knights.selectMap.pop();
+}
+
+function Verbs::enterSelected(%this) {
+   %this.map.push();
+}
+function Verbs::leaveSelected(%this) {
+   %this.map.pop();
+}
+
+function Verbs::enterTest(%this) {
    // Do something with the selected knights.
    echo("testing");
    foreach(%knight in Knights.selected) {
       echo("   " @ %knight);
    }
-   // Deselect all knights.
-   Knights.deselectAll();
    // Start selection process again.
-   %this.endVerb();
-}
-
-function Verbs::cancel(%this) {
-   Knights.deselectAll();
    %this.endVerb();
 }

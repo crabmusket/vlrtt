@@ -56,7 +56,7 @@ function Knights::onEnd(%this) {
 
 function Knights::select(%this, %knight) {
    %this.selected.add(%knight);
-   %this.endSelection();
+   Verbs.onEvent(knightSelected);
 }
 
 function Knights::deselect(%this, %knight) {
@@ -69,7 +69,7 @@ function Knights::selectAll(%this) {
    foreach(%knight in Knights) {
       %this.select(%knight);
    }
-   %this.endSelection();
+   Verbs.onEvent(knightSelected);
 }
 
 function Knights::deselectAll(%this) {
@@ -77,9 +77,3 @@ function Knights::deselectAll(%this) {
       %this.deselect(%knight);
    }
 }
-
-function Knights::endSelection(%this) {
-   %this.selectMap.pop();
-   Verbs.map.push();
-}
-

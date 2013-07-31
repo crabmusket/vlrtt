@@ -6,6 +6,7 @@
 exec("./verbs.cs");
 exec("./knights.cs");
 exec("./level1.cs");
+exec("stateMachine/main.cs");
 
 //-----------------------------------------------------------------------------
 // Load up our main GUI which lets us see the game.
@@ -56,8 +57,8 @@ function onStart() {
    // Allow us to exit the game...
    GlobalActionMap.bind(keyboard, "escape", "quit");
 
-   Verbs.onStart();
    Knights.onStart();
+   Verbs.onStart();
    Level1.onStart();
 }
 

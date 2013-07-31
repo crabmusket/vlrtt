@@ -20,6 +20,8 @@
 // IN THE SOFTWARE.
 //-----------------------------------------------------------------------------
 
+exec("./tsshim.cs");
+
 //-----------------------------------------------------------------------------
 // Load up our main GUI which lets us see the game.
 exec("./playGui.gui");
@@ -100,7 +102,58 @@ function knight(%name, %pos) {
 // Select a knight.
 function selectKnight(%knight) {
    SelectedKnights.add(%knight);
-   // Add some sort of effect.
+   endSelection();
+}
+
+function deselectKnight(%knight) {
+   if(SelectedKnights.contains(%knight)) {
+      SelectedKnights.remove(%knight);
+   }
+}
+
+function selectAllKnights() {
+   foreach(%knight in Knights) {
+      selectKnight(%knight);
+   }
+   endSelection();
+}
+
+function deselectAllKnights() {
+   foreach(%knight in Knights) {
+      deselectKnight(%knight);
+   }
+}
+
+function endSelection() {
+   KnightSelectMap.pop();
+   VerbMap.push();
+}
+
+//-----------------------------------------------------------------------------
+// Define a verb.
+function verb(%key, %verb) {
+   VerbMap.bindCmd(keyboard, %key, "Verbs::" @ %verb @ "();", "");
+}
+
+function endVerb() {
+   VerbMap.pop();
+   KnightSelectMap.push();
+}
+
+//-----------------------------------------------------------------------------
+// Verbs.
+function Verbs::and() {
+   // Give the user the chance to select another knight.
+   endVerb();
+}
+
+function Verbs::test() {
+   // Do something with the selected knights.
+   echo(SelectedKnights.getCount());
+   // Deselect all knights.
+   deselectAllKnights();
+   // Start selection process again.
+   endVerb();
 }
 
 //-----------------------------------------------------------------------------
@@ -128,6 +181,7 @@ function onStart() {
 
    // ActionMaps allows us to capture input.
    new ActionMap(KnightSelectMap);
+   new ActionMap(VerbMap);
 
    // Create four protagonists!
    knight(Juliet, "-2 2 0");
@@ -135,9 +189,14 @@ function onStart() {
    knight(Hotel, "-2 -2 0");
    knight(November, "-2 -2 0");
 
+   KnightSelectMap.bind(keyboard, "a", "selectAllKnights");
+
+   // Add some verbs that allow the knights to perform actions.
+   verb(",", "And");
+   verb(".", "Test");
+
    // Allow us to exit the game...
-   GlobalActionMap.bind(keyboard, "q", "quit");
-   GlobalActionMap.bind(keyboard, "alt f4", "quit");
+   GlobalActionMap.bind(keyboard, "escape", "quit");
 }
 
 //-----------------------------------------------------------------------------

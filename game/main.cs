@@ -93,7 +93,14 @@ function knight(%name, %pos) {
 
    // Bind the knight's name's first letter to select it.
    %letter = getSubstr(%name, 0, 1);
-   KnightSelectMap.bindCmd(keyboard, "shift" SPC %letter, "echo(\"" @ %name @ "\");", "");
+   KnightSelectMap.bindCmd(keyboard, "shift" SPC %letter, "selectKnight(" @ %name @ ");", "");
+}
+
+//-----------------------------------------------------------------------------
+// Select a knight.
+function selectKnight(%knight) {
+   SelectedKnights.add(%knight);
+   // Add some sort of effect.
 }
 
 //-----------------------------------------------------------------------------
@@ -116,9 +123,10 @@ function onStart() {
          castShadows = false;
       };
       new SimGroup(Knights);
+      new SimSet(SelectedKnights);
    };
 
-   // ActionMap allows us to capture input.
+   // ActionMaps allows us to capture input.
    new ActionMap(KnightSelectMap);
 
    // Create four protagonists!

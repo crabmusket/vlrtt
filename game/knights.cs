@@ -15,7 +15,7 @@ datablock PlayerData(DefaultPlayer) {
 
 function knight(%name, %pos) {
    // Create the object itself with a name, position and datablock.
-   %knight = new Player(%name) {
+   %knight = new AIPlayer(%name) {
       datablock = DefaultPlayer;
       position = %pos;
    };

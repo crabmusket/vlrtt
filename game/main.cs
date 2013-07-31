@@ -6,6 +6,7 @@
 include(stateMachine);
 exec("./verbs.cs");
 exec("./knights.cs");
+exec("./enemies.cs");
 exec("./level1.cs");
 exec("./playGui.gui");
 
@@ -55,6 +56,7 @@ function onStart() {
    GlobalActionMap.bind(keyboard, "escape", "quit");
 
    Knights.onStart();
+   Enemies.onStart();
    Verbs.onStart();
    Level1.onStart();
 }
@@ -64,6 +66,7 @@ function onStart() {
 function onEnd() {
    Verbs.onEnd();
    Knights.onEnd();
+   Enemies.onEnd();
 
    // Delete the objects we created.
    GameGroup.delete();

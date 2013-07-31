@@ -10,7 +10,7 @@ trace(false);
 
 //-----------------------------------------------------------------------------
 // Load up scripts to initialise subsystems.
-exec("sys/main.cs");
+include(sys);
 
 // The canvas needs to be initialized before any gui scripts are run since
 // some of the controls assume that the canvas exists at load time.
@@ -28,10 +28,10 @@ sfxStartup();
 
 //-----------------------------------------------------------------------------
 // Load console.
-exec("console/main.cs");
+include(console);
 
 // Load up game code.
-exec("game/main.cs");
+include(game);
 
 // Called when we connect to the local game.
 function GameConnection::onConnect(%client) {

@@ -3,13 +3,10 @@
 // up properly.
 
 // Load scripts.
+include(stateMachine);
 exec("./verbs.cs");
 exec("./knights.cs");
 exec("./level1.cs");
-exec("stateMachine/main.cs");
-
-//-----------------------------------------------------------------------------
-// Load up our main GUI which lets us see the game.
 exec("./playGui.gui");
 
 //-----------------------------------------------------------------------------

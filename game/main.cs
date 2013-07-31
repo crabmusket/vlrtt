@@ -56,7 +56,7 @@ function GameConnection::onEnterGame(%client) {
    new Camera(TheCamera) {
       datablock = Observer;
    };
-   TheCamera.setTransform("0 0 2 1 0 0 0");
+   TheCamera.setTransform("0 -7 4 1 0 0 0");
 
    // Cameras are not ghosted (sent across the network) by default; we need to
    // do it manually for the client that owns the camera or things will go south
@@ -187,7 +187,7 @@ function onStart() {
    knight(Juliet, "-2 2 0");
    knight(Kilo, "2 2 0");
    knight(Hotel, "-2 -2 0");
-   knight(November, "-2 -2 0");
+   knight(November, "2 -2 0");
 
    KnightSelectMap.bind(keyboard, "a", "selectAllKnights");
 

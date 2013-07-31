@@ -3,7 +3,6 @@
 // up properly.
 
 // Load scripts.
-exec("./tsshim.cs");
 exec("./verbs.cs");
 exec("./knights.cs");
 exec("./level1.cs");

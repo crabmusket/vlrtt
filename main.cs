@@ -1,6 +1,8 @@
 //-----------------------------------------------------------------------------
 // Entry point to the engine. Everything begins here.
 
+exec("tsshim/main.cs");
+
 // Console does something.
 setLogMode(2);
 // Disable script trace.

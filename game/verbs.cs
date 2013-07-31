@@ -1,11 +1,11 @@
 new ScriptObject(Verbs);
 
-function verb(%key, %verb) {
-   VerbMap.bindCmd(keyboard, %key, "Verbs::" @ %verb @ "();", "");
+function Verbs::define(%this, %key, %verb) {
+   Verbs.map.bindCmd(keyboard, %key, "Verbs." @ %verb @ "();", "");
 }
 
-function endVerb() {
-   VerbMap.pop();
+function Verbs::endVerb() {
+   Verbs.map.pop();
    Knights.selectMap.push();
 }
 
@@ -13,20 +13,20 @@ function Verbs::onStart(%this) {
    GameGroup.add(Verbs);
 
    // Respond to keypresses.
-   new ActionMap(VerbMap);
+   %this.map = new ActionMap();
 
    // Add some verbs that allow the knights to perform actions.
-   verb(",", "And");
-   verb(".", "Test");
+   %this.define(",", "And");
+   %this.define(".", "Test");
 }
 
 function Verbs::onEnd(%this) {
-   VerbMap.delete();
+   %this.map.delete();
 }
 
 function Verbs::and(%this) {
    // Give the user the chance to select another knight.
-   endVerb();
+   %this.endVerb();
 }
 
 function Verbs::test(%this) {
@@ -38,5 +38,5 @@ function Verbs::test(%this) {
    // Deselect all knights.
    Knights.deselectAll();
    // Start selection process again.
-   endVerb();
+   %this.endVerb();
 }

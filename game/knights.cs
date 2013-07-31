@@ -80,6 +80,6 @@ function Knights::deselectAll(%this) {
 
 function Knights::endSelection(%this) {
    %this.selectMap.pop();
-   VerbMap.push();
+   Verbs.map.push();
 }
 

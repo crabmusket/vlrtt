@@ -1,14 +1,24 @@
 new ScriptObject(Verbs) {
+   // Allows us to use the onEvent callback.
    class = StateMachine;
 
+   // The null state is only necessary to we have an enterReady callback when
+   // the state machine is first 'activated' (i.e. given a ready event).
    state = null;
    transition[null, ready] = ready;
 
+   // Top-level commands. Usually involves selecting a knight.
    transition[ready, knightSelected] = selected;
 
+   // This is where most of the verbs live - after selecting a character.
    transition[selected, and] = ready;
    transition[selected, test] = test;
+   transition[selected, hug] = hugTarget;
 
+   // Must target a knight before enterHug callback is fired.
+   transition[hugTarget, knightTargeted] = hug;
+
+   // Catch these events from every state and return to ready.
    transition["*", finish] = ready;
    transition["*", cancel] = ready;
 };
@@ -26,6 +36,7 @@ function Verbs::onStart(%this) {
    // Add some verbs that allow the knights to perform actions.
    %this.define(",", "And");
    %this.define(".", "Test");
+   %this.define("h", "Hug");
    %this.define("backspace", "Cancel");
 
    // Start up the state machine.
@@ -71,5 +82,20 @@ function Verbs::enterTest(%this) {
       echo("   " @ %knight);
    }
    // Start selection process again.
+   %this.endVerb();
+}
+
+function Verbs::enterHugTarget(%this) {
+   Knights.targetMap.push();
+}
+function Verbs::leaveHugTarget(%this) {
+   Knights.targetMap.pop();
+}
+
+function Verbs::enterHug(%this) {
+   foreach(%knight in Knights.selected) {
+      %knight.setMoveDestination(%this.target.getPosition());
+   }
+   %this.target = "";
    %this.endVerb();
 }

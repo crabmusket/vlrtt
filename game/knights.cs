@@ -22,8 +22,11 @@ function knight(%name, %pos) {
    Knights.add(%knight);
 
    // Bind the knight's name's first letter to select it.
-   %letter = getSubstr(%name, 0, 1);
-   Knights.selectMap.bindCmd(keyboard, "shift" SPC %letter, "Knights.select(" @ %name @ ");", "");
+   %action = "shift" SPC getSubstr(%name, 0, 1);
+   Knights.selectMap.bindCmd(keyboard, %action, "Knights.select(" @ %name @ ");");
+
+   // Bind the same keypress to target the knight.
+   Knights.targetMap.bindCmd(keyboard, %action, "Knights.target(" @ %name @ ");");
 }
 
 function Knights::onStart(%this) {
@@ -31,6 +34,7 @@ function Knights::onStart(%this) {
 
    // ActionMaps allows us to capture input.
    %this.selectMap = new ActionMap();
+   %this.targetMap = new ActionMap();
 
    // Create four protagonists!
    knight(Juliet, "-2 2 0");
@@ -45,8 +49,6 @@ function Knights::onStart(%this) {
 }
 
 function Knights::onEnterGame(%this, %client) {
-   // Enable knight selection.
-   %this.selectMap.push();
 }
 
 function Knights::onEnd(%this) {
@@ -76,4 +78,9 @@ function Knights::deselectAll(%this) {
    foreach(%knight in Knights) {
       %this.deselect(%knight);
    }
+}
+
+function Knights::target(%this, %knight) {
+   Verbs.target = %knight;
+   Verbs.onEvent(knightTargeted);
 }

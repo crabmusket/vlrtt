@@ -18,6 +18,7 @@ function Verbs::onStart(%this) {
    // Add some verbs that allow the knights to perform actions.
    %this.define(",", "And");
    %this.define(".", "Test");
+   %this.define("backspace", "Cancel");
 }
 
 function Verbs::onEnd(%this) {
@@ -38,5 +39,10 @@ function Verbs::test(%this) {
    // Deselect all knights.
    Knights.deselectAll();
    // Start selection process again.
+   %this.endVerb();
+}
+
+function Verbs::cancel(%this) {
+   Knights.deselectAll();
    %this.endVerb();
 }

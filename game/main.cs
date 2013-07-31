@@ -35,6 +35,19 @@ singleton Material(BlankWhite) {
 };
 
 //-----------------------------------------------------------------------------
+// Create the player material.
+singleton Material(PlayerMaterial) {
+   diffuseColor[0] = "1 0 0";
+   mapTo = "PlayerTexture";
+};
+
+//-----------------------------------------------------------------------------
+// Create the player material.
+datablock PlayerData(DefaultPlayer) {
+   shapeFile = "./player.dts";
+};
+
+//-----------------------------------------------------------------------------
 // Called when all datablocks have been transmitted.
 function GameConnection::onEnterGame(%client) {
    // Create a camera for the client.
@@ -63,6 +76,24 @@ function GameConnection::onEnterGame(%client) {
 
    // Activate the toon-edge PostFX.
    OutlineFx.enable();
+
+   // Enable knight selection.
+   KnightSelectMap.push();
+}
+
+//-----------------------------------------------------------------------------
+// Function to spawn and setup controls for a knight.
+function knight(%name, %pos) {
+   // Create the object itself with a name, position and datablock.
+   %knight = new Player(%name) {
+      datablock = DefaultPlayer;
+      position = %pos;
+   };
+   Knights.add(%knight);
+
+   // Bind the knight's name's first letter to select it.
+   %letter = getSubstr(%name, 0, 1);
+   KnightSelectMap.bindCmd(keyboard, "shift" SPC %letter, "echo(\"" @ %name @ "\");", "");
 }
 
 //-----------------------------------------------------------------------------
@@ -84,10 +115,21 @@ function onStart() {
          ambient = "0.1 0.1 0.1";
          castShadows = false;
       };
+      new SimGroup(Knights);
    };
 
+   // ActionMap allows us to capture input.
+   new ActionMap(KnightSelectMap);
+
+   // Create four protagonists!
+   knight(Juliet, "-2 2 0");
+   knight(Kilo, "2 2 0");
+   knight(Hotel, "-2 -2 0");
+   knight(November, "-2 -2 0");
+
    // Allow us to exit the game...
-   GlobalActionMap.bind("keyboard", "escape", "quit");
+   GlobalActionMap.bind(keyboard, "q", "quit");
+   GlobalActionMap.bind(keyboard, "alt f4", "quit");
 }
 
 //-----------------------------------------------------------------------------

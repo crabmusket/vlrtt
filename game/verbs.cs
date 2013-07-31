@@ -75,6 +75,8 @@ function Verbs::leaveSelected(%this) {
    %this.map.pop();
 }
 
+//-----------------------------------------------------------------------------
+
 function Verbs::enterTest(%this) {
    // Do something with the selected knights.
    echo("testing");
@@ -84,6 +86,8 @@ function Verbs::enterTest(%this) {
    // Start selection process again.
    %this.endVerb();
 }
+
+//-----------------------------------------------------------------------------
 
 function Verbs::enterHugTarget(%this) {
    Knights.targetMap.push();

@@ -3,20 +3,20 @@ new SimGroup(Knights);
 //-----------------------------------------------------------------------------
 // Create the player material.
 singleton Material(PlayerMaterial) {
-   diffuseColor[0] = "1 0 0";
-   mapTo = "PlayerTexture";
+   diffuseColor[0] = "0 1 0";
+   mapTo = "basePlayer";
 };
 
 //-----------------------------------------------------------------------------
 // Create the player material.
-datablock PlayerData(DefaultPlayer) {
-   shapeFile = "./player.dts";
+datablock PlayerData(Knight) {
+   shapeFile = "./player.dae";
 };
 
 function knight(%name, %pos) {
    // Create the object itself with a name, position and datablock.
    %knight = new AIPlayer(%name) {
-      datablock = DefaultPlayer;
+      datablock = Knight;
       position = %pos;
    };
    Knights.add(%knight);

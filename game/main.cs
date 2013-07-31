@@ -21,6 +21,9 @@
 //-----------------------------------------------------------------------------
 
 exec("./tsshim.cs");
+exec("./verbs.cs");
+exec("./knights.cs");
+exec("./level1.cs");
 
 //-----------------------------------------------------------------------------
 // Load up our main GUI which lets us see the game.
@@ -29,25 +32,6 @@ exec("./playGui.gui");
 //-----------------------------------------------------------------------------
 // Create a datablock for the observer camera.
 datablock CameraData(Observer) {};
-
-//-----------------------------------------------------------------------------
-// And a material to give the ground some colour (even if it's just white).
-singleton Material(BlankWhite) {
-   diffuseColor[0] = "1 1 1";
-};
-
-//-----------------------------------------------------------------------------
-// Create the player material.
-singleton Material(PlayerMaterial) {
-   diffuseColor[0] = "1 0 0";
-   mapTo = "PlayerTexture";
-};
-
-//-----------------------------------------------------------------------------
-// Create the player material.
-datablock PlayerData(DefaultPlayer) {
-   shapeFile = "./player.dts";
-};
 
 //-----------------------------------------------------------------------------
 // Called when all datablocks have been transmitted.
@@ -79,129 +63,28 @@ function GameConnection::onEnterGame(%client) {
    // Activate the toon-edge PostFX.
    OutlineFx.enable();
 
-   // Enable knight selection.
-   KnightSelectMap.push();
-}
-
-//-----------------------------------------------------------------------------
-// Function to spawn and setup controls for a knight.
-function knight(%name, %pos) {
-   // Create the object itself with a name, position and datablock.
-   %knight = new Player(%name) {
-      datablock = DefaultPlayer;
-      position = %pos;
-   };
-   Knights.add(%knight);
-
-   // Bind the knight's name's first letter to select it.
-   %letter = getSubstr(%name, 0, 1);
-   KnightSelectMap.bindCmd(keyboard, "shift" SPC %letter, "selectKnight(" @ %name @ ");", "");
-}
-
-//-----------------------------------------------------------------------------
-// Select a knight.
-function selectKnight(%knight) {
-   SelectedKnights.add(%knight);
-   endSelection();
-}
-
-function deselectKnight(%knight) {
-   if(SelectedKnights.contains(%knight)) {
-      SelectedKnights.remove(%knight);
-   }
-}
-
-function selectAllKnights() {
-   foreach(%knight in Knights) {
-      selectKnight(%knight);
-   }
-   endSelection();
-}
-
-function deselectAllKnights() {
-   foreach(%knight in Knights) {
-      deselectKnight(%knight);
-   }
-}
-
-function endSelection() {
-   KnightSelectMap.pop();
-   VerbMap.push();
-}
-
-//-----------------------------------------------------------------------------
-// Define a verb.
-function verb(%key, %verb) {
-   VerbMap.bindCmd(keyboard, %key, "Verbs::" @ %verb @ "();", "");
-}
-
-function endVerb() {
-   VerbMap.pop();
-   KnightSelectMap.push();
-}
-
-//-----------------------------------------------------------------------------
-// Verbs.
-function Verbs::and() {
-   // Give the user the chance to select another knight.
-   endVerb();
-}
-
-function Verbs::test() {
-   // Do something with the selected knights.
-   echo(SelectedKnights.getCount());
-   // Deselect all knights.
-   deselectAllKnights();
-   // Start selection process again.
-   endVerb();
+   Knights.onEnterGame(%client);
 }
 
 //-----------------------------------------------------------------------------
 // Called when the engine has been initialised.
 function onStart() {
-   // Create objects!
-   new SimGroup(GameGroup) {
-      new LevelInfo(TheLevelInfo) {
-         canvasClearColor = "0 0 0";
-      };
-      new GroundPlane(TheGround) {
-         position = "0 0 0";
-         material = BlankWhite;
-      };
-      new Sun(TheSun) {
-         azimuth = 230;
-         elevation = 45;
-         color = "1 1 1";
-         ambient = "0.1 0.1 0.1";
-         castShadows = false;
-      };
-      new SimGroup(Knights);
-      new SimSet(SelectedKnights);
-   };
-
-   // ActionMaps allows us to capture input.
-   new ActionMap(KnightSelectMap);
-   new ActionMap(VerbMap);
-
-   // Create four protagonists!
-   knight(Juliet, "-2 2 0");
-   knight(Kilo, "2 2 0");
-   knight(Hotel, "-2 -2 0");
-   knight(November, "2 -2 0");
-
-   KnightSelectMap.bind(keyboard, "a", "selectAllKnights");
-
-   // Add some verbs that allow the knights to perform actions.
-   verb(",", "And");
-   verb(".", "Test");
+   new SimGroup(GameGroup);
 
    // Allow us to exit the game...
    GlobalActionMap.bind(keyboard, "escape", "quit");
+
+   Verbs.onStart();
+   Knights.onStart();
+   Level1.onStart();
 }
 
 //-----------------------------------------------------------------------------
 // Called when the engine is shutting down.
 function onEnd() {
+   Verbs.onEnd();
+   Knights.onEnd();
+
    // Delete the objects we created.
    GameGroup.delete();
 }

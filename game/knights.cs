@@ -36,12 +36,6 @@ function Knights::onStart(%this) {
    %this.selectMap = new ActionMap();
    %this.targetMap = new ActionMap();
 
-   // Create four protagonists!
-   knight(Juliet, "-2 2 0");
-   knight(Kilo, "2 2 0");
-   knight(Hotel, "-2 -2 0");
-   knight(November, "2 -2 0");
-
    // Shortcut to selecting them all.
    %this.selectMap.bindCmd(keyboard, "a", "Knights.selectAll();", "");
 

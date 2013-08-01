@@ -17,6 +17,15 @@ function Level1::onStart() {
          castShadows = false;
       };
    });
+
+   // Create four protagonists!
+   knight(Juliet, "-2 2 0");
+   knight(Kilo, "2 2 0");
+   knight(Hotel, "-2 -2 0");
+   knight(November, "2 -2 0");
+
+   // Create a bunch of enemies.
+   soldier("0 0 0");
 }
 
 //-----------------------------------------------------------------------------

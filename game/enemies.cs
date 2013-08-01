@@ -18,9 +18,6 @@ function soldier(%pos) {
 
 function Enemies::onStart(%this) {
    GameGroup.add(Enemies);
-
-   // Create a bunch of enemies.
-   soldier("0 0 0");
 }
 
 function Enemies::onEnd(%this) {

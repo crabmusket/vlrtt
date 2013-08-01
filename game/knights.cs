@@ -22,7 +22,7 @@ function knight(%name, %pos) {
    Knights.add(%knight);
 
    // Bind the knight's name's first letter to select it.
-   %action = "shift" SPC getSubstr(%name, 0, 1);
+   %action = getSubstr(%name, 0, 1);
    Knights.selectMap.bindCmd(keyboard, %action, "Knights.select(" @ %name @ ");");
 
    // Bind the same keypress to target the knight.

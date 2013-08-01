@@ -37,6 +37,16 @@ function knight(%name, %pos, %role) {
    Knights.targetMap.bindCmd(keyboard, %action, "Knights.target(" @ %name @ ");");
 }
 
+function Knight::attack(%this, %obj, %target) {
+   if(%this.melee) {
+      %obj.setMoveDestination(%target.getPosition());
+   } else {
+      %obj.setAimObject(%target);
+   }
+}
+
+//-----------------------------------------------------------------------------
+
 function Knights::onStart(%this) {
    GameGroup.add(%this);
 

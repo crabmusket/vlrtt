@@ -118,7 +118,7 @@ function Verbs::leaveAttackTarget(%this) {
 
 function Verbs::enterAttack(%this) {
    foreach(%knight in Knights.selected) {
-      %knight.setAimObject(%this.target);
+      %knight.getDataBlock().attack(%knight, %this.target);
    }
    %this.target = "";
    %this.endVerb();

@@ -8,18 +8,23 @@ singleton Material(PlayerMaterial) {
 };
 
 //-----------------------------------------------------------------------------
-// Create the player material.
-datablock PlayerData(Knight) {
+// Basic protagonist datablock.
+datablock PlayerData(KnightBase) {
+   class = Knight;
+   superclass = Character;
    shapeFile = "./player.dae";
-   class = Character;
    maxDamage = 100;
    destroyedLevel = 100;
 };
 
-function knight(%name, %pos) {
+datablock PlayerData(Shooter : KnightBase) { melee = false; };
+datablock PlayerData(Fighter : KnightBase) { melee = true; };
+datablock PlayerData(Healer  : KnightBase) { melee = true; };
+
+function knight(%name, %pos, %role) {
    // Create the object itself with a name, position and datablock.
    %knight = new AIPlayer(%name) {
-      datablock = Knight;
+      datablock = %role $= "" ? KnightBase : %role;
       position = %pos;
    };
    Knights.add(%knight);

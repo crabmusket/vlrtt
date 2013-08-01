@@ -1,6 +1,6 @@
 new SimGroup(Enemies);
 
-datablock PlayerData(Soldier : Knight) {};
+datablock PlayerData(Soldier : KnightBase) { melee = false; };
 
 singleton Material(EnemyMaterial) {
    diffuseColor[0] = "1 0 0";

@@ -19,10 +19,10 @@ function Level1::onStart() {
    });
 
    // Create four protagonists!
-   knight(Juliet, "-2 2 0");
-   knight(Kilo, "2 2 0");
-   knight(Hotel, "-2 -2 0");
-   knight(November, "2 -2 0");
+   knight(Juliet, "-2 2 0", Fighter);
+   knight(Kilo, "2 2 0", Shooter);
+   knight(Hotel, "-2 -2 0", Shooter);
+   knight(November, "2 -2 0", Healer);
 
    // Create a bunch of enemies.
    soldier("0 0 0");

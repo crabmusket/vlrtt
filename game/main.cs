@@ -54,6 +54,7 @@ function onStart() {
 
    // Allow us to exit the game...
    GlobalActionMap.bind(keyboard, "escape", "quit");
+   GlobalActionMap.bind(keyboard, "alt f4", "quit");
 
    Knights.onStart();
    Enemies.onStart();

@@ -42,10 +42,8 @@ function Knights::onStart(%this) {
    // Shortcut to selecting them all.
    %this.selectMap.bindCmd(keyboard, "a", "Knights.selectAll();", "");
 
+   // Selected knights.
    %this.selected = new SimSet();
-}
-
-function Knights::onEnterGame(%this, %client) {
 }
 
 function Knights::onEnd(%this) {

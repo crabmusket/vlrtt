@@ -24,7 +24,6 @@ function Enemies::onStart(%this) {
    %this.letters = "jkhnfdgvcbtyursieowpxqlazm";
    for(%i = 0; %i < strLen(%this.letters); %i++) {
       %action = getSubStr(%this.letters, %i, 1);
-      echo(%action);
       %this.targetMap.bindCmd(keyboard, %action, "Enemies.target(" @ %action @ ");");
    }
 }

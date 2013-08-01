@@ -43,8 +43,6 @@ function GameConnection::onEnterGame(%client) {
 
    // Activate the toon-edge PostFX.
    OutlineFx.enable();
-
-   Knights.onEnterGame(%client);
 }
 
 //-----------------------------------------------------------------------------

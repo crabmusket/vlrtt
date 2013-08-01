@@ -10,3 +10,6 @@
 
 # The console
 console.log
+
+# Art cache
+*.cached.dts

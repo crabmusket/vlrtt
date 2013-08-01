@@ -14,9 +14,11 @@ new ScriptObject(Verbs) {
    transition[selected, and] = ready;
    transition[selected, test] = test;
    transition[selected, heal] = healTarget;
+   transition[selected, attack] = attackTarget;
 
-   // Must target a knight before enterHeal callback is fired.
+   // Must target someone for these verbs.
    transition[healTarget, knightTargeted] = heal;
+   transition[attackTarget, enemyTargeted] = attack;
 
    // Catch these events from every state and return to ready.
    transition["*", finish] = ready;
@@ -37,6 +39,7 @@ function Verbs::onStart(%this) {
    %this.define(",", "And");
    %this.define(".", "Test");
    %this.define("h", "Heal");
+   %this.define("a", "Attack");
    %this.define("backspace", "Cancel");
 
    // Start up the state machine.
@@ -99,6 +102,23 @@ function Verbs::leaveHealTarget(%this) {
 function Verbs::enterHeal(%this) {
    foreach(%knight in Knights.selected) {
       %knight.setMoveDestination(%this.target.getPosition());
+   }
+   %this.target = "";
+   %this.endVerb();
+}
+
+//-----------------------------------------------------------------------------
+
+function Verbs::enterAttackTarget(%this) {
+   Enemies.targetMap.push();
+}
+function Verbs::leaveAttackTarget(%this) {
+   Enemies.targetMap.pop();
+}
+
+function Verbs::enterAttack(%this) {
+   foreach(%knight in Knights.selected) {
+      %knight.setAimObject(%this.target);
    }
    %this.target = "";
    %this.endVerb();

@@ -13,10 +13,10 @@ new ScriptObject(Verbs) {
    // This is where most of the verbs live - after selecting a character.
    transition[selected, and] = ready;
    transition[selected, test] = test;
-   transition[selected, hug] = hugTarget;
+   transition[selected, heal] = healTarget;
 
-   // Must target a knight before enterHug callback is fired.
-   transition[hugTarget, knightTargeted] = hug;
+   // Must target a knight before enterHeal callback is fired.
+   transition[healTarget, knightTargeted] = heal;
 
    // Catch these events from every state and return to ready.
    transition["*", finish] = ready;
@@ -36,7 +36,7 @@ function Verbs::onStart(%this) {
    // Add some verbs that allow the knights to perform actions.
    %this.define(",", "And");
    %this.define(".", "Test");
-   %this.define("h", "Hug");
+   %this.define("h", "Heal");
    %this.define("backspace", "Cancel");
 
    // Start up the state machine.
@@ -89,14 +89,14 @@ function Verbs::enterTest(%this) {
 
 //-----------------------------------------------------------------------------
 
-function Verbs::enterHugTarget(%this) {
+function Verbs::enterHealTarget(%this) {
    Knights.targetMap.push();
 }
-function Verbs::leaveHugTarget(%this) {
+function Verbs::leaveHealTarget(%this) {
    Knights.targetMap.pop();
 }
 
-function Verbs::enterHug(%this) {
+function Verbs::enterHeal(%this) {
    foreach(%knight in Knights.selected) {
       %knight.setMoveDestination(%this.target.getPosition());
    }

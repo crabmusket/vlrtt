@@ -9,3 +9,7 @@ function SimSet::size(%this) {
 function include(%path) {
    exec(%path @ "/main.cs");
 }
+
+function SimObject::can(%this, %method) {
+   return %this.isMethod(%method);
+}

@@ -11,6 +11,9 @@ singleton Material(PlayerMaterial) {
 // Create the player material.
 datablock PlayerData(Knight) {
    shapeFile = "./player.dae";
+   class = Character;
+   maxDamage = 100;
+   destroyedLevel = 100;
 };
 
 function knight(%name, %pos) {

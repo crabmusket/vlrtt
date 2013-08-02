@@ -133,6 +133,6 @@ function Verbs::enterStop(%this) {
       %knight.setImageTrigger(0, 0);
       %knight.stop();
       %knight.setAimLocation($forwards);
-      %knight.clearAimLocation();
+      %knight.schedule(200, clearAim);
    }
 }

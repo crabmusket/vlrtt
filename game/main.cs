@@ -5,6 +5,7 @@
 // Load scripts.
 include(stateMachine);
 exec("./verbs.cs");
+exec("./character.cs");
 exec("./knights.cs");
 exec("./enemies.cs");
 exec("./weapons.cs");

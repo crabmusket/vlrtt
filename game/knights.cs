@@ -15,6 +15,11 @@ datablock PlayerData(KnightBase) {
    shapeFile = "./player.dae";
    maxDamage = 100;
    destroyedLevel = 100;
+   debris = KnightDebris;
+};
+
+datablock DebrisData(KnightDebris) {
+   shapeFile = "./projectile.dae";
 };
 
 datablock PlayerData(Shooter : KnightBase) { melee = false; };

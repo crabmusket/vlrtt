@@ -27,6 +27,10 @@ datablock ProjectileData(Bullet) {
    damage = 20;
 };
 
+function Bullet::onCollision(%this, %obj, %col) {
+   %col.damage(%this.damage);
+}
+
 singleton Material(BulletMaterial) {
    diffuseColor[0] = "1 1 1";
    mapTo = "baseProjectile";

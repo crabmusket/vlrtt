@@ -29,6 +29,7 @@ sfxStartup();
 //-----------------------------------------------------------------------------
 // Load console.
 include(console);
+include(metrics);
 
 // Load up game code.
 include(game);

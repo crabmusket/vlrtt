@@ -9,7 +9,7 @@ exec("./character.cs");
 exec("./knights.cs");
 exec("./enemies.cs");
 exec("./weapons.cs");
-exec("./level1.cs");
+exec("./level.cs");
 exec("./playGui.gui");
 
 $forwards = "0 100000 0";

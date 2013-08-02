@@ -35,6 +35,7 @@ function Verbs::onStart(%this) {
 
    // Respond to keypresses.
    %this.map = new ActionMap();
+   %this.globalMap = new ActionMap();
 
    // Add some verbs that allow the knights to perform actions.
    %this.define(",", "And");
@@ -42,7 +43,9 @@ function Verbs::onStart(%this) {
    %this.define("h", "Heal");
    %this.define("a", "Attack");
    %this.define("s", "Stop");
-   %this.define("backspace", "Cancel");
+
+   %this.globalMap.bindCmd(keyboard, "ctrl c", "Verbs.onEvent(cancel);");
+   %this.globalMap.push();
 
    // Start up the state machine.
    %this.onEvent(ready);
@@ -50,6 +53,7 @@ function Verbs::onStart(%this) {
 
 function Verbs::onEnd(%this) {
    %this.map.delete();
+   %this.globalMap.delete();
 }
 
 function Verbs::onFinish(%this) {

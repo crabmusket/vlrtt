@@ -18,8 +18,19 @@ datablock PlayerData(KnightBase) {
 };
 
 datablock PlayerData(Shooter : KnightBase) { melee = false; };
+function Shooter::onAdd(%this, %obj) {
+   %obj.mountImage(RangedWeapon, 0);
+}
+
 datablock PlayerData(Fighter : KnightBase) { melee = true; };
+function Fighter::onAdd(%this, %obj) {
+   %obj.mountImage(MeleeWeapon, 0);
+}
+
 datablock PlayerData(Healer  : KnightBase) { melee = true; };
+function Healer::onAdd(%this, %obj) {
+   %obj.mountImage(HealWeapon, 0);
+}
 
 function knight(%name, %pos, %role) {
    // Create the object itself with a name, position and datablock.
@@ -42,6 +53,7 @@ function Knight::attack(%this, %obj, %target) {
       %obj.setMoveDestination(%target.getPosition());
    } else {
       %obj.setAimObject(%target);
+      %obj.setImageTrigger(0, 1);
    }
 }
 

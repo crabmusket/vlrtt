@@ -15,6 +15,7 @@ new ScriptObject(Verbs) {
    transition[selected, test] = test;
    transition[selected, heal] = healTarget;
    transition[selected, attack] = attackTarget;
+   transition[selected, stop] = stop;
 
    // Must target someone for these verbs.
    transition[healTarget, knightTargeted] = heal;
@@ -40,6 +41,7 @@ function Verbs::onStart(%this) {
    %this.define(".", "Test");
    %this.define("h", "Heal");
    %this.define("a", "Attack");
+   %this.define("s", "Stop");
    %this.define("backspace", "Cancel");
 
    // Start up the state machine.
@@ -122,4 +124,15 @@ function Verbs::enterAttack(%this) {
    }
    %this.target = "";
    %this.endVerb();
+}
+
+//-----------------------------------------------------------------------------
+
+function Verbs::enterStop(%this) {
+   foreach(%knight in Knights.selected) {
+      %knight.setImageTrigger(0, 0);
+      %knight.stop();
+      %knight.setAimLocation($forwards);
+      %knight.clearAimLocation();
+   }
 }

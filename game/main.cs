@@ -10,6 +10,8 @@ exec("./enemies.cs");
 exec("./level1.cs");
 exec("./playGui.gui");
 
+$forwards = "0 100000 0";
+
 //-----------------------------------------------------------------------------
 // Create a datablock for the observer camera.
 datablock CameraData(Observer) {};

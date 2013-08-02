@@ -67,3 +67,7 @@ function onExit() {
    // Delete all the datablocks.
    deleteDataBlocks();
 }
+
+function onDatablockObjectReceived() {}
+function onGhostAlwaysObjectReceived() {}
+function onGhostAlwaysStarted() {}

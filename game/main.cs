@@ -60,8 +60,8 @@ function onStart() {
 
    Knights.onStart();
    Enemies.onStart();
-   Verbs.onStart();
    Level1.onStart();
+   Verbs.onStart();
 }
 
 //-----------------------------------------------------------------------------

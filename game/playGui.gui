@@ -1,6 +1,6 @@
 new GameTSCtrl(PlayGui) {
    isContainer = "1";
-   profile = "GuiContentProfile";
+   profile = GuiContentProfile;
    horizSizing = "right";
    vertSizing = "bottom";
    position = "0 0";
@@ -18,5 +18,16 @@ new GameTSCtrl(PlayGui) {
    forceFOV = "0";
    enabled = "1";
    helpTag = "0";
-   noCursor = "1";
+   noCursor = false;
+   new GuiShapeNameHud() {
+      profile = GuiDefaultProfile;
+      extent = "1024 768";
+      horizSizing = "relative";
+      vertSizing = "relative";
+      fillColor = "1 1 1";
+      frameColor = "0 0 0";
+      showFill = true;
+      showFrame = true;
+      textColor = "0 0 0";
+   };
 };

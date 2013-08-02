@@ -67,10 +67,10 @@ function Verbs::endVerb(%this) {
 // Event scripts
 
 function Verbs::enterReady(%this) {
-   Knights.selectMap.push();
+   Knights.beginSelect();
 }
 function Verbs::leaveReady(%this) {
-   Knights.selectMap.pop();
+   Knights.endSelect();
 }
 
 function Verbs::enterSelected(%this) {
@@ -95,10 +95,10 @@ function Verbs::enterTest(%this) {
 //-----------------------------------------------------------------------------
 
 function Verbs::enterHealTarget(%this) {
-   Knights.targetMap.push();
+   Knights.beginTarget();
 }
 function Verbs::leaveHealTarget(%this) {
-   Knights.targetMap.pop();
+   Knights.endTarget();
 }
 
 function Verbs::enterHeal(%this) {
@@ -112,10 +112,10 @@ function Verbs::enterHeal(%this) {
 //-----------------------------------------------------------------------------
 
 function Verbs::enterAttackTarget(%this) {
-   Enemies.targetMap.push();
+   Enemies.beginTarget();
 }
 function Verbs::leaveAttackTarget(%this) {
-   Enemies.targetMap.pop();
+   Enemies.endTarget();
 }
 
 function Verbs::enterAttack(%this) {

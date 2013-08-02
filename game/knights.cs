@@ -86,6 +86,38 @@ function Knights::onEnd(%this) {
    %this.selected.delete();
 }
 
+//-----------------------------------------------------------------------------
+
+function Knights::nameKnights(%this, %name) {
+   foreach(%knight in Knights) {
+      if(%name) {
+         %knight.setShapeName(" " @ getSubstr(%knight.getName(), 0, 1) @ " ");
+      } else {
+         %knight.setShapeName("");
+      }
+   }
+}
+
+function Knights::beginSelect(%this) {
+   %this.selectMap.push();
+   %this.nameKnights(true);
+}
+
+function Knights::beginTarget(%this) {
+   %this.targetMap.push();
+   %this.nameKnights(true);
+}
+
+function Knights::endSelect(%this) {
+   %this.selectMap.pop();
+   %this.nameKnights(false);
+}
+
+function Knights::endTarget(%this) {
+   %this.targetMap.pop();
+   %this.nameKnights(false);
+}
+
 function Knights::select(%this, %knight) {
    %this.selected.add(%knight);
    Verbs.onEvent(knightSelected);

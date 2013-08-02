@@ -27,7 +27,7 @@ function Enemies::onStart(%this) {
    %this.letters = "jkhnfdgvcbtyursieowpxqlazm";
    for(%i = 0; %i < strLen(%this.letters); %i++) {
       %action = getSubStr(%this.letters, %i, 1);
-      %this.targetMap.bindCmd(keyboard, %action, "Enemies.target(" @ %action @ ");");
+      %this.targetMap.bindCmd(keyboard, %action, "Enemies.target(" @ %i @ ");");
    }
 }
 
@@ -35,8 +35,24 @@ function Enemies::onEnd(%this) {
    %this.targetMap.delete();
 }
 
-function Enemies::target(%this, %char) {
-   %index = strPos(%this.letters, %char);
+function Enemies::beginTarget(%this) {
+   %this.targetMap.push();
+   %i = 0;
+   foreach(%enemy in Enemies) {
+      %enemy.setShapeName(" "  @ getSubStr(%this.letters, %i, 1) @ " ");
+      %i++;
+      if(%i == strLen(%this.letters)) break;
+   }
+}
+
+function Enemies::endTarget(%this) {
+   %this.targetMap.pop();
+   foreach(%enemy in Enemies) {
+      %enemy.setShapeName("");
+   }
+}
+
+function Enemies::target(%this, %index) {
    if(%index < %this.size()) {
       Verbs.target = %this.getObject(%index);
       Verbs.onEvent(enemyTargeted);

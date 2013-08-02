@@ -1,6 +1,9 @@
 new SimGroup(Enemies);
 
-datablock PlayerData(Soldier : KnightBase) { melee = false; };
+datablock PlayerData(Soldier : KnightBase) {
+   melee = false;
+   debrisShapeName = "./enemyDebris.dae";
+};
 
 singleton Material(EnemyMaterial) {
    diffuseColor[0] = "1 0 0";

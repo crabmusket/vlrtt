@@ -7,6 +7,12 @@ singleton Material(PlayerMaterial) {
    mapTo = "basePlayer";
 };
 
+datablock DebrisData(KnightDebris) {
+   numBounces = 1;
+   velocity = 3;
+   velocityVariance = 1;
+};
+
 //-----------------------------------------------------------------------------
 // Basic protagonist datablock.
 datablock PlayerData(KnightBase) {
@@ -15,11 +21,8 @@ datablock PlayerData(KnightBase) {
    shapeFile = "./player.dae";
    maxDamage = 100;
    destroyedLevel = 100;
+   debrisShapeName = "./playerDebris.dae";
    debris = KnightDebris;
-};
-
-datablock DebrisData(KnightDebris) {
-   shapeFile = "./projectile.dae";
 };
 
 datablock PlayerData(Shooter : KnightBase) { melee = false; };

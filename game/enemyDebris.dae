@@ -1,0 +1,2442 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.66.1 r55078</authoring_tool>
+    </contributor>
+    <created>2013-08-02T19:43:51</created>
+    <modified>2013-08-02T19:43:51</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_effects>
+    <effect id="enemyPlayer-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <phong>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.64 0.64 0.64 1</color>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.5 0.5 0.5 1</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">50</float>
+            </shininess>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
+          </phong>
+        </technique>
+        <extra>
+          <technique profile="GOOGLEEARTH">
+            <double_sided>1</double_sided>
+          </technique>
+        </extra>
+      </profile_COMMON>
+      <extra><technique profile="MAX3D"><double_sided>1</double_sided></technique></extra>
+    </effect>
+  </library_effects>
+  <library_materials>
+    <material id="enemyPlayer-material" name="enemyPlayer">
+      <instance_effect url="#enemyPlayer-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="Cube-mesh" name="Cube">
+      <mesh>
+        <source id="Cube-mesh-positions">
+          <float_array id="Cube-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube-mesh-normals">
+          <float_array id="Cube-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube-mesh-vertices">
+          <input semantic="POSITION" source="#Cube-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_002-mesh" name="Cube.002">
+      <mesh>
+        <source id="Cube_002-mesh-positions">
+          <float_array id="Cube_002-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_002-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_002-mesh-normals">
+          <float_array id="Cube_002-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_002-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_002-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_002-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_002-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_002-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_003-mesh" name="Cube.003">
+      <mesh>
+        <source id="Cube_003-mesh-positions">
+          <float_array id="Cube_003-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_003-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_003-mesh-normals">
+          <float_array id="Cube_003-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_003-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_003-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_003-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_003-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_003-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_004-mesh" name="Cube.004">
+      <mesh>
+        <source id="Cube_004-mesh-positions">
+          <float_array id="Cube_004-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_004-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_004-mesh-normals">
+          <float_array id="Cube_004-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_004-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_004-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_004-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_004-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_004-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_006-mesh" name="Cube.006">
+      <mesh>
+        <source id="Cube_006-mesh-positions">
+          <float_array id="Cube_006-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_006-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_006-mesh-normals">
+          <float_array id="Cube_006-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_006-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_006-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_006-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_006-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_006-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_007-mesh" name="Cube.007">
+      <mesh>
+        <source id="Cube_007-mesh-positions">
+          <float_array id="Cube_007-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_007-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_007-mesh-normals">
+          <float_array id="Cube_007-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_007-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_007-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_007-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_007-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_007-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_008-mesh" name="Cube.008">
+      <mesh>
+        <source id="Cube_008-mesh-positions">
+          <float_array id="Cube_008-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_008-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_008-mesh-normals">
+          <float_array id="Cube_008-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_008-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_008-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_008-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_008-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_008-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_009-mesh" name="Cube.009">
+      <mesh>
+        <source id="Cube_009-mesh-positions">
+          <float_array id="Cube_009-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_009-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_009-mesh-normals">
+          <float_array id="Cube_009-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_009-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_009-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_009-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_009-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_009-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_010-mesh" name="Cube.010">
+      <mesh>
+        <source id="Cube_010-mesh-positions">
+          <float_array id="Cube_010-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_010-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_010-mesh-normals">
+          <float_array id="Cube_010-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_010-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_010-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_010-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_010-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_010-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_011-mesh" name="Cube.011">
+      <mesh>
+        <source id="Cube_011-mesh-positions">
+          <float_array id="Cube_011-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_011-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_011-mesh-normals">
+          <float_array id="Cube_011-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_011-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_011-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_011-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_011-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_011-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_012-mesh" name="Cube.012">
+      <mesh>
+        <source id="Cube_012-mesh-positions">
+          <float_array id="Cube_012-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_012-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_012-mesh-normals">
+          <float_array id="Cube_012-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_012-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_012-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_012-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_012-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_012-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_013-mesh" name="Cube.013">
+      <mesh>
+        <source id="Cube_013-mesh-positions">
+          <float_array id="Cube_013-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_013-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_013-mesh-normals">
+          <float_array id="Cube_013-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_013-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_013-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_013-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_013-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_013-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_014-mesh" name="Cube.014">
+      <mesh>
+        <source id="Cube_014-mesh-positions">
+          <float_array id="Cube_014-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_014-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_014-mesh-normals">
+          <float_array id="Cube_014-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_014-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_014-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_014-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_014-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_014-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_015-mesh" name="Cube.015">
+      <mesh>
+        <source id="Cube_015-mesh-positions">
+          <float_array id="Cube_015-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_015-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_015-mesh-normals">
+          <float_array id="Cube_015-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_015-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_015-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_015-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_015-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_015-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_016-mesh" name="Cube.016">
+      <mesh>
+        <source id="Cube_016-mesh-positions">
+          <float_array id="Cube_016-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_016-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_016-mesh-normals">
+          <float_array id="Cube_016-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_016-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_016-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_016-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_016-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_016-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_017-mesh" name="Cube.017">
+      <mesh>
+        <source id="Cube_017-mesh-positions">
+          <float_array id="Cube_017-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_017-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_017-mesh-normals">
+          <float_array id="Cube_017-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_017-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_017-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_017-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_017-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_017-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_018-mesh" name="Cube.018">
+      <mesh>
+        <source id="Cube_018-mesh-positions">
+          <float_array id="Cube_018-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_018-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_018-mesh-normals">
+          <float_array id="Cube_018-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_018-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_018-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_018-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_018-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_018-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_019-mesh" name="Cube.019">
+      <mesh>
+        <source id="Cube_019-mesh-positions">
+          <float_array id="Cube_019-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_019-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_019-mesh-normals">
+          <float_array id="Cube_019-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_019-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_019-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_019-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_019-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_019-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_020-mesh" name="Cube.020">
+      <mesh>
+        <source id="Cube_020-mesh-positions">
+          <float_array id="Cube_020-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_020-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_020-mesh-normals">
+          <float_array id="Cube_020-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_020-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_020-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_020-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_020-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_020-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_021-mesh" name="Cube.021">
+      <mesh>
+        <source id="Cube_021-mesh-positions">
+          <float_array id="Cube_021-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_021-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_021-mesh-normals">
+          <float_array id="Cube_021-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_021-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_021-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_021-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_021-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_021-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_022-mesh" name="Cube.022">
+      <mesh>
+        <source id="Cube_022-mesh-positions">
+          <float_array id="Cube_022-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_022-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_022-mesh-normals">
+          <float_array id="Cube_022-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_022-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_022-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_022-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_022-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_022-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_023-mesh" name="Cube.023">
+      <mesh>
+        <source id="Cube_023-mesh-positions">
+          <float_array id="Cube_023-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_023-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_023-mesh-normals">
+          <float_array id="Cube_023-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_023-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_023-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_023-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_023-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_023-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_024-mesh" name="Cube.024">
+      <mesh>
+        <source id="Cube_024-mesh-positions">
+          <float_array id="Cube_024-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_024-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_024-mesh-normals">
+          <float_array id="Cube_024-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_024-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_024-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_024-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_024-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_024-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_025-mesh" name="Cube.025">
+      <mesh>
+        <source id="Cube_025-mesh-positions">
+          <float_array id="Cube_025-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_025-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_025-mesh-normals">
+          <float_array id="Cube_025-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_025-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_025-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_025-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_025-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_025-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_026-mesh" name="Cube.026">
+      <mesh>
+        <source id="Cube_026-mesh-positions">
+          <float_array id="Cube_026-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_026-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_026-mesh-normals">
+          <float_array id="Cube_026-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_026-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_026-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_026-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_026-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_026-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_027-mesh" name="Cube.027">
+      <mesh>
+        <source id="Cube_027-mesh-positions">
+          <float_array id="Cube_027-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_027-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_027-mesh-normals">
+          <float_array id="Cube_027-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_027-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_027-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_027-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_027-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_027-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_028-mesh" name="Cube.028">
+      <mesh>
+        <source id="Cube_028-mesh-positions">
+          <float_array id="Cube_028-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_028-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_028-mesh-normals">
+          <float_array id="Cube_028-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_028-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_028-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_028-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_028-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_028-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_029-mesh" name="Cube.029">
+      <mesh>
+        <source id="Cube_029-mesh-positions">
+          <float_array id="Cube_029-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_029-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_029-mesh-normals">
+          <float_array id="Cube_029-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_029-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_029-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_029-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_029-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_029-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_030-mesh" name="Cube.030">
+      <mesh>
+        <source id="Cube_030-mesh-positions">
+          <float_array id="Cube_030-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_030-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_030-mesh-normals">
+          <float_array id="Cube_030-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_030-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_030-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_030-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_030-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_030-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_031-mesh" name="Cube.031">
+      <mesh>
+        <source id="Cube_031-mesh-positions">
+          <float_array id="Cube_031-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_031-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_031-mesh-normals">
+          <float_array id="Cube_031-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_031-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_031-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_031-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_031-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_031-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_032-mesh" name="Cube.032">
+      <mesh>
+        <source id="Cube_032-mesh-positions">
+          <float_array id="Cube_032-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_032-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_032-mesh-normals">
+          <float_array id="Cube_032-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_032-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_032-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_032-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_032-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_032-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_033-mesh" name="Cube.033">
+      <mesh>
+        <source id="Cube_033-mesh-positions">
+          <float_array id="Cube_033-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_033-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_033-mesh-normals">
+          <float_array id="Cube_033-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_033-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_033-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_033-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_033-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_033-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_034-mesh" name="Cube.034">
+      <mesh>
+        <source id="Cube_034-mesh-positions">
+          <float_array id="Cube_034-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_034-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_034-mesh-normals">
+          <float_array id="Cube_034-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_034-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_034-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_034-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_034-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_034-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_035-mesh" name="Cube.035">
+      <mesh>
+        <source id="Cube_035-mesh-positions">
+          <float_array id="Cube_035-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_035-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_035-mesh-normals">
+          <float_array id="Cube_035-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_035-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_035-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_035-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_035-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_035-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_036-mesh" name="Cube.036">
+      <mesh>
+        <source id="Cube_036-mesh-positions">
+          <float_array id="Cube_036-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_036-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_036-mesh-normals">
+          <float_array id="Cube_036-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_036-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_036-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_036-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_036-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_036-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_037-mesh" name="Cube.037">
+      <mesh>
+        <source id="Cube_037-mesh-positions">
+          <float_array id="Cube_037-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_037-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_037-mesh-normals">
+          <float_array id="Cube_037-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_037-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_037-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_037-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_037-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_037-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_038-mesh" name="Cube.038">
+      <mesh>
+        <source id="Cube_038-mesh-positions">
+          <float_array id="Cube_038-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_038-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_038-mesh-normals">
+          <float_array id="Cube_038-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_038-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_038-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_038-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_038-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_038-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_039-mesh" name="Cube.039">
+      <mesh>
+        <source id="Cube_039-mesh-positions">
+          <float_array id="Cube_039-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_039-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_039-mesh-normals">
+          <float_array id="Cube_039-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_039-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_039-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_039-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_039-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_039-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_040-mesh" name="Cube.040">
+      <mesh>
+        <source id="Cube_040-mesh-positions">
+          <float_array id="Cube_040-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_040-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_040-mesh-normals">
+          <float_array id="Cube_040-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_040-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_040-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_040-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_040-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_040-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_041-mesh" name="Cube.041">
+      <mesh>
+        <source id="Cube_041-mesh-positions">
+          <float_array id="Cube_041-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_041-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_041-mesh-normals">
+          <float_array id="Cube_041-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_041-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_041-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_041-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_041-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_041-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_042-mesh" name="Cube.042">
+      <mesh>
+        <source id="Cube_042-mesh-positions">
+          <float_array id="Cube_042-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_042-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_042-mesh-normals">
+          <float_array id="Cube_042-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_042-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_042-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_042-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_042-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_042-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_043-mesh" name="Cube.043">
+      <mesh>
+        <source id="Cube_043-mesh-positions">
+          <float_array id="Cube_043-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_043-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_043-mesh-normals">
+          <float_array id="Cube_043-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_043-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_043-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_043-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_043-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_043-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_044-mesh" name="Cube.044">
+      <mesh>
+        <source id="Cube_044-mesh-positions">
+          <float_array id="Cube_044-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_044-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_044-mesh-normals">
+          <float_array id="Cube_044-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_044-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_044-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_044-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_044-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_044-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_045-mesh" name="Cube.045">
+      <mesh>
+        <source id="Cube_045-mesh-positions">
+          <float_array id="Cube_045-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_045-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_045-mesh-normals">
+          <float_array id="Cube_045-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_045-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_045-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_045-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_045-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_045-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_046-mesh" name="Cube.046">
+      <mesh>
+        <source id="Cube_046-mesh-positions">
+          <float_array id="Cube_046-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_046-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_046-mesh-normals">
+          <float_array id="Cube_046-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_046-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_046-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_046-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_046-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_046-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_047-mesh" name="Cube.047">
+      <mesh>
+        <source id="Cube_047-mesh-positions">
+          <float_array id="Cube_047-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_047-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_047-mesh-normals">
+          <float_array id="Cube_047-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_047-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_047-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_047-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_047-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_047-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_048-mesh" name="Cube.048">
+      <mesh>
+        <source id="Cube_048-mesh-positions">
+          <float_array id="Cube_048-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_048-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_048-mesh-normals">
+          <float_array id="Cube_048-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_048-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_048-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_048-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_048-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_048-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_049-mesh" name="Cube.049">
+      <mesh>
+        <source id="Cube_049-mesh-positions">
+          <float_array id="Cube_049-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_049-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_049-mesh-normals">
+          <float_array id="Cube_049-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_049-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_049-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_049-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_049-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_049-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_050-mesh" name="Cube.050">
+      <mesh>
+        <source id="Cube_050-mesh-positions">
+          <float_array id="Cube_050-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_050-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_050-mesh-normals">
+          <float_array id="Cube_050-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_050-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_050-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_050-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_050-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_050-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_051-mesh" name="Cube.051">
+      <mesh>
+        <source id="Cube_051-mesh-positions">
+          <float_array id="Cube_051-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_051-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_051-mesh-normals">
+          <float_array id="Cube_051-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_051-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_051-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_051-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_051-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_051-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_052-mesh" name="Cube.052">
+      <mesh>
+        <source id="Cube_052-mesh-positions">
+          <float_array id="Cube_052-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_052-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_052-mesh-normals">
+          <float_array id="Cube_052-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_052-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_052-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_052-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_052-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_052-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_053-mesh" name="Cube.053">
+      <mesh>
+        <source id="Cube_053-mesh-positions">
+          <float_array id="Cube_053-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_053-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_053-mesh-normals">
+          <float_array id="Cube_053-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_053-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_053-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_053-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_053-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_053-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_054-mesh" name="Cube.054">
+      <mesh>
+        <source id="Cube_054-mesh-positions">
+          <float_array id="Cube_054-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_054-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_054-mesh-normals">
+          <float_array id="Cube_054-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_054-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_054-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_054-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_054-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_054-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+    <geometry id="Cube_005-mesh" name="Cube.005">
+      <mesh>
+        <source id="Cube_005-mesh-positions">
+          <float_array id="Cube_005-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_005-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_005-mesh-normals">
+          <float_array id="Cube_005-mesh-normals-array" count="18">0 0 -1 0 0 1 1 -2.83122e-7 0 -2.83122e-7 -1 0 -1 2.23517e-7 -1.3411e-7 2.38419e-7 1 2.08616e-7</float_array>
+          <technique_common>
+            <accessor source="#Cube_005-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_005-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_005-mesh-positions"/>
+        </vertices>
+        <polylist material="enemyPlayer-material" count="6">
+          <input semantic="VERTEX" source="#Cube_005-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_005-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 </vcount>
+          <p>0 0 1 0 2 0 3 0 4 1 7 1 6 1 5 1 0 2 4 2 5 2 1 2 1 3 5 3 6 3 2 3 2 4 6 4 7 4 3 4 4 5 0 5 3 5 7 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+  </library_geometries>
+  <library_controllers/>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="Start" name="Start" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 -0.5 0 0 0 1</matrix>
+        <node id="detail1" name="detail1" type="NODE">
+          <matrix sid="transform">0.1 0 0 -0.4 0 0.1 0 -0.4 0 0 0.1 -0.5 0 0 0 1</matrix>
+          <instance_geometry url="#Cube-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="detail2" name="detail2" type="NODE">
+          <matrix sid="transform">0.1 0 0 0 0 0.1 0 -0.4 0 0 0.1 -0.5 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_002-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="detail3" name="detail3" type="NODE">
+          <matrix sid="transform">0.1 0 0 0.4 0 0.1 0 -0.4 0 0 0.1 -0.5 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_003-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="detail4" name="detail4" type="NODE">
+          <matrix sid="transform">0.1 0 0 0.4 0 0.1 0 0 0 0 0.1 -0.5 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_004-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="detail8" name="detail8" type="NODE">
+          <matrix sid="transform">0.1 0 0 0 0 0.1 0 0.4 0 0 0.1 -0.5 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_006-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="detail7_001" name="detail7_001" type="NODE">
+          <matrix sid="transform">0.1 0 0 -0.4 0 0.1 0 0.4 0 0 0.1 -0.5 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_007-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="detail6" name="detail6" type="NODE">
+          <matrix sid="transform">0.1 0 0 -0.4 0 0.1 0 0 0 0 0.1 -0.5 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_008-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="detail5" name="detail5" type="NODE">
+          <matrix sid="transform">0.1 0 0 0 0 0.1 0 0 0 0 0.1 -0.5 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_009-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="Cube_010" name="Cube_010" type="NODE">
+          <matrix sid="transform">0.1 0 0 0 0 0.1 0 0 0 0 0.1 -0.09999999 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_010-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="Cube_011" name="Cube_011" type="NODE">
+          <matrix sid="transform">0.1 0 0 -0.4 0 0.1 0 0 0 0 0.1 -0.09999999 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_011-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="Cube_012" name="Cube_012" type="NODE">
+          <matrix sid="transform">0.1 0 0 -0.4 0 0.1 0 0.4 0 0 0.1 -0.09999999 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_012-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="Cube_013" name="Cube_013" type="NODE">
+          <matrix sid="transform">0.1 0 0 0 0 0.1 0 0.4 0 0 0.1 -0.09999999 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_013-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="Cube_014" name="Cube_014" type="NODE">
+          <matrix sid="transform">0.1 0 0 0.4 0 0.1 0 0.4 0 0 0.1 -0.09999999 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_014-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="Cube_015" name="Cube_015" type="NODE">
+          <matrix sid="transform">0.1 0 0 0.4 0 0.1 0 0 0 0 0.1 -0.09999999 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_015-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="Cube_016" name="Cube_016" type="NODE">
+          <matrix sid="transform">0.1 0 0 0.4 0 0.1 0 -0.4 0 0 0.1 -0.09999999 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_016-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="Cube_017" name="Cube_017" type="NODE">
+          <matrix sid="transform">0.1 0 0 0 0 0.1 0 -0.4 0 0 0.1 -0.09999999 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_017-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="Cube_018" name="Cube_018" type="NODE">
+          <matrix sid="transform">0.1 0 0 -0.4 0 0.1 0 -0.4 0 0 0.1 -0.09999999 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_018-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="Cube_019" name="Cube_019" type="NODE">
+          <matrix sid="transform">0.1 0 0 -0.4 0 0.1 0 -0.4 0 0 0.1 0.3 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_019-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="Cube_020" name="Cube_020" type="NODE">
+          <matrix sid="transform">0.1 0 0 0 0 0.1 0 -0.4 0 0 0.1 0.3 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_020-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="Cube_021" name="Cube_021" type="NODE">
+          <matrix sid="transform">0.1 0 0 0.4 0 0.1 0 -0.4 0 0 0.1 0.3 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_021-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="Cube_022" name="Cube_022" type="NODE">
+          <matrix sid="transform">0.1 0 0 0.4 0 0.1 0 0 0 0 0.1 0.3 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_022-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="Cube_023" name="Cube_023" type="NODE">
+          <matrix sid="transform">0.1 0 0 0.4 0 0.1 0 0.4 0 0 0.1 0.3 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_023-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="Cube_024" name="Cube_024" type="NODE">
+          <matrix sid="transform">0.1 0 0 0 0 0.1 0 0.4 0 0 0.1 0.3 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_024-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="Cube_025" name="Cube_025" type="NODE">
+          <matrix sid="transform">0.1 0 0 -0.4 0 0.1 0 0.4 0 0 0.1 0.3 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_025-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="Cube_026" name="Cube_026" type="NODE">
+          <matrix sid="transform">0.1 0 0 -0.4 0 0.1 0 0 0 0 0.1 0.3 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_026-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="detail1_001" name="detail1_001" type="NODE">
+          <matrix sid="transform">0.1 0 0 0 0 0.1 0 0 0 0 0.1 0.3 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_027-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="Cube_028" name="Cube_028" type="NODE">
+          <matrix sid="transform">0.1 0 0 0 0 0.1 0 0 0 0 0.1 0.7 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_028-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="Cube_029" name="Cube_029" type="NODE">
+          <matrix sid="transform">0.1 0 0 -0.4 0 0.1 0 0 0 0 0.1 0.7 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_029-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="Cube_030" name="Cube_030" type="NODE">
+          <matrix sid="transform">0.1 0 0 -0.4 0 0.1 0 0.4 0 0 0.1 0.7 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_030-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="Cube_031" name="Cube_031" type="NODE">
+          <matrix sid="transform">0.1 0 0 0 0 0.1 0 0.4 0 0 0.1 0.7 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_031-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="Cube_032" name="Cube_032" type="NODE">
+          <matrix sid="transform">0.1 0 0 0.4 0 0.1 0 0.4 0 0 0.1 0.7 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_032-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="Cube_033" name="Cube_033" type="NODE">
+          <matrix sid="transform">0.1 0 0 0.4 0 0.1 0 0 0 0 0.1 0.7 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_033-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="Cube_034" name="Cube_034" type="NODE">
+          <matrix sid="transform">0.1 0 0 0.4 0 0.1 0 -0.4 0 0 0.1 0.7 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_034-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="Cube_035" name="Cube_035" type="NODE">
+          <matrix sid="transform">0.1 0 0 0 0 0.1 0 -0.4 0 0 0.1 0.7 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_035-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="Cube_036" name="Cube_036" type="NODE">
+          <matrix sid="transform">0.1 0 0 -0.4 0 0.1 0 -0.4 0 0 0.1 0.7 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_036-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="Cube_037" name="Cube_037" type="NODE">
+          <matrix sid="transform">0.1 0 0 -0.4 0 0.1 0 -0.4 0 0 0.1 1.1 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_037-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="Cube_038" name="Cube_038" type="NODE">
+          <matrix sid="transform">0.1 0 0 0 0 0.1 0 -0.4 0 0 0.1 1.1 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_038-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="Cube_039" name="Cube_039" type="NODE">
+          <matrix sid="transform">0.1 0 0 0.4 0 0.1 0 -0.4 0 0 0.1 1.1 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_039-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="Cube_040" name="Cube_040" type="NODE">
+          <matrix sid="transform">0.1 0 0 0.4 0 0.1 0 0 0 0 0.1 1.1 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_040-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="Cube_041" name="Cube_041" type="NODE">
+          <matrix sid="transform">0.1 0 0 0.4 0 0.1 0 0.4 0 0 0.1 1.1 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_041-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="Cube_042" name="Cube_042" type="NODE">
+          <matrix sid="transform">0.1 0 0 0 0 0.1 0 0.4 0 0 0.1 1.1 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_042-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="Cube_043" name="Cube_043" type="NODE">
+          <matrix sid="transform">0.1 0 0 -0.4 0 0.1 0 0.4 0 0 0.1 1.1 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_043-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="Cube_044" name="Cube_044" type="NODE">
+          <matrix sid="transform">0.1 0 0 -0.4 0 0.1 0 0 0 0 0.1 1.1 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_044-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="Cube_045" name="Cube_045" type="NODE">
+          <matrix sid="transform">0.1 0 0 0 0 0.1 0 0 0 0 0.1 1.1 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_045-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="Cube_046" name="Cube_046" type="NODE">
+          <matrix sid="transform">0.1 0 0 0 0 0.1 0 0 0 0 0.1 1.4 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_046-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="Cube_047" name="Cube_047" type="NODE">
+          <matrix sid="transform">0.1 0 0 -0.4 0 0.1 0 0 0 0 0.1 1.4 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_047-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="Cube_048" name="Cube_048" type="NODE">
+          <matrix sid="transform">0.1 0 0 -0.4 0 0.1 0 0.4 0 0 0.1 1.4 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_048-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="Cube_049" name="Cube_049" type="NODE">
+          <matrix sid="transform">0.1 0 0 0 0 0.1 0 0.4 0 0 0.1 1.4 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_049-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="Cube_050" name="Cube_050" type="NODE">
+          <matrix sid="transform">0.1 0 0 0.4 0 0.1 0 0.4 0 0 0.1 1.4 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_050-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="Cube_051" name="Cube_051" type="NODE">
+          <matrix sid="transform">0.1 0 0 0.4 0 0.1 0 0 0 0 0.1 1.4 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_051-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="Cube_052" name="Cube_052" type="NODE">
+          <matrix sid="transform">0.1 0 0 0.4 0 0.1 0 -0.4 0 0 0.1 1.4 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_052-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="Cube_053" name="Cube_053" type="NODE">
+          <matrix sid="transform">0.1 0 0 0 0 0.1 0 -0.4 0 0 0.1 1.4 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_053-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="Cube_054" name="Cube_054" type="NODE">
+          <matrix sid="transform">0.1 0 0 -0.4 0 0.1 0 -0.4 0 0 0.1 1.4 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_054-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="detail7" name="detail7" type="NODE">
+          <matrix sid="transform">0.1 0 0 0.4 0 0.1 0 0.4 0 0 0.1 -0.5 0 0 0 1</matrix>
+          <instance_geometry url="#Cube_005-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="enemyPlayer-material" target="#enemyPlayer-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

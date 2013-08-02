@@ -2,23 +2,29 @@ $i = -1;
 datablock ShapeBaseImageData(RangedWeapon) {
    shapeFile = "./projectile.dae";
    offset = "0 0 3";
+   projectileData = Bullet;
 
    stateName[$i++] = "ready";
-   stateTransitionTriggerDown[$i] = "load";
+   stateTransitionOnTriggerDown[$i] = "load";
 
    stateName[$i++] = "load";
+   stateTransitionOnTriggerUp[$i] = "ready";
    stateTransitionOnTimeout[$i] = "fire";
    stateTimeoutValue[$i] = 1;
 
    stateName[$i++] = "fire";
    stateFire[$i] = true;
    stateScript[$i] = onFire;
+   stateTransitionOnTriggerUp[$i] = "ready";
    stateTransitionOnTimeout[$i] = "ready";
-   stateTimeoutValue[$i] = 1;
+   stateTimeoutValue[$i] = 0;
 };
 
 datablock ProjectileData(Bullet) {
-   shapeFile = "./projectile.dae";
+   projectileShapeName = "./projectile.dae";
+   isBallistic = false;
+   speed = 10;
+   damage = 20;
 };
 
 singleton Material(BulletMaterial) {
@@ -27,10 +33,11 @@ singleton Material(BulletMaterial) {
 };
 
 function RangedWeapon::onFire(%this, %obj) {
-   error("firing");
+   %db = %this.projectileData;
    %p = new Projectile() {
-      datablock = Bullet;
-      initialVelocity = VectorScale(%obj.getForwardVector(), 10);
+      datablock = %db;
+      initialVelocity = VectorScale(%obj.getForwardVector(), %db.speed);
+      initialPosition = VectorAdd(%obj.getPosition(), "0 0 1");
       sourceObject = %obj;
    };
    GameGroup.add(%p);

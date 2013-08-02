@@ -53,7 +53,7 @@ function Knight::attack(%this, %obj, %target) {
       %obj.setMoveDestination(%target.getPosition());
    } else {
       %obj.setAimObject(%target);
-      %obj.setImageTrigger(0, 1);
+      %obj.setImageTrigger(0, true);
    }
 }
 

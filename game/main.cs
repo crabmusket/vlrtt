@@ -7,6 +7,7 @@ include(stateMachine);
 exec("./verbs.cs");
 exec("./knights.cs");
 exec("./enemies.cs");
+exec("./weapons.cs");
 exec("./level1.cs");
 exec("./playGui.gui");
 

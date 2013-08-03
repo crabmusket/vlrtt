@@ -54,6 +54,8 @@ function knight(%name, %pos, %role) {
 
    // Bind the same keypress to target the knight.
    Knights.targetMap.bindCmd(keyboard, %action, "Knights.target(" @ %name @ ");");
+
+   return %knight;
 }
 
 function Knight::attack(%this, %obj, %target) {

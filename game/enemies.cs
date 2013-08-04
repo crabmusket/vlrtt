@@ -17,6 +17,7 @@ function soldier(%pos) {
       skin = enemy;
    };
    Enemies.add(%soldier);
+   return %soldier;
 }
 
 function Enemies::onStart(%this) {

@@ -18,7 +18,7 @@ new GameTSCtrl(PlayGui) {
    forceFOV = "0";
    enabled = "1";
    helpTag = "0";
-   noCursor = false;
+   noCursor = true;
    new GuiShapeNameHud() {
       profile = GuiDefaultProfile;
       extent = "1024 768";

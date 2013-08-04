@@ -4,6 +4,7 @@
 
 // Load scripts.
 include(stateMachine);
+include(flyCamera);
 exec("./verbs.cs");
 exec("./character.cs");
 exec("./knights.cs");
@@ -15,29 +16,13 @@ exec("./playGui.gui");
 $forwards = "0 100000 0";
 
 //-----------------------------------------------------------------------------
-// Create a datablock for the observer camera.
-datablock CameraData(Observer) {};
-
-//-----------------------------------------------------------------------------
 // Called when all datablocks have been transmitted.
 function GameConnection::onEnterGame(%client) {
-   // Create a camera for the client.
-   new Camera(TheCamera) {
-      datablock = Observer;
-   };
-   TheCamera.setTransform("0 -7 4 1 0 0 0");
-
-   // Cameras are not ghosted (sent across the network) by default; we need to
-   // do it manually for the client that owns the camera or things will go south
-   // quickly.
-   TheCamera.scopeToClient(%client);
-
-   // And let the client control the camera.
-   %client.setControlObject(TheCamera);
-
-   // Add the camera to the group of game objects so that it's cleaned up when
-   // we close the game.
-   GameGroup.add(TheCamera);
+   // Give the player a controllable camera for now.
+   %c = FlyCamera.init(%client, GameGroup);
+   %c.setTransform("0 -7 4 1 0 0 0");
+   setFOV(50);
+   FlyCamera.controls(true);
 
    // Activate HUD which allows us to see the game. This should technically be
    // a commandToClient, but since the client and server are on the same

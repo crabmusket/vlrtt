@@ -16,6 +16,8 @@ new ScriptObject(Verbs) {
    transition[selected, heal] = healTarget;
    transition[selected, attack] = attackTarget;
    transition[selected, stop] = stop;
+   transition[selected, move] = moveForwards;
+   transition[selected, retreat] = retreat;
 
    // Must target someone for these verbs.
    transition[healTarget, knightTargeted] = heal;
@@ -43,6 +45,8 @@ function Verbs::onStart(%this) {
    %this.define("h", "Heal");
    %this.define("a", "Attack");
    %this.define("s", "Stop");
+   %this.define("shift m", "Move");
+   %this.define("shift r", "Retreat");
 
    %this.globalMap.bindCmd(keyboard, "ctrl c", "Verbs.onEvent(cancel);");
    %this.globalMap.push();
@@ -139,4 +143,21 @@ function Verbs::enterStop(%this) {
       %knight.setAimLocation($forwards);
       %knight.schedule(200, clearAim);
    }
+   %this.endVerb();
+}
+
+//-----------------------------------------------------------------------------
+
+function Verbs::enterMoveForwards(%this) {
+   foreach(%knight in Knights.selected) {
+      %knight.setMoveDestination($forwards);
+   }
+   %this.endVerb();
+}
+
+function Verbs::enterRetreat(%this) {
+   foreach(%knight in Knights.selected) {
+      %knight.setMoveDestination(VectorScale($forwards, -1));
+   }
+   %this.endVerb();
 }

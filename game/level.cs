@@ -1,7 +1,8 @@
 new ScriptObject(Level);
 
-$sections = "blank towers";
-$sectionSize = 20;
+Level.sections = "blank towers";
+Level.sectionSize = 30;
+Level.sectionHeight = 20;
 
 function Level::onStart(%this) {
    // Set up basic objects.
@@ -27,9 +28,17 @@ function Level::onStart(%this) {
 
    // Create level sections.
    for(%i = 0; %i < %length; %i++) {
-      %sectionFunction = getWord($sections, %i % getWordCount($sections)) @ "Section";
+      // Create section content.
+      %sectionFunction = getWord(%this.sections, %i % getWordCount(%this.sections)) @ "Section";
       %section = %this.call(%sectionFunction, 2, 0, 0);
-      %section.callOnChildren(displace, 0 SPC %i * $sectionSize SPC 0);
+
+      // Create side walls.
+      %height = getRandom(1, %i / %length * %this.sectionHeight);
+      %width = 6;
+      %section.add(block(-%this.sectionSize - %width/2 SPC "0 0", %width SPC %this.sectionSize SPC %height));
+
+      // Translate the blocks and add them to the game hierarchy.
+      %section.callOnChildren(displace, 0 SPC %i * %this.sectionSize SPC 0);
       TheLevel.add(%section);
    }
 
@@ -58,8 +67,9 @@ function block(%pos, %size) {
 
 function Level::blankSection(%this, %soldiers, %delas, %tanks) {
    %g = new SimGroup();
+   %s = %this.sectionSize;
    for(%i = 0; %i < %soldiers; %i++) {
-      %pos = getRandom(-10, 10) SPC getRandom(-10, 10) SPC 0;
+      %pos = getRandom(-%s, %s) SPC getRandom(-%s, %s) SPC 0;
       %soldier = soldier(%pos);
       %g.add(%soldier);
    }

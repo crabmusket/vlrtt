@@ -38,7 +38,7 @@ function Level::onStart(%this) {
       %section.add(block(-(%this.sectionSize + %width) / 2 SPC 0 SPC %height / 2, %width SPC %this.sectionSize SPC %height));
 
       // Translate the blocks and add them to the game hierarchy.
-      %section.callOnChildren(displace, 0 SPC %i * %this.sectionSize SPC 0);
+      %section.callOnChildren(displace, 0 SPC (%i+1) * %this.sectionSize SPC 0);
       TheLevel.add(%section);
    }
 

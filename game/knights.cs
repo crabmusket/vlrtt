@@ -62,7 +62,7 @@ function Knight::attack(%this, %obj, %target) {
    if(%this.melee) {
       %obj.setMoveDestination(%target.getPosition());
    } else {
-      %obj.setAimObject(%target);
+      %obj.setAimObject(%target, "0 0 1.5");
       %obj.setImageTrigger(0, true);
    }
 }

@@ -4,7 +4,7 @@
 
 // Load scripts.
 include(stateMachine);
-include(flyCamera);
+include(trackingCamera);
 exec("./verbs.cs");
 exec("./character.cs");
 exec("./knights.cs");
@@ -19,10 +19,11 @@ $forwards = "0 100000 0";
 // Called when all datablocks have been transmitted.
 function GameConnection::onEnterGame(%client) {
    // Give the player a controllable camera for now.
-   %c = FlyCamera.init(%client, GameGroup);
-   %c.setTransform("0 -7 4 1 0 0 0");
+   %c = TrackingCamera.init(%client, GameGroup, Knights, y);
+   %c.setTransform(Level.sectionSize*.75 SPC 0 SPC Level.sectionHeight / 2 SPC "0.345653 0.254298 -0.903248 1.36705");
+
    setFOV(50);
-   FlyCamera.controls(true);
+   TrackingCamera.controls(true);
 
    // Activate HUD which allows us to see the game. This should technically be
    // a commandToClient, but since the client and server are on the same

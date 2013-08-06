@@ -1,8 +1,8 @@
-new ScriptObject(Level);
-
-Level.sections = "blank towers";
-Level.sectionSize = 30;
-Level.sectionHeight = 20;
+new ScriptObject(Level) {
+   sections = "blank towers";
+   sectionSize = 30;
+   sectionHeight = 20;
+};
 
 function Level::onStart(%this) {
    // Set up basic objects.
@@ -33,9 +33,9 @@ function Level::onStart(%this) {
       %section = %this.call(%sectionFunction, 2, 0, 0);
 
       // Create side walls.
-      %height = getRandom(1, %i / %length * %this.sectionHeight);
       %width = 6;
-      %section.add(block(-%this.sectionSize - %width/2 SPC "0 0", %width SPC %this.sectionSize SPC %height));
+      %height = getRandom(1, %i / %length * %this.sectionHeight);
+      %section.add(block(-(%this.sectionSize + %width) / 2 SPC 0 SPC %height / 2, %width SPC %this.sectionSize SPC %height));
 
       // Translate the blocks and add them to the game hierarchy.
       %section.callOnChildren(displace, 0 SPC %i * %this.sectionSize SPC 0);
@@ -67,7 +67,7 @@ function block(%pos, %size) {
 
 function Level::blankSection(%this, %soldiers, %delas, %tanks) {
    %g = new SimGroup();
-   %s = %this.sectionSize;
+   %s = %this.sectionSize / 2;
    for(%i = 0; %i < %soldiers; %i++) {
       %pos = getRandom(-%s, %s) SPC getRandom(-%s, %s) SPC 0;
       %soldier = soldier(%pos);
@@ -86,7 +86,8 @@ function Level::towersSection(%this, %soldiers, %deltas, %tanks) {
 }
 
 function SceneObject::displace(%this, %delta) {
-   %this.setTransform(VectorAdd(%delta, %this.getPosition()) SPC "0 0 0 1");
+   %trans = getWords(3, 6, %this.getTransform());
+   %this.setTransform(VectorAdd(%delta, %this.getPosition()) SPC %trans);
 }
 
 //-----------------------------------------------------------------------------

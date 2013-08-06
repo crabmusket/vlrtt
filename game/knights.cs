@@ -23,6 +23,7 @@ datablock PlayerData(KnightBase) {
    destroyedLevel = 100;
    debrisShapeName = "./playerDebris.dae";
    debris = KnightDebris;
+   maxForwardSpeed = 5;
 };
 
 datablock PlayerData(Shooter : KnightBase) { melee = false; };

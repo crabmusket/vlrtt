@@ -1,4 +1,4 @@
-new SimGroup(Enemies);
+new SimSet(Enemies);
 
 datablock PlayerData(Soldier : KnightBase) {
    melee = false;

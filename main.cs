@@ -11,6 +11,7 @@ trace(false);
 //-----------------------------------------------------------------------------
 // Load up scripts to initialise subsystems.
 include(sys);
+$modulePath = "modules";
 
 // The canvas needs to be initialized before any gui scripts are run since
 // some of the controls assume that the canvas exists at load time.

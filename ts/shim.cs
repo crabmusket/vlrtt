@@ -7,7 +7,8 @@ function SimSet::size(%this) {
 }
 
 function include(%path) {
-   exec(%path @ "/main.cs");
+   %prefix = $modulePath !$= "" ? $modulePath @ "/" : "";
+   exec(%prefix @ %path @ "/main.cs");
 }
 
 function SimObject::can(%this, %method) {

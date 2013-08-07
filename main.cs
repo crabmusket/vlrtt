@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------------
 // Entry point to the engine. Everything begins here.
 
-exec("tsShim/main.cs");
+exec("ts/shim.cs");
 
 // Console does something.
 setLogMode(2);

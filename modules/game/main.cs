@@ -45,10 +45,14 @@ function onStart() {
    GlobalActionMap.bind(keyboard, "escape", "quit");
    GlobalActionMap.bind(keyboard, "alt f4", "quit");
 
+   // Gameplay modules.
    Knights.onStart();
    Enemies.onStart();
    Level.onStart();
+
+   // UI modules.
    Verbs.onStart();
+   BottomPrint.onStart();
 }
 
 //-----------------------------------------------------------------------------

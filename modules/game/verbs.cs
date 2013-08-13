@@ -75,6 +75,9 @@ function Verbs::endVerb(%this) {
 // Event scripts
 
 function Verbs::enterReady(%this) {
+   if(!Knights.selected.size()) {
+      BottomPrintText.setText("");
+   }
    Knights.beginSelect();
 }
 function Verbs::leaveReady(%this) {
@@ -82,6 +85,11 @@ function Verbs::leaveReady(%this) {
 }
 
 function Verbs::enterSelected(%this) {
+   if(Knights.selected.size() == Knights.size()) {
+      BottomPrintText.addText(" Everyone,", true);
+   } else {
+      BottomPrintText.addText(" " @ Knights.selected.last().name @ ",", true);
+   }
    %this.map.push();
 }
 function Verbs::leaveSelected(%this) {

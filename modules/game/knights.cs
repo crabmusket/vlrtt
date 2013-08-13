@@ -121,9 +121,11 @@ function Knights::endTarget(%this) {
    %this.nameKnights(false);
 }
 
-function Knights::select(%this, %knight) {
+function Knights::select(%this, %knight, %noevent) {
    %this.selected.add(%knight);
-   Verbs.onEvent(knightSelected);
+   if(%noevent $= "") {
+      Verbs.onEvent(knightSelected);
+   }
 }
 
 function Knights::deselect(%this, %knight) {
@@ -134,7 +136,7 @@ function Knights::deselect(%this, %knight) {
 
 function Knights::selectAll(%this) {
    foreach(%knight in Knights) {
-      %this.select(%knight);
+      %this.select(%knight, true);
    }
    Verbs.onEvent(knightSelected);
 }

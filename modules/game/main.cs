@@ -5,6 +5,7 @@
 // Load scripts.
 include(stateMachine);
 include(trackingCamera);
+include(bottomPrint);
 exec("./verbs.cs");
 exec("./character.cs");
 exec("./knights.cs");

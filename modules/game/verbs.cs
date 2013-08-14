@@ -60,6 +60,15 @@ function Verbs::onEnd(%this) {
    %this.globalMap.delete();
 }
 
+//-----------------------------------------------------------------------------
+
+datablock ShapeBaseImageData(Selectron) {
+   shapeFile = "./selectron.dae";
+   offset = "0 0 0.25";
+};
+
+//-----------------------------------------------------------------------------
+
 function Verbs::onFinish(%this) {
    Knights.deselectAll();
 }

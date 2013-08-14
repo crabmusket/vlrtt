@@ -123,12 +123,14 @@ function Knights::endTarget(%this) {
 
 function Knights::select(%this, %knight, %noevent) {
    %this.selected.add(%knight);
+   %knight.mountImage(Selectron, 1);
    if(%noevent $= "") {
       Verbs.onEvent(knightSelected);
    }
 }
 
 function Knights::deselect(%this, %knight) {
+   %knight.unmountImage(1);
    if(%this.selected.contains(%knight)) {
       %this.selected.remove(%knight);
    }

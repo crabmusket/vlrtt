@@ -14,6 +14,7 @@ exec("./weapons.cs");
 exec("./level.cs");
 exec("./playGui.gui");
 
+// Global forward vector.
 $forwards = "0 100000 0";
 
 //-----------------------------------------------------------------------------
@@ -21,8 +22,8 @@ $forwards = "0 100000 0";
 function GameConnection::onEnterGame(%client) {
    // Give the player a controllable camera for now.
    %c = TrackingCamera.init(%client, GameGroup, Knights, y);
-   %c.setTransform(Level.sectionSize*.75 SPC 0 SPC Level.sectionHeight / 2 SPC "0.345653 0.254298 -0.903248 1.36705");
-
+   %c.setTransform(Level.sectionSize*.75 SPC 0 SPC Level.sectionHeight / 2 SPC
+      "0.255082 0.205918 -0.944739 1.41418");
    setFOV(50);
    TrackingCamera.controls(true);
 

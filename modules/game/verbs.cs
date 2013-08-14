@@ -70,9 +70,11 @@ datablock ShapeBaseImageData(Selectron) {
 //-----------------------------------------------------------------------------
 
 function Verbs::onFinish(%this) {
+   BottomPrintText.event = BottomPrintText.schedule(1000, setText, "");
    Knights.deselectAll();
 }
 function Verbs::onCancel(%this) {
+   BottomPrintText.setText("");
    Knights.deselectAll();
 }
 
@@ -83,10 +85,10 @@ function Verbs::endVerb(%this) {
 //-----------------------------------------------------------------------------
 // Event scripts
 
+function Verbs::onReady(%this) {
+   BottomPrintText.setText("   ");
+}
 function Verbs::enterReady(%this) {
-   if(!Knights.selected.size()) {
-      BottomPrintText.setText("");
-   }
    Knights.beginSelect();
 }
 function Verbs::leaveReady(%this) {
@@ -94,6 +96,11 @@ function Verbs::leaveReady(%this) {
 }
 
 function Verbs::enterSelected(%this) {
+   if(BottomPrintText.event) {
+      cancel(BottomPrintText.event);
+      BottomPrintText.event = "";
+      BottomPrintText.setText("   ");
+   }
    if(Knights.selected.size() == Knights.size()) {
       BottomPrintText.addText(" Everyone,", true);
    } else {
@@ -120,6 +127,7 @@ function Verbs::enterTest(%this) {
 //-----------------------------------------------------------------------------
 
 function Verbs::enterHealTarget(%this) {
+   BottomPrintText.addText(" heal", true);
    Knights.beginTarget();
 }
 function Verbs::leaveHealTarget(%this) {
@@ -127,6 +135,7 @@ function Verbs::leaveHealTarget(%this) {
 }
 
 function Verbs::enterHeal(%this) {
+   BottomPrintText.addText(" " @ %this.target.name, true);
    foreach(%knight in Knights.selected) {
       %knight.setMoveDestination(%this.target.getPosition());
    }
@@ -137,6 +146,7 @@ function Verbs::enterHeal(%this) {
 //-----------------------------------------------------------------------------
 
 function Verbs::enterAttackTarget(%this) {
+   BottomPrintText.addText(" attack", true);
    Enemies.beginTarget();
 }
 function Verbs::leaveAttackTarget(%this) {
@@ -144,6 +154,7 @@ function Verbs::leaveAttackTarget(%this) {
 }
 
 function Verbs::enterAttack(%this) {
+   BottomPrintText.addText(" the enemy", true);
    foreach(%knight in Knights.selected) {
       %knight.getDataBlock().attack(%knight, %this.target);
    }
@@ -154,6 +165,7 @@ function Verbs::enterAttack(%this) {
 //-----------------------------------------------------------------------------
 
 function Verbs::enterStop(%this) {
+   BottomPrintText.addText(" stop!", true);
    foreach(%knight in Knights.selected) {
       %knight.setImageTrigger(0, 0);
       %knight.stop();
@@ -166,6 +178,7 @@ function Verbs::enterStop(%this) {
 //-----------------------------------------------------------------------------
 
 function Verbs::enterMoveForwards(%this) {
+   BottomPrintText.addText(" move out!", true);
    foreach(%knight in Knights.selected) {
       %knight.setMoveDestination($forwards);
    }
@@ -173,6 +186,7 @@ function Verbs::enterMoveForwards(%this) {
 }
 
 function Verbs::enterRetreat(%this) {
+   BottomPrintText.addText(" retreat!", true);
    foreach(%knight in Knights.selected) {
       %knight.setMoveDestination(VectorScale($forwards, -1));
    }

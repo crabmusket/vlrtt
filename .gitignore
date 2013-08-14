@@ -13,3 +13,4 @@ console.log
 
 # Art cache
 *.cached.dts
+*materials.cs

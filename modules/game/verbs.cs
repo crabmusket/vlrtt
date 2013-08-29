@@ -137,7 +137,7 @@ function Verbs::leaveHealTarget(%this) {
 function Verbs::enterHeal(%this) {
    BottomPrintText.addText(" " @ %this.target.name, true);
    foreach(%knight in Knights.selected) {
-      %knight.setMoveDestination(%this.target.getPosition());
+      %knight.getDataBlock().heal(%knight, %this.target);
    }
    %this.target = "";
    %this.endVerb();
@@ -167,10 +167,7 @@ function Verbs::enterAttack(%this) {
 function Verbs::enterStop(%this) {
    BottomPrintText.addText(" stop!", true);
    foreach(%knight in Knights.selected) {
-      %knight.setImageTrigger(0, 0);
-      %knight.stop();
-      %knight.setAimLocation(Level.forwards);
-      %knight.schedule(200, clearAim);
+      %knight.getDataBlock().stopAll(%knight);
    }
    %this.endVerb();
 }
@@ -180,7 +177,7 @@ function Verbs::enterStop(%this) {
 function Verbs::enterMoveForwards(%this) {
    BottomPrintText.addText(" move out!", true);
    foreach(%knight in Knights.selected) {
-      %knight.setMoveDestination(Level.forwards);
+      %knight.getDataBlock().goTo(%knight, Level.forwards);
    }
    %this.endVerb();
 }
@@ -188,7 +185,7 @@ function Verbs::enterMoveForwards(%this) {
 function Verbs::enterRetreat(%this) {
    BottomPrintText.addText(" retreat!", true);
    foreach(%knight in Knights.selected) {
-      %knight.setMoveDestination(Level.backwards);
+      %knight.getDataBlock().goTo(%knight, Level.backwards);
    }
    %this.endVerb();
 }

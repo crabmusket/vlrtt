@@ -59,6 +59,8 @@ function knight(%name, %pos, %role) {
    return %knight;
 }
 
+//-----------------------------------------------------------------------------
+
 function Knight::attack(%this, %obj, %target) {
    if(%this.melee) {
       %obj.setMoveDestination(%target.getPosition());
@@ -66,6 +68,21 @@ function Knight::attack(%this, %obj, %target) {
       %obj.setAimObject(%target, "0 0 1.5");
       %obj.setImageTrigger(0, true);
    }
+}
+
+function Knight::heal(%this, %obj, %target) {
+   %obj.setMoveDestination(%target.getPosition());
+}
+
+function Knight::stopAll(%this, %obj) {
+   %obj.setImageTrigger(0, 0);
+   %obj.stop();
+   %obj.setAimLocation(Level.forwards);
+   %obj.schedule(200, clearAim);
+}
+
+function Knight::goTo(%this, %obj, %pos) {
+   %obj.setMoveDestination(%pos);
 }
 
 //-----------------------------------------------------------------------------

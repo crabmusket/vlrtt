@@ -45,6 +45,14 @@ function Level::onStart(%this) {
       TheLevel.add(%section);
    }
 
+   // Add navmesh for entire level.
+   TheLevel.add(new NavMesh(Nav) {
+      position = 0 SPC (%length + 0) / 2 * %this.sectionSize SPC 0;
+      scale = %this.sectionSize / 20 SPC (%length + 1) * %this.sectionSize / 20 SPC 10;
+      alwaysRender = true;
+   });
+   Nav.build(false);
+
    // Create four protagonists!
    knight(Juliet, "-2 2 0", Fighter);
    knight(Kilo, "2 2 0", Shooter);

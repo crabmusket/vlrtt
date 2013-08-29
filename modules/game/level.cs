@@ -61,18 +61,24 @@ function Level::onStart(%this) {
 }
 
 function block(%pos, %size) {
+   %maxX =  getWord(%size, 0) / 2;
+   %maxY =  getWord(%size, 1) / 2;
+   %maxZ =  getWord(%size, 2) / 2;
+   %minX = -getWord(%size, 0) / 2;
+   %minY = -getWord(%size, 1) / 2;
+   %minZ = -getWord(%size, 2) / 2;
    return new ConvexShape() {
       material = BlankWhite;
       position = %pos;
       rotation = "1 0 0 0";
-      scale = %size;
+      scale = "1 1 1";
 
-      surface = "0 0 0 1 0 0 0.5";
-      surface = "0 1 0 0 0 0 -0.5";
-      surface = "0.707107 0 0 0.707107 0 0.5 0";
-      surface = "0 0.707107 -0.707107 0 0 -0.5 0";
-      surface = "0.5 0.5 -0.5 0.5 -0.5 0 0";
-      surface = "0.5 -0.5 0.5 0.5 0.5 0 0";
+      surface = "0 0 0 1 0 0 " @ %maxZ;
+      surface = "0 1 0 0 0 0 " @ %minZ;
+      surface = "0.707107 0 0 0.707107 0" @  %maxY @ " 0";
+      surface = "0 0.707107 -0.707107 0 0 " @ %minY @ " 0";
+      surface = "0.5 0.5 -0.5 0.5 " @ %minX @ " 0 0";
+      surface = "0.5 -0.5 0.5 0.5 " @ %maxX @ " 0 0";
    };
 }
 

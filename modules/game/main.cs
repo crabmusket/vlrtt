@@ -2,10 +2,13 @@
 // Game mainfile. Defines what happens when the root main.cs has set everything
 // up properly.
 
-// Load scripts.
+// Module dependencies.
 include(stateMachine);
 include(trackingCamera);
 include(bottomPrint);
+include(navigation);
+
+// Scripts that make up this module.
 exec("./verbs.cs");
 exec("./character.cs");
 exec("./knights.cs");

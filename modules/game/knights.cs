@@ -87,7 +87,9 @@ function Knight::stopAll(%this, %obj) {
 }
 
 function Knight::goTo(%this, %obj, %pos) {
-   %obj.setMoveDestination(%pos);
+   if(!%obj.setPathDestination(%pos)) {
+      %obj.setMoveDestination(%pos);
+   }
 }
 
 //-----------------------------------------------------------------------------

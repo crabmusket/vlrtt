@@ -5,6 +5,7 @@
 // Module dependencies.
 include(stateMachine);
 include(trackingCamera);
+include(flyCamera);
 include(bottomPrint);
 include(navigation);
 
@@ -20,12 +21,19 @@ exec("./playGui.gui");
 //-----------------------------------------------------------------------------
 // Called when all datablocks have been transmitted.
 function GameConnection::onEnterGame(%client) {
-   // Give the player a controllable camera for now.
-   %c = TrackingCamera.init(%client, GameGroup, Knights, y);
-   %c.setTransform(Level.sectionSize*.75 SPC 0 SPC Level.sectionHeight / 2 SPC
-      "0.255082 0.205918 -0.944739 1.41418");
-   setFOV(50);
-   TrackingCamera.controls(true);
+   // Select camera.
+   if($flyCamera) {
+      %c = FlyCamera.init(%client, GameGroup);
+      %c.setTransform("0 0 10 0 0 1 0");
+      FlyCamera.controls(true);
+      setFOV(50);
+   } else {
+      %c = TrackingCamera.init(%client, GameGroup, Knights, y);
+      %c.setTransform(Level.sectionSize*.75 SPC 0 SPC Level.sectionHeight / 2 SPC
+         "0.255082 0.205918 -0.944739 1.41418");
+      TrackingCamera.controls(true);
+      setFOV(50);
+   }
 
    // Activate HUD which allows us to see the game. This should technically be
    // a commandToClient, but since the client and server are on the same

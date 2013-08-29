@@ -2,6 +2,8 @@ new ScriptObject(Level) {
    sections = "walls towers";
    sectionSize = 30;
    sectionHeight = 20;
+   forwards = "0 1000000 0";
+   backwards = "0 0 0";
 };
 
 function Level::onStart(%this) {
@@ -25,6 +27,7 @@ function Level::onStart(%this) {
 
    // Random level generation parameters.
    %length = getRandom(5, 15);
+   %this.forwards = 0 SPC (%length - 1) * %this.sectionSize SPC 0;
 
    // Create level sections.
    for(%i = 0; %i < %length; %i++) {

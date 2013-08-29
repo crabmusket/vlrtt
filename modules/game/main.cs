@@ -14,9 +14,6 @@ exec("./weapons.cs");
 exec("./level.cs");
 exec("./playGui.gui");
 
-// Global forward vector.
-$forwards = "0 100000 0";
-
 //-----------------------------------------------------------------------------
 // Called when all datablocks have been transmitted.
 function GameConnection::onEnterGame(%client) {

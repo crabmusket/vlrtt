@@ -169,7 +169,7 @@ function Verbs::enterStop(%this) {
    foreach(%knight in Knights.selected) {
       %knight.setImageTrigger(0, 0);
       %knight.stop();
-      %knight.setAimLocation($forwards);
+      %knight.setAimLocation(Level.forwards);
       %knight.schedule(200, clearAim);
    }
    %this.endVerb();
@@ -180,7 +180,7 @@ function Verbs::enterStop(%this) {
 function Verbs::enterMoveForwards(%this) {
    BottomPrintText.addText(" move out!", true);
    foreach(%knight in Knights.selected) {
-      %knight.setMoveDestination($forwards);
+      %knight.setMoveDestination(Level.forwards);
    }
    %this.endVerb();
 }
@@ -188,7 +188,7 @@ function Verbs::enterMoveForwards(%this) {
 function Verbs::enterRetreat(%this) {
    BottomPrintText.addText(" retreat!", true);
    foreach(%knight in Knights.selected) {
-      %knight.setMoveDestination(VectorScale($forwards, -1));
+      %knight.setMoveDestination(Level.backwards);
    }
    %this.endVerb();
 }

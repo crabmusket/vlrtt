@@ -76,7 +76,7 @@ function block(%pos, %size) {
 
       surface = "0 0 0 1 0 0 " @ %maxZ;
       surface = "0 1 0 0 0 0 " @ %minZ;
-      surface = "0.707107 0 0 0.707107 0" @  %maxY @ " 0";
+      surface = "0.707107 0 0 0.707107 0 " @  %maxY @ " 0";
       surface = "0 0.707107 -0.707107 0 0 " @ %minY @ " 0";
       surface = "0.5 0.5 -0.5 0.5 " @ %minX @ " 0 0";
       surface = "0.5 -0.5 0.5 0.5 " @ %maxX @ " 0 0";

@@ -26,17 +26,17 @@ datablock PlayerData(KnightBase) {
    maxForwardSpeed = 5;
 };
 
-datablock PlayerData(Shooter : KnightBase) { melee = false; };
+datablock PlayerData(Shooter : KnightBase) {};
 function Shooter::onAdd(%this, %obj) {
    %obj.mountImage(RangedWeapon, 0);
 }
 
-datablock PlayerData(Fighter : KnightBase) { melee = true; };
+datablock PlayerData(Fighter : KnightBase) {};
 function Fighter::onAdd(%this, %obj) {
    %obj.mountImage(MeleeWeapon, 0);
 }
 
-datablock PlayerData(Healer  : KnightBase) { melee = true; };
+datablock PlayerData(Healer  : KnightBase) {};
 function Healer::onAdd(%this, %obj) {
    %obj.mountImage(HealWeapon, 0);
 }
@@ -61,21 +61,26 @@ function knight(%name, %pos, %role) {
 
 //-----------------------------------------------------------------------------
 
-function Knight::attack(%this, %obj, %target) {
-   if(%this.melee) {
-      %obj.setMoveDestination(%target.getPosition());
-   } else {
-      %obj.setAimObject(%target, "0 0 1.5");
-      %obj.setImageTrigger(0, true);
-   }
+function Shooter::attack(%this, %obj, %target) {
+   %obj.setAimObject(%target, "0 0 1.5");
+   %obj.setImageTrigger(0, true);
+}
+
+function Fighter::attack(%this, %obj, %target) {
+   %this.goTo(%obj, %target.getPosition());
+}
+
+function Healer::attack(%this, %obj, %target) {
+   %this.goTo(%obj, %target.getPosition());
 }
 
 function Knight::heal(%this, %obj, %target) {
    %obj.setMoveDestination(%target.getPosition());
+   %obj.setImageTrigger(0, false);
 }
 
 function Knight::stopAll(%this, %obj) {
-   %obj.setImageTrigger(0, 0);
+   %obj.setImageTrigger(0, false);
    %obj.stop();
    %obj.setAimLocation(Level.forwards);
    %obj.schedule(200, clearAim);

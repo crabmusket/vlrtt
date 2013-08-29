@@ -30,4 +30,6 @@ function StateMachine::onEvent(%this, %event) {
          %this.call(%script);
       }
    }
+
+   return %this;
 }

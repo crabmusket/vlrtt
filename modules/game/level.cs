@@ -1,5 +1,5 @@
 new ScriptObject(Level) {
-   sections = "blank towers";
+   sections = "walls towers";
    sectionSize = 30;
    sectionHeight = 20;
 };
@@ -65,14 +65,37 @@ function block(%pos, %size) {
    };
 }
 
-function Level::blankSection(%this, %soldiers, %delas, %tanks) {
+function Level::blankSection(%this, %soldiers, %deltas, %tanks) {
+   return new SimGroup();
+}
+
+function Level::wallsSection(%this, %soldiers, %deltas, %tanks) {
+   %gridDivs = 5;
+   %numCoverPoints = 5;
    %g = new SimGroup();
+
+   // Divide the section into a grid.
    %s = %this.sectionSize / 2;
-   for(%i = 0; %i < %soldiers; %i++) {
-      %pos = getRandom(-%s, %s) SPC getRandom(-%s, %s) SPC 0;
-      %soldier = soldier(%pos);
-      %g.add(%soldier);
+   %d = %s / %gridDivs;
+   %spots = "";
+   for(%i = -%s + %d; %i < %s - %d; %i += %d) {
+      for(%j = -%s + %d; %j < %s - %d; %j += %d) {
+         %pos = %i SPC %j SPC 0.5;
+         %spots = %spots TAB %pos;
+      }
    }
+   %spots = std.shuffle(%spots, Field);
+
+   %i = 0;
+   // Create soldiers first.
+   for(; %i < %soldiers; %i++) {
+      %g.add(soldier(getField(%spots, %i)));
+   }
+   // Now some cover.
+   for(; %i < %soldiers + %numCoverPoints; %i++) {
+      %g.add(block(getField(%spots, %i), %d SPC 1 SPC 2));
+   }
+
    return %g;
 }
 

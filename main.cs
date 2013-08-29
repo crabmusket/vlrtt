@@ -2,6 +2,10 @@
 // Entry point to the engine. Everything begins here.
 
 exec("ts/shim.cs");
+exec("ts/std.cs");
+
+// Seed the random generator.
+setRandomSeed(getRealTime());
 
 // Console does something.
 setLogMode(2);
@@ -20,8 +24,6 @@ createCanvas("vlrtt");
 // Start rendering and stuff.
 initRenderManager();
 initLightingSystems("Advanced Lighting"); 
-
-// Start PostFX. If you use "Advanced Lighting" above, uncomment this.
 initPostEffects();
 
 // Start audio.

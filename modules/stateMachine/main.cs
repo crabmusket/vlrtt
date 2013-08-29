@@ -6,15 +6,15 @@ function StateMachine::onEvent(%this, %event) {
    }
 
    // Figure out the new state to transition to.
-   %trans = %this.transition[%this.state, %event];
+   %newState = %this.transition[%this.state, %event];
 
    // If it doesn't exist, see if there's a wildcard transition for this event.
-   if(%trans $= "") {
-      %trans = %this.transition["*", %event];
+   if(%newState $= "") {
+      %newState = %this.transition["*", %event];
    }
 
    // Apply the state change.
-   if(%trans !$= "") {
+   if(%newState !$= "") {
       // Callback for leaving the current state.
       %script = "leave" @ %this.state;
       if(%this.isMethod(%script)) {
@@ -22,7 +22,7 @@ function StateMachine::onEvent(%this, %event) {
       }
 
       // Change the state!
-      %this.state = %trans;
+      %this.state = %newState;
 
       // Callback upon entering the new state.
       %script = "enter" @ %this.state;
@@ -30,4 +30,6 @@ function StateMachine::onEvent(%this, %event) {
          %this.call(%script);
       }
    }
+
+   return %this;
 }

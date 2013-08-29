@@ -74,29 +74,35 @@ function Level::blankSection(%this, %soldiers, %deltas, %tanks) {
 
 function Level::wallsSection(%this, %soldiers, %deltas, %tanks) {
    %gridDivs = 5;
-   %numCoverPoints = 5;
+   %numCoverPoints = 8;
    %g = new SimGroup();
 
    // Divide the section into a grid.
    %s = %this.sectionSize / 2;
    %d = %s / %gridDivs;
-   %spots = "";
-   for(%i = -%s + %d; %i < %s - %d; %i += %d) {
-      for(%j = -%s + %d; %j < %s - %d; %j += %d) {
+   %innerSpots = "";
+   %backSpots = "";
+   for(%i = -%s + %d; %i <= %s - %d; %i += %d) {
+      for(%j = -%s + %d; %j <= %s - %d; %j += %d) {
          %pos = %i SPC %j SPC 0.5;
-         %spots = %spots TAB %pos;
+         if(%j == %s - %d) {
+            %backSpots = %backSpots TAB %pos;
+         } else {
+            %innerSpots = %innerSpots TAB %pos;
+         }
       }
    }
-   %spots = std.shuffle(%spots, Field);
+   %innerSpots = std.shuffle(%innerSpots, Field);
+   %backSpots = std.shuffle(%backSpots, Field);
 
-   %i = 0;
-   // Create soldiers first.
-   for(; %i < %soldiers; %i++) {
-      %g.add(soldier(getField(%spots, %i)));
+   // Cover goes at random points.
+   for(%i = 0; %i < %numCoverPoints; %i++) {
+      %g.add(block(getField(%innerSpots, %i), %d SPC 1 SPC 2));
    }
-   // Now some cover.
-   for(; %i < %soldiers + %numCoverPoints; %i++) {
-      %g.add(block(getField(%spots, %i), %d SPC 1 SPC 2));
+
+   // Enemies go along the back wall.
+   for(%i = 0; %i < %soldiers; %i++) {
+      %g.add(soldier(getField(%backSpots, %i)));
    }
 
    return %g;

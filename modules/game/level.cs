@@ -39,7 +39,7 @@ function Level::onStart(%this) {
       %width = 6;
       %height = getRandom(1, %i / %length * %this.sectionHeight);
       %section.add(block(
-         -(%this.sectionSize + %width) / 2 SPC 0                 SPC %height / 2,
+         -(%this.sectionSize + %width) / 2 SPC 0                 SPC 0,
          %width                            SPC %this.sectionSize SPC %height));
 
       // Translate the blocks and add them to the game hierarchy.
@@ -63,12 +63,9 @@ function Level::onStart(%this) {
 }
 
 function block(%pos, %size) {
-   %maxX =  getWord(%size, 0) / 2;
-   %maxY =  getWord(%size, 1) / 2;
-   %maxZ =  getWord(%size, 2) / 2;
-   %minX = -getWord(%size, 0) / 2;
-   %minY = -getWord(%size, 1) / 2;
-   %minZ = -getWord(%size, 2) / 2;
+   %maxX =  getWord(%size, 0) / 2; %minX = -%maxX;
+   %maxY =  getWord(%size, 1) / 2; %minY = -%maxY;
+   %maxZ =  getWord(%size, 2);     %minZ = 0;
    return new ConvexShape() {
       material = BlankWhite;
       position = %pos;
@@ -100,7 +97,7 @@ function Level::wallsSection(%this, %soldiers, %deltas, %tanks) {
    %backSpots = "";
    for(%i = -%s + %d; %i <= %s - %d; %i += %d) {
       for(%j = -%s + %d; %j <= %s - %d; %j += %d) {
-         %pos = %i SPC %j SPC 0.5;
+         %pos = %i SPC %j SPC 0;
          if(%j == %s - %d) {
             %backSpots = %backSpots TAB %pos;
          } else {
@@ -126,8 +123,8 @@ function Level::wallsSection(%this, %soldiers, %deltas, %tanks) {
 
 function Level::towersSection(%this, %soldiers, %deltas, %tanks) {
    %g = new SimGroup();
-   %g.add(block("-5 0 2", "4 4 4"));
-   %g.add(block( "5 0 2", "4 4 4"));
+   %g.add(block("-5 0 0", "4 4 4"));
+   %g.add(block( "5 0 0", "4 4 4"));
    %g.add(soldier("-5 0 4.5"));
    %g.add(soldier( "5 0 4.5"));
    return %g;

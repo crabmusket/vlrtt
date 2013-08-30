@@ -13,14 +13,21 @@ function AIPlayer::setPathDestination(%obj, %dest) {
    }
 }
 
+function AIPlayer::clearPathDestination(%obj) {
+   if(isObject(%obj._navigationPath)) {
+      %obj._navigationPath.delete();
+      %obj._navigationPath = "";
+   }
+   %obj.stop();
+}
+
 function AIPlayer::followNavPath(%obj, %path) {
    %obj._navigationPathNode = 0;
    %obj._navigationPath = %path;
    %obj.moveToNextNavNode();
 }
 
-function AIPlayer::onReachDestination(%obj) {
-   echo(%obj.name SPC "reached");
+function PlayerData::onReachDestination(%this, %obj) {
    if(isObject(%obj._navigationPath)) {
       %obj.moveToNextNavNode();
    }
@@ -32,12 +39,9 @@ function AIPlayer::moveToNextNavNode(%obj) {
       %obj._navigationPathNode++;
       %dest = %obj._navigationPath.getNode(%obj._navigationPathNode);
       %slowdown = %obj._navigationPathNode == %len;
-      echo(%obj.getName() SPC "moving to" SPC %obj._navigationPathNode @ ":" SPC %dest);
       %obj.setMoveDestination(%dest, %slowdown);
    } else {
-      %obj.stop();
-      %obj._navigationPath.delete();
-      %obj._navigationPath = "";
+      %obj.clearPathDestination();
    }
 }
 

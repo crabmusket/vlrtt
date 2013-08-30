@@ -52,7 +52,6 @@ function Level::onStart(%this) {
       position = 0 SPC (%length + 0) / 2 * %this.sectionSize SPC 0;
       scale = %this.sectionSize / 20 SPC (%length + 1) * %this.sectionSize / 20 SPC 10;
       alwaysRender = true;
-      actorRadius = 2;
    });
    Nav.build(false);
 

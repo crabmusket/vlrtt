@@ -81,7 +81,7 @@ function Knight::heal(%this, %obj, %target) {
 
 function Knight::stopAll(%this, %obj) {
    %obj.setImageTrigger(0, false);
-   %obj.stop();
+   %obj.clearPathDestination();
    %obj.setAimLocation(Level.forwards);
    %obj.schedule(200, clearAim);
 }

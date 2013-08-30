@@ -20,7 +20,7 @@ function Level::onStart(%this) {
          azimuth = 230;
          elevation = 45;
          color = "1 1 1";
-         ambient = "0.1 0.1 0.1";
+         ambient = "1 1 1";
          castShadows = false;
       };
    });

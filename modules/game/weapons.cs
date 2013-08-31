@@ -43,6 +43,7 @@ function RangedWeapon::onFire(%this, %obj) {
       initialVelocity = VectorScale(%obj.getEyeVector(), %db.speed);
       initialPosition = VectorAdd(%obj.getPosition(), "0 0 1");
       sourceObject = %obj;
+      sourceSlot = 0;
    };
    GameGroup.add(%p);
 }

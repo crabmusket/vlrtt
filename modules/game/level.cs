@@ -51,7 +51,6 @@ function Level::onStart(%this) {
    TheLevel.add(new NavMesh(Nav) {
       position = 0 SPC (%length + 0) / 2 * %this.sectionSize SPC 0;
       scale = %this.sectionSize / 20 SPC (%length + 1) * %this.sectionSize / 20 SPC 10;
-      alwaysRender = true;
    });
    Nav.build(false);
 
@@ -65,10 +64,10 @@ function Level::onStart(%this) {
 // METATORQUESCRIPT aaghhghghhahhgllhahghlah
 foreach$(%w in "forwards backwards") {
    eval(
-"function Level::get" @ %w @ "(%this, %from) {" @
-   "if(%from $= \"\") {" @
-      "%from = \"0 0 0\";" @
-   "}" @
+"function Level::get" @ %w @ "(%this, %from) {"                       @
+   "if(%from $= \"\") {"                                              @
+      "%from = \"0 0 0\";"                                            @
+   "}"                                                                @
    "return getWord(%from, 0) SPC getWord(%this." @ %w @ ", 1) SPC 0;" @
 "}"
    );
@@ -123,7 +122,7 @@ function Level::wallsSection(%this, %soldiers, %deltas, %tanks) {
    // Cover goes at random points.
    for(%i = 0; %i < %numCoverPoints; %i++) {
       %g.add(block(getField(%innerSpots, %i), %d SPC 1 SPC 2));
-      %g.add(Cover.point(VectorAdd("0 -1 1", getField(%innerSpots, %i))));
+      %g.add(Cover.point(VectorAdd("0 -1 0.5", getField(%innerSpots, %i))));
    }
 
    // Enemies go along the back wall.

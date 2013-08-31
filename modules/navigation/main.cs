@@ -1,4 +1,5 @@
 function AIPlayer::setPathDestination(%obj, %dest) {
+   %obj.clearPathDestination();
    %path = new NavPath() {
       from = %obj.getPosition();
       to = %dest;

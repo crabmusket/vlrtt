@@ -1,6 +1,6 @@
 $i = -1;
 datablock ShapeBaseImageData(RangedWeapon) {
-   shapeFile = "./projectile.dae";
+   shapeFile = "./shapes/projectile.dae";
    offset = "0 0 3";
    projectileData = Bullet;
 
@@ -21,7 +21,7 @@ datablock ShapeBaseImageData(RangedWeapon) {
 };
 
 datablock ProjectileData(Bullet) {
-   projectileShapeName = "./projectile.dae";
+   projectileShapeName = "./shapes/projectile.dae";
    isBallistic = false;
    speed = 10;
    damage = 20;
@@ -51,7 +51,7 @@ function RangedWeapon::onFire(%this, %obj) {
 //-----------------------------------------------------------------------------
 
 datablock ShapeBaseImageData(MeleeWeapon) {
-   shapeFile = "./projectile.dae";
+   shapeFile = "./shapes/projectile.dae";
    offset = "0 0 2.5";
 };
 
@@ -61,7 +61,7 @@ function MeleeWeapon::onFire(%this, %obj) {
 //-----------------------------------------------------------------------------
 
 datablock ShapeBaseImageData(HealWeapon) {
-   shapeFile = "./projectile.dae";
+   shapeFile = "./shapes/projectile.dae";
    offset = "0 0 2";
 };
 

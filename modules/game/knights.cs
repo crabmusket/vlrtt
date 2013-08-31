@@ -18,10 +18,10 @@ datablock DebrisData(KnightDebris) {
 datablock PlayerData(KnightBase) {
    class = Knight;
    superclass = Character;
-   shapeFile = "./player.dae";
+   shapeFile = "./shapes/player.dae";
    maxDamage = 100;
    destroyedLevel = 100;
-   debrisShapeName = "./playerDebris.dae";
+   debrisShapeName = "./shapes/playerDebris.dae";
    debris = KnightDebris;
    maxForwardSpeed = 5;
 };
@@ -181,3 +181,10 @@ function Knights::target(%this, %knight) {
    Verbs.target = %knight;
    Verbs.onEvent(knightTargeted);
 }
+
+//-----------------------------------------------------------------------------
+
+datablock ShapeBaseImageData(Selectron) {
+   shapeFile = "./shapes/selectron.dae";
+   offset = "0 0 0.25";
+};

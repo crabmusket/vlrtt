@@ -2,7 +2,7 @@ new SimSet(Enemies);
 
 datablock PlayerData(Soldier : KnightBase) {
    melee = false;
-   debrisShapeName = "./enemyDebris.dae";
+   debrisShapeName = "./shapes/enemyDebris.dae";
 };
 
 singleton Material(EnemyMaterial) {

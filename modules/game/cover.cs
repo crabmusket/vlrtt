@@ -38,7 +38,7 @@ function Cover::target(%this, %index) {
 }
 
 datablock StaticShapeData(CoverPointData) {
-   shapeFile = "./projectile.dae";
+   shapeFile = "./shapes/projectile.dae";
 };
 
 function Cover::point(%this, %pos) {

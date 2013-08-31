@@ -65,13 +65,6 @@ function Verbs::onEnd(%this) {
 
 //-----------------------------------------------------------------------------
 
-datablock ShapeBaseImageData(Selectron) {
-   shapeFile = "./selectron.dae";
-   offset = "0 0 0.25";
-};
-
-//-----------------------------------------------------------------------------
-
 function Verbs::onFinish(%this) {
    BottomPrintText.event = BottomPrintText.schedule(1000, setText, "");
    Knights.deselectAll();

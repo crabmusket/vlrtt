@@ -4,6 +4,7 @@
 *.lnk
 *.exp
 *.ilk
+*.lib
 
 # Compiled scripts
 *.dso

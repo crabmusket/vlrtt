@@ -59,6 +59,7 @@ function onStart() {
    Knights.onStart();
    Enemies.onStart();
    Level.onStart();
+   Cover.onStart();
 
    // UI modules.
    Verbs.onStart();

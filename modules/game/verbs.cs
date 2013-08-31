@@ -18,10 +18,12 @@ new ScriptObject(Verbs) {
    transition[selected, stop] = stop;
    transition[selected, move] = moveForwards;
    transition[selected, retreat] = retreat;
+   transition[selected, cover] = coverTarget;
 
    // Must target someone for these verbs.
    transition[healTarget, knightTargeted] = heal;
    transition[attackTarget, enemyTargeted] = attack;
+   transition[coverTarget, coverTargeted] = cover;
 
    // Catch these events from every state and return to ready.
    transition["*", finish] = ready;
@@ -45,6 +47,7 @@ function Verbs::onStart(%this) {
    %this.define("h", "Heal");
    %this.define("a", "Attack");
    %this.define("s", "Stop");
+   %this.define("c", "Cover");
    %this.define("shift m", "Move");
    %this.define("shift r", "Retreat");
 
@@ -157,6 +160,25 @@ function Verbs::enterAttack(%this) {
    BottomPrintText.addText(" the enemy", true);
    foreach(%knight in Knights.selected) {
       %knight.getDataBlock().attack(%knight, %this.target);
+   }
+   %this.target = "";
+   %this.endVerb();
+}
+
+//-----------------------------------------------------------------------------
+
+function Verbs::enterCoverTarget(%this) {
+   BottomPrintText.addText(" take cove", true);
+   Cover.beginTarget();
+}
+function Verbs::leaveCoverTarget(%this) {
+   Cover.endTarget();
+}
+
+function Verbs::enterCover(%this) {
+   BottomPrintText.addText(" there!", true);
+   foreach(%knight in Knights.selected) {
+      %knight.getDataBlock().takeCover(%knight, %this.target);
    }
    %this.target = "";
    %this.endVerb();

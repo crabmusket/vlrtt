@@ -123,6 +123,7 @@ function Level::wallsSection(%this, %soldiers, %deltas, %tanks) {
    // Cover goes at random points.
    for(%i = 0; %i < %numCoverPoints; %i++) {
       %g.add(block(getField(%innerSpots, %i), %d SPC 1 SPC 2));
+      %g.add(Cover.point(VectorAdd("0 -1 1", getField(%innerSpots, %i))));
    }
 
    // Enemies go along the back wall.

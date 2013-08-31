@@ -92,6 +92,10 @@ function Knight::goTo(%this, %obj, %pos) {
    }
 }
 
+function Knight::takeCover(%this, %obj, %cover) {
+   %this.goTo(%obj, %cover.getPosition());
+}
+
 //-----------------------------------------------------------------------------
 
 function Knights::onStart(%this) {

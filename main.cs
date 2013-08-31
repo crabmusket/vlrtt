@@ -29,6 +29,12 @@ initPostEffects();
 // Start audio.
 sfxStartup();
 
+// Provide stubs so we don't get console spam.
+function onDatablockObjectReceived() {}
+function onGhostAlwaysObjectReceived() {}
+function onGhostAlwaysStarted() {}
+function updateTSShapeLoadProgress() {}
+
 //-----------------------------------------------------------------------------
 // Load console.
 include(console);
@@ -71,7 +77,3 @@ function onExit() {
    // Delete all the datablocks.
    deleteDataBlocks();
 }
-
-function onDatablockObjectReceived() {}
-function onGhostAlwaysObjectReceived() {}
-function onGhostAlwaysStarted() {}

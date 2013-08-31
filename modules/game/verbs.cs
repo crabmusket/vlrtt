@@ -175,9 +175,9 @@ function Verbs::enterStop(%this) {
 //-----------------------------------------------------------------------------
 
 function Verbs::enterMoveForwards(%this) {
-   BottomPrintText.addText(" move out!", true);
+   BottomPrintText.addText(" move up!", true);
    foreach(%knight in Knights.selected) {
-      %knight.getDataBlock().goTo(%knight, Level.forwards);
+      %knight.getDataBlock().goTo(%knight, Level.getForwards(%knight.getPosition()));
    }
    %this.endVerb();
 }
@@ -185,7 +185,7 @@ function Verbs::enterMoveForwards(%this) {
 function Verbs::enterRetreat(%this) {
    BottomPrintText.addText(" retreat!", true);
    foreach(%knight in Knights.selected) {
-      %knight.getDataBlock().goTo(%knight, Level.backwards);
+      %knight.getDataBlock().goTo(%knight, Level.getBackwards(%knight.getPosition()));
    }
    %this.endVerb();
 }

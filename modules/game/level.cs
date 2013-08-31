@@ -62,6 +62,18 @@ function Level::onStart(%this) {
    knight(November, "6 -4 0", Healer);
 }
 
+// METATORQUESCRIPT aaghhghghhahhgllhahghlah
+foreach$(%w in "forwards backwards") {
+   eval(
+"function Level::get" @ %w @ "(%this, %from) {" @
+   "if(%from $= \"\") {" @
+      "%from = \"0 0 0\";" @
+   "}" @
+   "return getWord(%from, 0) SPC getWord(%this." @ %w @ ", 1) SPC 0;" @
+"}"
+   );
+}
+
 function block(%pos, %size) {
    %maxX =  getWord(%size, 0) / 2; %minX = -%maxX;
    %maxY =  getWord(%size, 1) / 2; %minY = -%maxY;

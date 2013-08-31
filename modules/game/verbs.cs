@@ -26,8 +26,8 @@ new ScriptObject(Verbs) {
    transition[coverTarget, coverTargeted] = cover;
 
    // Catch these events from every state and return to ready.
-   transition["*", finish] = ready;
-   transition["*", cancel] = ready;
+   transition[_, finish] = ready;
+   transition[_, cancel] = ready;
 };
 
 function Verbs::define(%this, %key, %verb) {

@@ -10,7 +10,7 @@ function StateMachine::onEvent(%this, %event) {
 
    // If it doesn't exist, see if there's a wildcard transition for this event.
    if(%newState $= "") {
-      %newState = %this.transition["*", %event];
+      %newState = %this.transition[_, %event];
    }
 
    // Apply the state change.

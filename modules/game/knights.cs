@@ -78,9 +78,7 @@ function Fighter::onCollision(%this, %obj, %col) {
    }
 }
 
-function Healer::attack(%this, %obj, %target) {
-   %this.goTo(%obj, %target.getPosition());
-}
+function Healer::attack(%this, %obj, %target) {}
 
 function Knight::heal(%this, %obj, %target) {
    %obj.setMoveDestination(%target.getPosition());

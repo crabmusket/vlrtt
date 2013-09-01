@@ -16,6 +16,7 @@ function Cover::onEnd(%this) {
 function Cover::beginTarget(%this) {
    %this.targetMap.push();
    %i = 0;
+   Cover.sort(distanceFromKnights);
    foreach(%point in Cover) {
       %point.setShapeName(" "  @ getSubStr(%this.letters, %i, 1) @ " ");
       %i++;

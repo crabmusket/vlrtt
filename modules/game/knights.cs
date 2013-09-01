@@ -67,12 +67,18 @@ function Shooter::attack(%this, %obj, %target) {
 }
 
 function Fighter::attack(%this, %obj, %target) {
-   %this.goTo(%obj, %target.getPosition());
+   %this.goTo(%obj, %target.getPosition(), false);
 }
 
-function Healer::attack(%this, %obj, %target) {
-   %this.goTo(%obj, %target.getPosition());
+function Fighter::onCollision(%this, %obj, %col) {
+   if(Enemies.contains(%col)) {
+      %col.damage(40);
+      %sep = VectorSub(%col.getPosition(), %obj.getPosition());
+      %col.applyImpulse(%col.getPosition(), VectorScale(%sep, 50));
+   }
 }
+
+function Healer::attack(%this, %obj, %target) {}
 
 function Knight::heal(%this, %obj, %target) {
    %obj.setMoveDestination(%target.getPosition());
@@ -80,20 +86,9 @@ function Knight::heal(%this, %obj, %target) {
 }
 
 function Knight::stopAll(%this, %obj) {
-   %obj.setImageTrigger(0, false);
-   %obj.clearPathDestination();
+   Parent::stopAll(%this, %obj);
    %obj.setAimLocation(Level.forwards);
    %obj.schedule(200, clearAim);
-}
-
-function Knight::goTo(%this, %obj, %pos) {
-   if(!%obj.setPathDestination(%pos)) {
-      %obj.setMoveDestination(%pos);
-   }
-}
-
-function Knight::takeCover(%this, %obj, %cover) {
-   %this.goTo(%obj, %cover.getPosition());
 }
 
 //-----------------------------------------------------------------------------
@@ -188,3 +183,19 @@ datablock ShapeBaseImageData(Selectron) {
    shapeFile = "./shapes/selectron.dae";
    offset = "0 0 0.25";
 };
+
+//-----------------------------------------------------------------------------
+
+function distanceFromKnights(%a, %b) {
+   %distA = 10000;
+   %distB = 10000;
+   foreach(%knight in Knights.selected) {
+      %dist = VectorLen(VectorSub(%a.getPosition(), %knight.getPosition()));
+      %distA = %dist < %distA? %dist : %distA;
+      %dist = VectorLen(VectorSub(%b.getPosition(), %knight.getPosition()));
+      %distB = %dist < %distB? %dist : %distB;
+   }
+   if(%distA < %distB) return -1;
+   if(%distA > %distB) return 1;
+   return 0;
+}

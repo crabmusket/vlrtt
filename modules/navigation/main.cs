@@ -1,4 +1,7 @@
-function AIPlayer::setPathDestination(%obj, %dest) {
+function AIPlayer::setPathDestination(%obj, %dest, %slowdown) {
+   if(%slowdown $= "") {
+      %slowdown = true;
+   }
    %obj.clearPathDestination();
    %path = new NavPath() {
       from = %obj.getPosition();
@@ -6,6 +9,7 @@ function AIPlayer::setPathDestination(%obj, %dest) {
       mesh = Nav;
    };
    if(%path.getCount() > 0) {
+      %obj._navigationSlowdown = %slowdown;
       %obj.followNavPath(%path);
       return true;
    } else {
@@ -39,7 +43,7 @@ function AIPlayer::moveToNextNavNode(%obj) {
    if(%obj._navigationPathNode < %len) {
       %obj._navigationPathNode++;
       %dest = %obj._navigationPath.getNode(%obj._navigationPathNode);
-      %slowdown = %obj._navigationPathNode == %len;
+      %slowdown = %obj._navigationPathNode == %len && %obj._navigationSlowdown;
       %obj.setMoveDestination(%dest, %slowdown);
    } else {
       %obj.clearPathDestination();

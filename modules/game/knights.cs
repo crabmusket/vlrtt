@@ -67,7 +67,15 @@ function Shooter::attack(%this, %obj, %target) {
 }
 
 function Fighter::attack(%this, %obj, %target) {
-   %this.goTo(%obj, %target.getPosition());
+   %this.goTo(%obj, %target.getPosition(), false);
+}
+
+function Fighter::onCollision(%this, %obj, %col) {
+   if(Enemies.contains(%col)) {
+      %col.damage(40);
+      %sep = VectorSub(%col.getPosition(), %obj.getPosition());
+      %col.applyImpulse(%col.getPosition(), VectorScale(%sep, 50));
+   }
 }
 
 function Healer::attack(%this, %obj, %target) {

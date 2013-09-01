@@ -6,6 +6,8 @@ new ScriptObject(Level) {
    backwards = "0 0 0";
 };
 
+include(convex);
+
 function Level::onStart(%this) {
    // Set up basic objects.
    GameGroup.add(new SimGroup(TheLevel) {
@@ -38,7 +40,7 @@ function Level::onStart(%this) {
       // Create side walls.
       %width = 6;
       %height = getRandom(1, %i / %length * %this.sectionHeight);
-      %section.add(block(
+      %section.add(Convex.block(
          -(%this.sectionSize + %width) / 2 SPC 0                 SPC 0,
          %width                            SPC %this.sectionSize SPC %height));
 
@@ -73,56 +75,6 @@ foreach$(%w in "forwards backwards") {
    );
 }
 
-function block(%pos, %size) {
-   %maxX =  getWord(%size, 0) / 2; %minX = -%maxX;
-   %maxY =  getWord(%size, 1) / 2; %minY = -%maxY;
-   %maxZ =  getWord(%size, 2);     %minZ = 0;
-   return new ConvexShape() {
-      material = BlankWhite;
-      position = %pos;
-      rotation = "1 0 0 0";
-      scale = "1 1 1";
-
-      surface = "0 0 0 1 0 0 " @ %maxZ;
-      surface = "0 1 0 0 0 0 " @ %minZ;
-      surface = "0.707107 0 0 0.707107 0 " @  %maxY @ " 0";
-      surface = "0 0.707107 -0.707107 0 0 " @ %minY @ " 0";
-      surface = "0.5 0.5 -0.5 0.5 " @ %minX @ " 0 0";
-      surface = "0.5 -0.5 0.5 0.5 " @ %maxX @ " 0 0";
-   };
-}
-
-function mEulerToQuat(%euler) {
-   %r = mDegToRad(getWord(%euler, 1));
-   %p = mDegToRad(getWord(%euler, 0));
-   %y = mDegToRad(getWord(%euler, 2));
-   %q0 = mCos(%r/2) * mCos(%p/2) * mCos(%y/2) + mSin(%r/2) * mSin(%p/2) * mSin(%y/2);
-   %q1 = mSin(%r/2) * mCos(%p/2) * mCos(%y/2) - mCos(%r/2) * mSin(%p/2) * mSin(%y/2);
-   %q2 = mCos(%r/2) * mSin(%p/2) * mCos(%y/2) + mSin(%r/2) * mCos(%p/2) * mSin(%y/2);
-   %q3 = mCos(%r/2) * mCos(%p/2) * mSin(%y/2) - mSin(%r/2) * mSin(%p/2) * mCos(%y/2);
-   return %q0 SPC %q1 SPC %q2 SPC %q3;
-}
-
-function ramp(%pos, %size, %rot) {
-   %maxX =  getWord(%size, 0) / 2; %minX = -%maxX;
-   %maxY =  getWord(%size, 1) / 2; %minY = -%maxY;
-   %maxZ =  getWord(%size, 2) / 2; %minZ = 0;
-   %angle = mRadToDeg(mAtan(%maxZ, %maxY));
-   return new ConvexShape() {
-      material = BlankWhite;
-      position = %pos;
-      rotation = "1 0 0 0";
-      scale = "1 1 1";
-
-      surface = mEulerToQuat("180 0" SPC %angle) @ " 0 0 " @ %maxZ + 0.01;
-      surface = "0 1 0 0 0 0 " @ %minZ;
-      surface = "0.707107 0 0 0.707107 0 " @  %maxY @ " 0";
-      surface = "0 0.707107 -0.707107 0 0 " @ %minY @ " 0";
-      surface = "0.5 0.5 -0.5 0.5 " @ %minX @ " 0 0";
-      surface = "0.5 -0.5 0.5 0.5 " @ %maxX @ " 0 0";
-   };
-}
-
 function Level::blankSection(%this, %soldiers, %deltas, %tanks) {
    return new SimGroup();
 }
@@ -152,7 +104,7 @@ function Level::wallsSection(%this, %soldiers, %deltas, %tanks) {
 
    // Cover goes at random points.
    for(%i = 0; %i < %numCoverPoints; %i++) {
-      %g.add(block(getField(%innerSpots, %i), %d SPC 1 SPC 2));
+      %g.add(Convex.block(getField(%innerSpots, %i), %d SPC 1 SPC 2));
       %g.add(Cover.point(VectorAdd("0 -1 0.5", getField(%innerSpots, %i))));
    }
 
@@ -166,8 +118,8 @@ function Level::wallsSection(%this, %soldiers, %deltas, %tanks) {
 
 function Level::towersSection(%this, %soldiers, %deltas, %tanks) {
    %g = new SimGroup();
-   %g.add(block("-5 0 0", "4 4 4"));
-   %g.add(block( "5 0 0", "4 4 4"));
+   %g.add(Convex.block("-5 0 0", "4 4 4"));
+   %g.add(Convex.block( "5 0 0", "4 4 4"));
    %g.add(soldier("-5 0 4.5"));
    %g.add(soldier( "5 0 4.5"));
    return %g;
@@ -180,11 +132,11 @@ function Level::sBendSection(%this, %soldiers, %deltas, %tanks) {
 
    // Create big blockers.
    %w = %this.sectionSize / 3;
-   %g.add(block(
+   %g.add(Convex.block(
       -%w / 2 SPC -%w SPC 0,
       2 * %w  SPC 5   SPC 5));
    %y = getRandom(2, %w);
-   %g.add(block(
+   %g.add(Convex.block(
       %w / 2 SPC %y SPC 0,
       2 * %w SPC 5  SPC 2));
 
@@ -201,7 +153,7 @@ function Level::sBendSection(%this, %soldiers, %deltas, %tanks) {
 
    %spots = std.shuffle(%spots, Field);
    for(%i = 0; %i < %numCoverPoints; %i++) {
-      %g.add(block(getField(%spots, %i), 1 SPC %dy SPC 2));
+      %g.add(Convex.block(getField(%spots, %i), 1 SPC %dy SPC 2));
       echo(%g.last().getPosition());
    }
 

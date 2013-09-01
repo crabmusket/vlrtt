@@ -3,9 +3,9 @@ function Character::stopAll(%this, %obj) {
    %obj.clearPathDestination();
 }
 
-function Character::goTo(%this, %obj, %pos) {
-   if(!%obj.setPathDestination(%pos)) {
-      %obj.setMoveDestination(%pos);
+function Character::goTo(%this, %obj, %pos, %slowdown) {
+   if(!%obj.setPathDestination(%pos, %slowdown)) {
+      %obj.setMoveDestination(%pos, %slowdown);
    }
 }
 

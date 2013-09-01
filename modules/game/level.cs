@@ -1,5 +1,5 @@
 new ScriptObject(Level) {
-   sections = "walls towers";
+   sections = "sBend walls towers";
    sectionSize = 30;
    sectionHeight = 20;
    forwards = "0 1000000 0";
@@ -139,6 +139,41 @@ function Level::towersSection(%this, %soldiers, %deltas, %tanks) {
    %g.add(block( "5 0 0", "4 4 4"));
    %g.add(soldier("-5 0 4.5"));
    %g.add(soldier( "5 0 4.5"));
+   return %g;
+}
+
+function Level::sBendSection(%this, %soldiers, %deltas, %tanks) {
+   %numCoverPoints = 4;
+   %gridDivs = 4;
+   %g = new SimGroup();
+
+   // Create big blockers.
+   %w = %this.sectionSize / 3;
+   %g.add(block(
+      -%w / 2 SPC -%w SPC 0,
+      2 * %w  SPC 5   SPC 5));
+   %y = getRandom(2, %w);
+   %g.add(block(
+      %w / 2 SPC %y SPC 0,
+      2 * %w SPC 5  SPC 2));
+
+   // Add cover in channel.
+   %dx = %w / %gridDivs;
+   %dy = (%y + %w - 5) / %gridDivs;
+   %spots = "";
+   for(%i = -%w + %dx; %i <= %w - %dx; %i += %dx) {
+      for(%j = -%w + 2.5 + %dy; %j <= %y - %dy - 2.5; %j += %dy) {
+         %pos = %i SPC %j SPC 0;
+         %spots = %spots TAB %pos;
+      }
+   }
+
+   %spots = std.shuffle(%spots, Field);
+   for(%i = 0; %i < %numCoverPoints; %i++) {
+      %g.add(block(getField(%spots, %i), 1 SPC %dy SPC 2));
+      echo(%g.last().getPosition());
+   }
+
    return %g;
 }
 

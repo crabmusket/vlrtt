@@ -1,3 +1,18 @@
+function Character::stopAll(%this, %obj) {
+   %obj.setImageTrigger(0, false);
+   %obj.clearPathDestination();
+}
+
+function Character::goTo(%this, %obj, %pos) {
+   if(!%obj.setPathDestination(%pos)) {
+      %obj.setMoveDestination(%pos);
+   }
+}
+
+function Character::takeCover(%this, %obj, %cover) {
+   %this.goTo(%obj, %cover.getPosition());
+}
+
 function SceneObject::damage(%this, %amount) {
    if(%this.can(getDataBlock)) {
       if(%this.getDataBlock().can(damage)) {

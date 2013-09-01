@@ -80,20 +80,9 @@ function Knight::heal(%this, %obj, %target) {
 }
 
 function Knight::stopAll(%this, %obj) {
-   %obj.setImageTrigger(0, false);
-   %obj.clearPathDestination();
+   Parent::stopAll(%this, %obj);
    %obj.setAimLocation(Level.forwards);
    %obj.schedule(200, clearAim);
-}
-
-function Knight::goTo(%this, %obj, %pos) {
-   if(!%obj.setPathDestination(%pos)) {
-      %obj.setMoveDestination(%pos);
-   }
-}
-
-function Knight::takeCover(%this, %obj, %cover) {
-   %this.goTo(%obj, %cover.getPosition());
 }
 
 //-----------------------------------------------------------------------------

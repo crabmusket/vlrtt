@@ -170,3 +170,18 @@ function Knights::target(%this, %knight) {
    Verbs.target = %knight;
    Verbs.onEvent(knightTargeted);
 }
+
+function distanceFromKnights(%a, %b) {
+   %distA = 10000;
+   %distB = 10000;
+   foreach(%knight in Knights.selected) {
+      %dist = VectorLen(VectorSub(%a.getPosition(), %knight.getPosition()));
+      %distA = %dist < %distA? %dist : %distA;
+      %dist = VectorLen(VectorSub(%b.getPosition(), %knight.getPosition()));
+      %distB = %dist < %distB? %dist : %distB;
+   }
+   if(%distA < %distB) return -1;
+   if(%distA > %distB) return 1;
+   return 0;
+}
+

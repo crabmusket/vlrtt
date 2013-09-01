@@ -39,6 +39,7 @@ function Enemies::onEnd(%this) {
 function Enemies::beginTarget(%this) {
    %this.targetMap.push();
    %i = 0;
+   Enemies.sort(distanceFromKnights);
    foreach(%enemy in Enemies) {
       %enemy.setShapeName(" "  @ getSubStr(%this.letters, %i, 1) @ " ");
       %i++;

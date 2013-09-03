@@ -1,5 +1,7 @@
 new SimGroup(Knights);
 
+exec("./shapes/soldier.cs");
+
 //-----------------------------------------------------------------------------
 // Create the player material.
 singleton Material(PlayerMaterial) {
@@ -18,7 +20,7 @@ datablock DebrisData(KnightDebris) {
 datablock PlayerData(KnightBase) {
    class = Knight;
    superclass = Character;
-   shapeFile = "./shapes/player.dae";
+   shapeFile = "./shapes/soldier.dae";
    maxDamage = 100;
    destroyedLevel = 100;
    debrisShapeName = "./shapes/playerDebris.dae";

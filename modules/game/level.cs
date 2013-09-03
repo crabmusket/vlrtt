@@ -1,5 +1,5 @@
 new ScriptObject(Level) {
-   sections = "sBend walls towers";
+   sections = "walls";
    sectionSize = 30;
    sectionHeight = 20;
    forwards = "0 1000000 0";
@@ -88,74 +88,27 @@ function Level::wallsSection(%this, %soldiers, %deltas, %tanks) {
    %s = %this.sectionSize / 2;
    %d = %s / %gridDivs;
    %innerSpots = "";
-   %backSpots = "";
+   %spots = "";
    for(%i = -%s + %d; %i <= %s - %d; %i += %d) {
       for(%j = -%s + %d; %j <= %s - %d; %j += %d) {
-         %pos = %i SPC %j SPC 0;
-         if(%j == %s - %d) {
-            %backSpots = %backSpots TAB %pos;
-         } else {
-            %innerSpots = %innerSpots TAB %pos;
-         }
-      }
-   }
-   %innerSpots = std.shuffle(%innerSpots, Field);
-   %backSpots = std.shuffle(%backSpots, Field);
-
-   // Cover goes at random points.
-   for(%i = 0; %i < %numCoverPoints; %i++) {
-      %g.add(Convex.block(getField(%innerSpots, %i), %d SPC 1 SPC 2));
-      %g.add(Cover.point(VectorAdd("0 -1 0.5", getField(%innerSpots, %i))));
-   }
-
-   // Enemies go along the back wall.
-   for(%i = 0; %i < %soldiers; %i++) {
-      %g.add(soldier(getField(%backSpots, %i)));
-   }
-
-   return %g;
-}
-
-function Level::towersSection(%this, %soldiers, %deltas, %tanks) {
-   %g = new SimGroup();
-   %g.add(Convex.block("-5 0 0", "4 4 4"));
-   %g.add(Convex.block( "5 0 0", "4 4 4"));
-   %g.add(soldier("-5 0 4.5"));
-   %g.add(soldier( "5 0 4.5"));
-   return %g;
-}
-
-function Level::sBendSection(%this, %soldiers, %deltas, %tanks) {
-   %numCoverPoints = 4;
-   %gridDivs = 4;
-   %g = new SimGroup();
-
-   // Create big blockers.
-   %w = %this.sectionSize / 3;
-   %g.add(Convex.block(
-      -%w / 2 SPC -%w SPC 0,
-      2 * %w  SPC 5   SPC 5));
-   %y = getRandom(2, %w);
-   %g.add(Convex.block(
-      %w / 2 SPC %y SPC 0,
-      2 * %w SPC 5  SPC 2));
-
-   // Add cover in channel.
-   %dx = %w / %gridDivs;
-   %dy = (%y + %w - 5) / %gridDivs;
-   %spots = "";
-   for(%i = -%w + %dx; %i <= %w - %dx; %i += %dx) {
-      for(%j = -%w + 2.5 + %dy; %j <= %y - %dy - 2.5; %j += %dy) {
          %pos = %i SPC %j SPC 0;
          %spots = %spots TAB %pos;
       }
    }
-
    %spots = std.shuffle(%spots, Field);
+
+   // Cover goes at random points.
    for(%i = 0; %i < %numCoverPoints; %i++) {
-      %g.add(Convex.block(getField(%spots, %i), 1 SPC %dy SPC 2));
-      echo(%g.last().getPosition());
+      %g.add(Convex.block(getField(%spots, %i), %d SPC 1 SPC 2));
+      %g.add(Cover.point(VectorAdd("0 -1 0.5", getField(%spots, %i))));
    }
+   %spots = std.drop(%spots, %numCoverPoints, Field);
+
+   // Enemies go in spots that weren't used for cover.
+   for(%i = 0; %i < %soldiers; %i++) {
+      %g.add(soldier(getField(%spots, %i)));
+   }
+   %spots = std.drop(%spots, %soldiers, Field);
 
    return %g;
 }

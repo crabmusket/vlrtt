@@ -2,7 +2,7 @@ new ScriptObject(std);
 
 function std::shuffle(%this, %data, %delim) {
    if(%delim $= "") {
-      %delim = "Word";
+      %delim = Word;
    }
 
    %getCount = get @ %delim @ Count;
@@ -18,4 +18,26 @@ function std::shuffle(%this, %data, %delim) {
    }
 
    return %data;
+}
+
+function std::drop(%this, %data, %count, %delim) {
+   if(%delim $= "") {
+      %delim = Word;
+   }
+
+   %getCount = get @ %delim @ Count;
+   %get = get @ %delim @ s;
+
+   return call(%get, %data, %count, call(%getCount, %data) - 1);
+}
+
+function std::take(%this, %data, %count, %delim) {
+   if(%delim $= "") {
+      %delim = Word;
+   }
+
+   %getCount = get @ %delim @ Count;
+   %get = get @ %delim @ s;
+
+   return call(%get, %data, 0, %count - 1);
 }

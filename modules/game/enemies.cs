@@ -15,6 +15,7 @@ function soldier(%pos) {
       datablock = Soldier;
       position = %pos;
       skin = enemy;
+      rotation = "0 0 1 180";
    };
    Enemies.add(%soldier);
    return %soldier;

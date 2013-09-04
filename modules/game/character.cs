@@ -1,9 +1,15 @@
+function Character::onAdd(%this, %obj) {
+   %obj.setActionThread("stand_root");
+}
+
 function Character::stopAll(%this, %obj) {
    %obj.setImageTrigger(0, false);
    %obj.clearPathDestination();
 }
 
 function Character::goTo(%this, %obj, %pos, %slowdown) {
+   %obj.isTakingCover = false;
+   %obj.setActionThread("stand_root");
    if(!%obj.setPathDestination(%pos, %slowdown)) {
       %obj.setMoveDestination(%pos, %slowdown);
    }
@@ -11,6 +17,13 @@ function Character::goTo(%this, %obj, %pos, %slowdown) {
 
 function Character::takeCover(%this, %obj, %cover) {
    %this.goTo(%obj, %cover.getPosition(), false);
+   %obj.isTakingCover = true;
+}
+
+function Character::onReachPathDestination(%this, %obj) {
+   if(%obj.isTakingCover) {
+      %obj.setActionThread("hide_root");
+   }
 }
 
 function SceneObject::damage(%this, %amount) {

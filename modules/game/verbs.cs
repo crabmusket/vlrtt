@@ -161,7 +161,7 @@ function Verbs::enterAttack(%this) {
 //-----------------------------------------------------------------------------
 
 function Verbs::enterCoverTarget(%this) {
-   BottomPrintText.addText(" take cove", true);
+   BottomPrintText.addText(" take cover", true);
    Cover.beginTarget();
 }
 function Verbs::leaveCoverTarget(%this) {

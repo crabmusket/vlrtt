@@ -47,6 +47,7 @@ function AIPlayer::moveToNextNavNode(%obj) {
       %obj.setMoveDestination(%dest, %slowdown);
    } else {
       %obj.clearPathDestination();
+      %obj.getDataBlock().onReachPathDestination(%obj);
    }
 }
 

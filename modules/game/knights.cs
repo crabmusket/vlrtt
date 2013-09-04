@@ -31,16 +31,19 @@ datablock PlayerData(KnightBase) {
 datablock PlayerData(Shooter : KnightBase) {};
 function Shooter::onAdd(%this, %obj) {
    %obj.mountImage(RangedWeapon, 0);
+   Parent::onAdd(%this, %obj);
 }
 
 datablock PlayerData(Fighter : KnightBase) {};
 function Fighter::onAdd(%this, %obj) {
    %obj.mountImage(MeleeWeapon, 0);
+   Parent::onAdd(%this, %obj);
 }
 
 datablock PlayerData(Healer  : KnightBase) {};
 function Healer::onAdd(%this, %obj) {
    %obj.mountImage(HealWeapon, 0);
+   Parent::onAdd(%this, %obj);
 }
 
 function knight(%name, %pos, %role) {

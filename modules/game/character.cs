@@ -10,7 +10,7 @@ function Character::goTo(%this, %obj, %pos, %slowdown) {
 }
 
 function Character::takeCover(%this, %obj, %cover) {
-   %this.goTo(%obj, %cover.getPosition());
+   %this.goTo(%obj, %cover.getPosition(), false);
 }
 
 function SceneObject::damage(%this, %amount) {

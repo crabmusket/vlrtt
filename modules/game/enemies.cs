@@ -1,14 +1,25 @@
 new SimSet(Enemies);
 
+exec("./ai.cs");
+
 datablock PlayerData(Soldier : KnightBase) {
    melee = false;
+   class = Enemy;
    debrisShapeName = "./shapes/enemyDebris.dae";
+   maxForwardSpeed = 5;
+   maxSideSpeed = 5;
+   maxBackwardSpeed = 5;
 };
 
 singleton Material(EnemyMaterial) {
    diffuseColor[0] = "1 0 0";
    mapTo = "enemyPlayer";
 };
+
+function Enemy::onReachPathDestination(%this, %obj) {
+   %obj.brain.onEvent(onReachPathDestination);
+   Parent::onReachPathDestination(%this, %obj);
+}
 
 function soldier(%pos) {
    %soldier = new AIPlayer() {
@@ -17,6 +28,7 @@ function soldier(%pos) {
       skin = enemy;
       rotation = "0 0 1 180";
    };
+   AI.brain(Soldier, %soldier);
    Enemies.add(%soldier);
    return %soldier;
 }

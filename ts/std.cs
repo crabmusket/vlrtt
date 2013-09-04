@@ -41,3 +41,29 @@ function std::take(%this, %data, %count, %delim) {
 
    return call(%get, %data, 0, %count - 1);
 }
+
+function std::findClosest(%this, %set, %obj, %excl) {
+   %pos = %obj.getPosition();
+   %closest = "";
+   %dist = 100000;
+   foreach(%point in %set) {
+      if(%point.isAWordIn(%excl)) {
+         continue;
+      }
+      %d = VectorLen(VectorSub(%pos, %point.getPosition()));
+      if(%d < %dist) {
+         %dist = %d;
+         %closest = %point;
+      }
+   }
+   return %closest;
+}
+
+function SimObject::isAWordIn(%obj, %string) {
+   foreach$(%w in %string) {
+      if(%w $= %obj) {
+         return true;
+      }
+   }
+   return false;
+}

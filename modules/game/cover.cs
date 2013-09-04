@@ -56,4 +56,3 @@ function Cover::point(%this, %pos, %team) {
    %this.getFieldValue(%team @ Points).add(%p);
    return %p;
 }
-

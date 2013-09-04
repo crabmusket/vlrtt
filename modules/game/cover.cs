@@ -1,4 +1,7 @@
-new SimSet(Cover);
+new ScriptObject(Cover) {
+   protagonistPoints = new SimSet();
+   enemyPoints = new SimSet();
+};
 
 function Cover::onStart(%this) {
    %this.targetMap = new ActionMap();
@@ -16,8 +19,8 @@ function Cover::onEnd(%this) {
 function Cover::beginTarget(%this) {
    %this.targetMap.push();
    %i = 0;
-   Cover.sort(distanceFromKnights);
-   foreach(%point in Cover) {
+   %this.protagonistPoints.sort(distanceFromKnights);
+   foreach(%point in %this.protagonistPoints) {
       %point.setShapeName(" "  @ getSubStr(%this.letters, %i, 1) @ " ");
       %i++;
       if(%i == strLen(%this.letters)) break;
@@ -26,14 +29,14 @@ function Cover::beginTarget(%this) {
 
 function Cover::endTarget(%this) {
    %this.targetMap.pop();
-   foreach(%point in Cover) {
+   foreach(%point in %this.protagonistPoints) {
       %point.setShapeName("");
    }
 }
 
 function Cover::target(%this, %index) {
-   if(%index < %this.size()) {
-      Verbs.target = %this.getObject(%index);
+   if(%index < %this.protagonistPoints.size()) {
+      Verbs.target = %this.protagonistPoints.getObject(%index);
       Verbs.onEvent(coverTargeted);
    }
 }
@@ -42,12 +45,15 @@ datablock StaticShapeData(CoverPointData) {
    shapeFile = "./shapes/projectile.dae";
 };
 
-function Cover::point(%this, %pos) {
+function Cover::point(%this, %pos, %team) {
+   if(%team $= "") {
+      %team = protagonist;
+   }
    %p = new StaticShape() {
       datablock = CoverPointData;
       position = %pos;
    };
-   Cover.add(%p);
+   %this.getFieldValue(%team @ Points).add(%p);
    return %p;
 }
 

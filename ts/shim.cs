@@ -2,6 +2,10 @@ function SimSet::contains(%this, %obj) {
    return %this.getObjectIndex(%obj) != -1;
 }
 
+function SimObject::isIn(%this, %set) {
+   return %set.contains(%this);
+}
+
 function SimSet::size(%this) {
    return %this.getCount();
 }

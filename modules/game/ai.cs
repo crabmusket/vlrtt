@@ -25,3 +25,14 @@ function SoldierBrain::enterAttackWhileMoving(%this) {
 }
 
 datablock TriggerData(EnemyAITrigger) {};
+
+function EnemyAITrigger::onEnterTrigger(%this, %trigger, %enter) {
+   if(!%enter.isIn(Knights)) {
+      return;
+   }
+   foreach(%obj in %trigger.getGroup()) {
+      if(%obj.isIn(Enemies)) {
+         %obj.brain.onEvent(playerNear);
+      }
+   }
+}

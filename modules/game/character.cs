@@ -1,3 +1,7 @@
+new EventManager(Characters) { queue = "CharacterEvents"; };
+
+Characters.registerEvent("CharacterDeath");
+
 function Character::onAdd(%this, %obj) {
    %obj.setActionThread("stand_root");
 }
@@ -43,6 +47,13 @@ function Character::onDestroyed(%this, %obj) {
    %obj.blowUp();
    %obj.startFade(200, 0, true);
    %obj.schedule(200, delete);
+   Characters.postEvent("CharacterDeath", %obj);
+}
+
+function AIPlayer::onCharacterDeath(%this, %data) {
+   if(%this.getDataBlock().can(onCharacterDeath)) {
+      %this.getDataBlock().onCharacterDeath(%this, %data);
+   }
 }
 
 function Character::onDamaged(%this, %obj, %amount) {}

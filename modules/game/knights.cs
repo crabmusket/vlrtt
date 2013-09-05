@@ -28,6 +28,13 @@ datablock PlayerData(KnightBase) {
    maxForwardSpeed = 5;
 };
 
+function Knight::onReachPathDestination(%this, %obj) {
+   if(%obj.isTakingCover) {
+      %obj.setActionThread("hide_root");
+   }
+   Parent::onReachPathDestination(%this, %obj);
+}
+
 datablock PlayerData(Shooter : KnightBase) {};
 function Shooter::onAdd(%this, %obj) {
    %obj.mountImage(RangedWeapon, 0);

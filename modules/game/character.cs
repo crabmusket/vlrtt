@@ -20,11 +20,7 @@ function Character::takeCover(%this, %obj, %cover) {
    %obj.isTakingCover = true;
 }
 
-function Character::onReachPathDestination(%this, %obj) {
-   if(%obj.isTakingCover) {
-      %obj.setActionThread("hide_root");
-   }
-}
+function Character::onReachPathDestination(%this, %obj) {}
 
 function SceneObject::damage(%this, %amount) {
    if(%this.can(getDataBlock)) {

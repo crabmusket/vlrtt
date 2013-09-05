@@ -26,6 +26,8 @@ datablock PlayerData(KnightBase) {
    debrisShapeName = "./shapes/playerDebris.dae";
    debris = KnightDebris;
    maxForwardSpeed = 5;
+   maxSideSpeed = 5;
+   maxBackwardSpeed = 5;
 };
 
 function Knight::onReachPathDestination(%this, %obj) {
@@ -33,6 +35,15 @@ function Knight::onReachPathDestination(%this, %obj) {
       %obj.setActionThread("hide_root");
    }
    Parent::onReachPathDestination(%this, %obj);
+}
+
+function Knight::goTo(%this, %obj, %dest, %slowdown, %speed) {
+   if(%speed > 0.5) {
+      %obj.clearAim();
+      %obj.setImageTrigger(0, false);
+   }
+   Parent::goTo(%this, %obj, %dest, %slowdown);
+   %obj.setMoveSpeed(%speed);
 }
 
 datablock PlayerData(Shooter : KnightBase) {};

@@ -17,6 +17,7 @@ new ScriptObject(Verbs) {
    transition[selected, attack] = attackTarget;
    transition[selected, stop] = stop;
    transition[selected, move] = moveForwards;
+   transition[selected, moveFast] = moveForwardsFast;
    transition[selected, retreat] = retreat;
    transition[selected, cover] = coverTarget;
 
@@ -48,7 +49,8 @@ function Verbs::onStart(%this) {
    %this.define("a", "Attack");
    %this.define("s", "Stop");
    %this.define("c", "Cover");
-   %this.define("shift m", "Move");
+   %this.define("m", "Move");
+   %this.define("shift m", "MoveFast");
    %this.define("shift r", "Retreat");
 
    %this.globalMap.bindCmd(keyboard, "ctrl c", "Verbs.onEvent(cancel);");
@@ -190,9 +192,19 @@ function Verbs::enterStop(%this) {
 //-----------------------------------------------------------------------------
 
 function Verbs::enterMoveForwards(%this) {
+   BottomPrintText.addText(" move up.", true);
+   foreach(%knight in Knights.selected) {
+      %knight.getDataBlock().goTo(%knight,
+         Level.getForwards(%knight.getPosition()), true, 0.5);
+   }
+   %this.endVerb();
+}
+
+function Verbs::enterMoveForwardsFast(%this) {
    BottomPrintText.addText(" move up!", true);
    foreach(%knight in Knights.selected) {
-      %knight.getDataBlock().goTo(%knight, Level.getForwards(%knight.getPosition()));
+      %knight.getDataBlock().goTo(%knight,
+         Level.getForwards(%knight.getPosition()), true, 1);
    }
    %this.endVerb();
 }

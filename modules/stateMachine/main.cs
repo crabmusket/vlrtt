@@ -8,6 +8,11 @@ function StateMachine::onEvent(%this, %event) {
    // Figure out the new state to transition to.
    %newState = %this.transition[%this.state, %event];
 
+   // Check for a wildcard transition out of this state.
+   if(%newState $= "") {
+      %newState = %this.transition[%this.state, _];
+   }
+
    // If it doesn't exist, see if there's a wildcard transition for this event.
    if(%newState $= "") {
       %newState = %this.transition[_, %event];

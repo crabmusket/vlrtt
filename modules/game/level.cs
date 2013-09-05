@@ -44,22 +44,20 @@ function Level::onStart(%this) {
          -(%this.sectionSize + %width) / 2 SPC 0                 SPC 0,
          %width                            SPC %this.sectionSize SPC %height));
 
-      // Translate the section to its actual position.
-      %center = 0 SPC (%i+1) * %this.sectionSize SPC 0;
-      %section.callOnChildren(displace, %center);
-
       // Create AI trigger.
-      $Trigger::renderTriggers = true;
       %w = %this.sectionSize;
       %section.add(new Trigger() {
          datablock = EnemyAITrigger;
-         position = %center;
          polyhedron =
-            -%w/2 SPC %w/2 SPC 0 SPC  // Corner point
+            -%w/2 SPC %w/4 SPC 0 SPC  // Corner point
             %w SPC 0 SPC 0 SPC   // X axis
             0 SPC -%w SPC 0 SPC  // Y axis
             0 SPC 0 SPC 10;      // Z axis
       });
+
+      // Translate the section to its actual position.
+      %center = 0 SPC (%i+1) * %this.sectionSize SPC 0;
+      %section.callOnChildren(displace, %center);
 
       // Add section to the game hierarchy.
       TheLevel.add(%section);

@@ -20,6 +20,7 @@ function SoldierBrain::enterAttackWhileMoving(%this) {
    %point = std.findClosest(Cover.enemyPoints, %obj);
    %knight = std.findClosest(Knights, %obj);
    %obj.getDataBlock().takeCover(%obj, %point);
+   %obj.setMoveSpeed(0.5);
    %obj.setAimObject(%knight);
    %obj.setImageTrigger(0, true);
 }

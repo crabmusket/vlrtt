@@ -25,6 +25,11 @@ function SoldierBrain::enterAttackWhileMoving(%this) {
    %obj.setImageTrigger(0, true);
 }
 
+function SoldierBrain::leaveAttackWhileMoving(%this) {
+   %obj = %this.owner;
+   %obj.setMoveSpeed(1.0);
+}
+
 datablock TriggerData(EnemyAITrigger) {};
 
 function EnemyAITrigger::onEnterTrigger(%this, %trigger, %enter) {

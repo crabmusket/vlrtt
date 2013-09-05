@@ -85,12 +85,15 @@ function knight(%name, %pos, %role) {
 //-----------------------------------------------------------------------------
 
 function Shooter::attack(%this, %obj, %target) {
+   if(%obj.getMoveSpeed() > 0.5) {
+      %obj.setMoveSpeed(0.5);
+   }
    %obj.setAimObject(%target, "0 0 1.5");
    %obj.setImageTrigger(0, true);
 }
 
 function Fighter::attack(%this, %obj, %target) {
-   %this.goTo(%obj, %target.getPosition(), false);
+   %this.goTo(%obj, %target.getPosition(), false, 1.0);
 }
 
 function Fighter::onCollision(%this, %obj, %col) {
@@ -104,7 +107,7 @@ function Fighter::onCollision(%this, %obj, %col) {
 function Healer::attack(%this, %obj, %target) {}
 
 function Knight::heal(%this, %obj, %target) {
-   %obj.setMoveDestination(%target.getPosition());
+   %this.goTo(%obj, %target.getPosition(), true, 1.0);
    %obj.setImageTrigger(0, false);
 }
 

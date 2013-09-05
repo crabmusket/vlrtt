@@ -25,3 +25,5 @@ function SoldierBrain::enterAttackWhileMoving(%this) {
    %obj.setAimObject(%knight);
    %obj.setImageTrigger(0, true);
 }
+
+datablock TriggerData(EnemyAITrigger) {};

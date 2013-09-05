@@ -30,6 +30,11 @@ datablock PlayerData(KnightBase) {
    maxBackwardSpeed = 5;
 };
 
+function Knight::onAdd(%this, %obj) {
+   Characters.subscribe(%obj, "CharacterDeath");
+   Parent::onAdd(%this, %obj);
+}
+
 function Knight::onReachPathDestination(%this, %obj) {
    if(%obj.isTakingCover) {
       %obj.setActionThread("hide_root");
@@ -50,6 +55,13 @@ datablock PlayerData(Shooter : KnightBase) {};
 function Shooter::onAdd(%this, %obj) {
    %obj.mountImage(RangedWeapon, 0);
    Parent::onAdd(%this, %obj);
+}
+
+function Shooter::onCharacterDeath(%this, %obj, %dead) {
+   if(%dead $= %obj.getAimObject()) {
+      %obj.clearAim();
+      %obj.setImageTrigger(0, false);
+   }
 }
 
 datablock PlayerData(Fighter : KnightBase) {};

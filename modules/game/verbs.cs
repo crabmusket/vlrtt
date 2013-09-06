@@ -19,6 +19,7 @@ new ScriptObject(Verbs) {
    transition[selected, move] = moveForwards;
    transition[selected, moveFast] = moveForwardsFast;
    transition[selected, retreat] = retreat;
+   transition[selected, retreatFast] = retreatFast;
    transition[selected, cover] = coverTarget;
 
    // Must target someone for these verbs.
@@ -50,8 +51,9 @@ function Verbs::onStart(%this) {
    %this.define("s", "Stop");
    %this.define("c", "Cover");
    %this.define("m", "Move");
+   %this.define("r", "Retreat");
    %this.define("shift m", "MoveFast");
-   %this.define("shift r", "Retreat");
+   %this.define("shift r", "RetreatFast");
 
    %this.globalMap.bindCmd(keyboard, "ctrl c", "Verbs.onEvent(cancel);");
    %this.globalMap.push();
@@ -210,9 +212,19 @@ function Verbs::enterMoveForwardsFast(%this) {
 }
 
 function Verbs::enterRetreat(%this) {
+   BottomPrintText.addText(" retreat.", true);
+   foreach(%knight in Knights.selected) {
+      %knight.getDataBlock().goTo(%knight,
+         Level.getBackwards(%knight.getPosition()), true, 0.5);
+   }
+   %this.endVerb();
+}
+
+function Verbs::enterRetreatFast(%this) {
    BottomPrintText.addText(" retreat!", true);
    foreach(%knight in Knights.selected) {
-      %knight.getDataBlock().goTo(%knight, Level.getBackwards(%knight.getPosition()));
+      %knight.getDataBlock().goTo(%knight,
+         Level.getBackwards(%knight.getPosition()), true, 1);
    }
    %this.endVerb();
 }

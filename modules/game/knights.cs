@@ -31,7 +31,7 @@ datablock PlayerData(KnightBase) {
 };
 
 function Knight::onAdd(%this, %obj) {
-   Characters.subscribe(%obj, "CharacterDeath");
+   CharacterEvents.subscribe(%obj, "CharacterDeath");
    Parent::onAdd(%this, %obj);
 }
 

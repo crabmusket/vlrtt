@@ -43,6 +43,9 @@ function Knight::onReachPathDestination(%this, %obj) {
 }
 
 function Knight::goTo(%this, %obj, %dest, %slowdown, %speed) {
+   if(%speed $= "") {
+      %speed = 0.5;
+   }
    if(%speed > 0.5) {
       %obj.clearAim();
       %obj.setImageTrigger(0, false);

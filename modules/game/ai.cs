@@ -30,15 +30,24 @@ function SoldierBrain::leaveAttackWhileMoving(%this) {
    %obj.setMoveSpeed(1.0);
 }
 
-datablock TriggerData(EnemyAITrigger) {};
+function Enemy::onKnightEnterSection(%this, %obj, %data) {
+   %knight = getWord(%data, 0);
+   %trigger = getWord(%data, 1);
+   %obj.brain.onEvent(playerNear);
+}
 
-function EnemyAITrigger::onEnterTrigger(%this, %trigger, %enter) {
+datablock TriggerData(SectionTrigger) {};
+
+function SectionTrigger::onEnterTrigger(%this, %trigger, %enter) {
    if(!%enter.isIn(Knights)) {
       return;
    }
-   foreach(%obj in %trigger.getGroup()) {
-      if(%obj.isIn(Enemies)) {
-         %obj.brain.onEvent(playerNear);
-      }
+   KnightEvents.postEvent(KnightEnterSection, %enter SPC %trigger);
+}
+
+function SectionTrigger::onLeaveTrigger(%this, %trigger, %leave) {
+   if(!%leave.isIn(Knights)) {
+      return;
    }
+   KnightEvents.postEvent(KnightLeaveSection, %leave SPC %trigger);
 }

@@ -10,6 +10,7 @@ include(bottomPrint);
 include(navigation);
 
 // Scripts that make up this module.
+exec("./events.cs");
 exec("./verbs.cs");
 exec("./character.cs");
 exec("./knights.cs");

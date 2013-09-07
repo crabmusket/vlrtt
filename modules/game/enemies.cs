@@ -16,6 +16,11 @@ singleton Material(EnemyMaterial) {
    mapTo = "enemyPlayer";
 };
 
+function Enemy::onAdd(%this, %obj) {
+   KnightEvents.subscribe(%obj, KnightEnterSection);
+   Parent::onAdd(%this, %obj);
+}
+
 function Enemy::onReachPathDestination(%this, %obj) {
    %obj.brain.onEvent(onReachPathDestination);
    Parent::onReachPathDestination(%this, %obj);

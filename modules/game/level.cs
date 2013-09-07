@@ -47,7 +47,7 @@ function Level::onStart(%this) {
       // Create AI trigger.
       %w = %this.sectionSize;
       %section.add(new Trigger() {
-         datablock = EnemyAITrigger;
+         datablock = SectionTrigger;
          polyhedron =
             -%w/2 SPC %w/4 SPC 0 SPC  // Corner point
             %w SPC 0 SPC 0 SPC   // X axis

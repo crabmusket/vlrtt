@@ -33,7 +33,9 @@ function SoldierBrain::leaveAttackWhileMoving(%this) {
 function Enemy::onKnightEnterSection(%this, %obj, %data) {
    %knight = getWord(%data, 0);
    %trigger = getWord(%data, 1);
-   %obj.brain.onEvent(playerNear);
+   if(%trigger.getGroup() == %obj.getGroup()) {
+      %obj.brain.onEvent(playerNear);
+   }
 }
 
 datablock TriggerData(SectionTrigger) {};

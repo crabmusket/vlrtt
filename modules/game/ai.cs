@@ -1,7 +1,8 @@
 new SimSet(AI);
 
 new ScriptObject(SoldierBrainTemplate) {
-   transition[ready, playerNear] = attackWhileMoving;
+   transition[ready, playerNear] = attack;
+   transition[attack, targetDeath] = attack;
 };
 
 function AI::brain(%this, %template, %obj) {
@@ -15,17 +16,17 @@ function AI::brain(%this, %template, %obj) {
    %obj.brain.onEvent(ready);
 }
 
-function SoldierBrain::enterAttackWhileMoving(%this) {
+function SoldierBrain::enterAttack(%this) {
    %obj = %this.owner;
    %point = std.findClosest(Cover.enemyPoints, %obj);
-   %knight = std.findClosest(Knights, %obj);
+   %knight = std.findClosest(Knights, %obj, %obj.getAimObject());
    %obj.getDataBlock().takeCover(%obj, %point);
    %obj.setMoveSpeed(0.5);
-   %obj.setAimObject(%knight);
+   %obj.setAimObject(%knight, "0 0" SPC $CharacterHeight);
    %obj.setImageTrigger(0, true);
 }
 
-function SoldierBrain::leaveAttackWhileMoving(%this) {
+function SoldierBrain::leaveAttack(%this) {
    %obj = %this.owner;
    %obj.setMoveSpeed(1.0);
 }

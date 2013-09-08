@@ -18,12 +18,19 @@ singleton Material(EnemyMaterial) {
 
 function Enemy::onAdd(%this, %obj) {
    KnightEvents.subscribe(%obj, KnightEnterSection);
+   CharacterEvents.subscribe(%obj, CharacterDeath);
    Parent::onAdd(%this, %obj);
 }
 
 function Enemy::onReachPathDestination(%this, %obj) {
    %obj.brain.onEvent(onReachPathDestination);
    Parent::onReachPathDestination(%this, %obj);
+}
+
+function Enemy::onCharacterDeath(%this, %obj, %dead) {
+   if(%dead == %obj.getAimObject()) {
+      %obj.brain.onEvent(targetDeath);
+   }
 }
 
 function soldier(%pos) {
@@ -36,6 +43,11 @@ function soldier(%pos) {
    AI.brain(Soldier, %soldier);
    Enemies.add(%soldier);
    return %soldier;
+}
+
+function Soldier::onAdd(%this, %obj) {
+   %obj.mountImage(RangedWeapon, 0);
+   Parent::onAdd(%this, %obj);
 }
 
 function Enemies::onStart(%this) {

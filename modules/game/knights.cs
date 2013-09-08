@@ -103,7 +103,7 @@ function Shooter::attack(%this, %obj, %target) {
    if(%obj.getMoveSpeed() > 0.5) {
       %obj.setMoveSpeed(0.5);
    }
-   %obj.setAimObject(%target, "0 0 1.5");
+   %obj.setAimObject(%target, "0 0" SPC $CharacterHeight);
    %obj.setImageTrigger(0, true);
 }
 

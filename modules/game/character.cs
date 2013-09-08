@@ -1,3 +1,5 @@
+$CharacterHeight = 1.7;
+
 function Character::onAdd(%this, %obj) {
    %obj.setActionThread("stand_root");
 }

@@ -16,8 +16,13 @@ function AIPlayer::stopAll(%this) {
 function Character::goTo(%this, %obj, %pos, %slowdown) {
    %obj.isTakingCover = false;
    %obj.setActionThread("stand_root");
-   if(!%obj.setPathDestination(%pos, %slowdown)) {
-      %obj.setMoveDestination(%pos, %slowdown);
+   // Beginning the movement immediately cancels the animation, so delay it.
+   %obj.schedule(100, delayedGoTo, %pos, %slowdown);
+}
+
+function AIPlayer::delayedGoTo(%this, %pos, %slowdown) {
+   if(!%this.setPathDestination(%pos, %slowdown)) {
+      %this.setMoveDestination(%pos, %slowdown);
    }
 }
 

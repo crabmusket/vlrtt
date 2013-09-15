@@ -9,6 +9,10 @@ function Character::stopAll(%this, %obj) {
    %obj.clearPathDestination();
 }
 
+function AIPlayer::stopAll(%this) {
+   %this.getDataBlock().stopAll(%this);
+}
+
 function Character::goTo(%this, %obj, %pos, %slowdown) {
    %obj.isTakingCover = false;
    %obj.setActionThread("stand_root");

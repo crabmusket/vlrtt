@@ -20,10 +20,14 @@ function SoldierBrain::enterAttack(%this) {
    %obj = %this.owner;
    %point = std.findClosest(Cover.enemyPoints, %obj);
    %knight = std.findClosest(Knights, %obj, %obj.getAimObject());
-   %obj.getDataBlock().takeCover(%obj, %point);
-   %obj.setMoveSpeed(0.5);
-   %obj.setAimObject(%knight, "0 0" SPC $CharacterHeight);
-   %obj.setImageTrigger(0, true);
+   if(%knight) {
+      %obj.getDataBlock().takeCover(%obj, %point);
+      %obj.setMoveSpeed(0.5);
+      %obj.setAimObject(%knight, "0 0" SPC $CharacterHeight);
+      %obj.setImageTrigger(0, true);
+   } else {
+      %obj.stopAll();
+   }
 }
 
 function SoldierBrain::leaveAttack(%this) {
@@ -49,7 +53,7 @@ function SectionTrigger::onEnterTrigger(%this, %trigger, %enter) {
 }
 
 function SectionTrigger::onLeaveTrigger(%this, %trigger, %leave) {
-   if(!%leave.isIn(Knights)) {
+   if(!Knights.contains(%leave)) {
       return;
    }
    KnightEvents.postEvent(KnightLeaveSection, %leave SPC %trigger);

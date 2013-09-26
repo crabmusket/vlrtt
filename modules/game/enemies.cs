@@ -1,6 +1,6 @@
 new SimSet(Enemies);
 
-exec("./ai.cs");
+include("game/ai");
 
 datablock PlayerData(Soldier : KnightBase) {
    melee = false;

@@ -1,20 +1,7 @@
 new SimSet(Enemies);
 
 include("game/ai");
-
-datablock PlayerData(Soldier : KnightBase) {
-   melee = false;
-   class = Enemy;
-   debrisShapeName = "./shapes/enemyDebris.dae";
-   maxForwardSpeed = 5;
-   maxSideSpeed = 5;
-   maxBackwardSpeed = 5;
-};
-
-singleton Material(EnemyMaterial) {
-   diffuseColor[0] = "1 0 0";
-   mapTo = "enemyPlayer";
-};
+exec("./enemyTypes.cs");
 
 function Enemy::onAdd(%this, %obj) {
    KnightEvents.subscribe(%obj, KnightEnterSection);
@@ -31,23 +18,6 @@ function Enemy::onCharacterDeath(%this, %obj, %dead) {
    if(%dead == %obj.getAimObject()) {
       %obj.brain.onEvent(targetDeath);
    }
-}
-
-function soldier(%pos) {
-   %soldier = new AIPlayer() {
-      datablock = Soldier;
-      position = %pos;
-      skin = enemy;
-      rotation = "0 0 1 180";
-   };
-   AI.brain(Soldier, %soldier);
-   Enemies.add(%soldier);
-   return %soldier;
-}
-
-function Soldier::onAdd(%this, %obj) {
-   %obj.mountImage(RangedWeapon, 0);
-   Parent::onAdd(%this, %obj);
 }
 
 function Enemies::onStart(%this) {

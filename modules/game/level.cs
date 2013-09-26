@@ -121,7 +121,7 @@ function Level::wallsSection(%this, %soldiers, %deltas, %tanks) {
 
    // Enemies go in spots that weren't used for cover.
    for(%i = 0; %i < %soldiers; %i++) {
-      %g.add(soldier(getField(%spots, %i)));
+      %g.add(Enemies.soldier(getField(%spots, %i)));
    }
    %spots = std.drop(%spots, %soldiers, Field);
 

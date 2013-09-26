@@ -13,7 +13,7 @@ function soldier(%pos) {
       skin = enemy;
       rotation = "0 0 1 180";
    };
-   AI.brain(Soldier, %soldier);
+   AI.brain(%soldier, Soldier);
    Enemies.add(%soldier);
    return %soldier;
 }
@@ -30,3 +30,15 @@ function Soldier::onAdd(%this, %obj) {
    %obj.mountImage(RangedWeapon, 0);
    Parent::onAdd(%this, %obj);
 }
+
+//-----------------------------------------------------------------------------
+// Melee type
+
+datablock PlayerData(Berserker : KnightBase) {
+   class = Enemy;
+   debrisShapeName = "./shapes/enemyDebris.dae";
+   maxForwardSpeed = 7;
+   maxSideSpeed = 5;
+   maxBackwardSpeed = 5;
+};
+

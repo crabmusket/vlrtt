@@ -2,7 +2,7 @@ new SimSet(AI);
 
 exec("./soldier.cs");
 
-function AI::brain(%this, %template, %obj) {
+function AI::brain(%this, %obj, %template) {
    %templateObj = %template @ BrainTemplate;
    eval("%obj.brain = new ScriptObject(\"\" : " @ %templateObj @ ");");
    %obj.brain.superclass = StateMachine;

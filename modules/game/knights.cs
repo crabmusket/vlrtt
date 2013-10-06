@@ -108,7 +108,7 @@ function Shooter::attack(%this, %obj, %target) {
 }
 
 function Fighter::attack(%this, %obj, %target) {
-   %this.goTo(%obj, %target.getPosition(), false, 1.0);
+   %obj.goTo(%target.getPosition(), false, 1.0);
 }
 
 function Fighter::onCollision(%this, %obj, %col) {
@@ -122,7 +122,7 @@ function Fighter::onCollision(%this, %obj, %col) {
 function Healer::attack(%this, %obj, %target) {}
 
 function Knight::heal(%this, %obj, %target) {
-   %this.goTo(%obj, %target.getPosition(), true, 1.0);
+   %obj.goTo(%target.getPosition(), true, 1.0);
    %obj.setImageTrigger(0, false);
 }
 

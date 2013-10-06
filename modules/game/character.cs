@@ -13,6 +13,10 @@ function AIPlayer::stopAll(%this) {
    %this.getDataBlock().stopAll(%this);
 }
 
+function AIPlayer::goTo(%obj, %pos, %slowdown) {
+   %obj.getDataBlock().goTo(%obj, %pos, %slowdown);
+}
+
 function Character::goTo(%this, %obj, %pos, %slowdown) {
    %obj.isTakingCover = false;
    %obj.setActionThread("stand_root");

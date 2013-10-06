@@ -1,6 +1,7 @@
 new SimSet(AI);
 
 exec("./soldier.cs");
+exec("./berserk.cs");
 
 function AI::brain(%this, %obj, %template) {
    %templateObj = %template @ BrainTemplate;

@@ -30,6 +30,14 @@ function AIPlayer::delayedGoTo(%this, %pos, %slowdown) {
    }
 }
 
+function AIPlayer::follow(%obj, %follow) {
+   if(isObject(%follow)) {
+      %obj.setAimObject(%follow, "0 0" SPC $CharacterHeight);
+      %obj.goTo(%follow.position, false);
+      %obj.schedule(500, follow, %follow);
+   }
+}
+
 function Character::takeCover(%this, %obj, %cover) {
    %this.goTo(%obj, %cover.getPosition(), false);
    %obj.isTakingCover = true;

@@ -108,7 +108,7 @@ function Shooter::attack(%this, %obj, %target) {
 }
 
 function Fighter::attack(%this, %obj, %target) {
-   %obj.goTo(%target.getPosition(), false, 1.0);
+   %obj.follow(%target);
 }
 
 function Fighter::onCollision(%this, %obj, %col) {

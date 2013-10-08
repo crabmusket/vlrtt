@@ -50,16 +50,6 @@ function RangedWeapon::onFire(%this, %obj) {
 
 //-----------------------------------------------------------------------------
 
-datablock ShapeBaseImageData(MeleeWeapon) {
-   shapeFile = "./shapes/projectile.dae";
-   offset = "0 0 2.5";
-};
-
-function MeleeWeapon::onFire(%this, %obj) {
-}
-
-//-----------------------------------------------------------------------------
-
 datablock ShapeBaseImageData(Wand) {
    shapeFile = "./shapes/projectile.dae";
    offset = "0 0 2";

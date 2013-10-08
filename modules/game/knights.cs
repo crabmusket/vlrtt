@@ -69,7 +69,6 @@ function Shooter::onCharacterDeath(%this, %obj, %dead) {
 
 datablock PlayerData(Fighter : KnightBase) {};
 function Fighter::onAdd(%this, %obj) {
-   %obj.mountImage(MeleeWeapon, 0);
    Parent::onAdd(%this, %obj);
 }
 

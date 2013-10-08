@@ -75,7 +75,7 @@ function Fighter::onAdd(%this, %obj) {
 
 datablock PlayerData(Healer  : KnightBase) {};
 function Healer::onAdd(%this, %obj) {
-   %obj.mountImage(HealWeapon, 0);
+   %obj.mountImage(Wand, 0);
    Parent::onAdd(%this, %obj);
 }
 
@@ -119,7 +119,9 @@ function Fighter::onCollision(%this, %obj, %col) {
    }
 }
 
-function Healer::attack(%this, %obj, %target) {}
+function Healer::attack(%this, %obj, %target) {
+   %obj.getMountedImage(0).cast(%obj, %target);
+}
 
 function Knight::heal(%this, %obj, %target) {
    %obj.goTo(%target.getPosition(), true, 1.0);

@@ -60,10 +60,20 @@ function MeleeWeapon::onFire(%this, %obj) {
 
 //-----------------------------------------------------------------------------
 
-datablock ShapeBaseImageData(HealWeapon) {
+datablock ShapeBaseImageData(Wand) {
    shapeFile = "./shapes/projectile.dae";
    offset = "0 0 2";
+   projectileData = Bullet;
 };
 
-function HealWeapon::onFire(%this, %obj) {
+function Wand::cast(%this, %obj, %target) {
+   %db = %this.projectileData;
+   %p = new Projectile() {
+      datablock = %db;
+      initialVelocity = "0 0 -5";
+      initialPosition = VectorAdd(%target.getPosition(), "0 0" SPC 5);
+      sourceObject = %obj;
+      sourceSlot = 0;
+   };
+   GameGroup.add(%p);
 }

@@ -1,5 +1,5 @@
 new ScriptObject(Level) {
-   sections = "walls";
+   sections = "blank";
    sectionSize = 30;
    sectionHeight = 20;
    forwards = "0 1000000 0";
@@ -71,9 +71,9 @@ function Level::onStart(%this) {
    Nav.build(false);
 
    // Create four protagonists!
-   knight(Juliet, "-6 0 0", Shooter);
-   knight(Kilo, "0 0 0", Fighter);
-   knight(Hotel, "6 0 0", Shooter);
+   knight(Juliet,   "-6 0 0", Fighter);
+   knight(Kilo,     "0 0 0",  Fighter);
+   knight(Hotel,    "6 0 0",  Fighter);
    knight(November, "0 -4 0", Healer);
 }
 
@@ -90,7 +90,14 @@ foreach$(%w in "forwards backwards") {
 }
 
 function Level::blankSection(%this, %soldiers, %deltas, %tanks) {
-   return new SimGroup();
+   %g = new SimGroup();
+   %s = %this.sectionSize / 2;
+   // Enemies at random points.
+   for(%i = 0; %i < %soldiers; %i++) {
+      %pos = getRandom(-%s, %s) SPC getRandom(-%s, %s) SPC 0;
+      %g.add(Enemies.berserker(%pos));
+   }
+   return %g;
 }
 
 function Level::wallsSection(%this, %soldiers, %deltas, %tanks) {

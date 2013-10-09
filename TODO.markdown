@@ -1,5 +1,7 @@
 # vlrtt TODO
 
+Don't read this is you want to be shocked and amazed by the final product.
+
 ## Gameplay
 
 Need to make some gameplay :P.
@@ -29,6 +31,17 @@ and the more-skilled character would have lost 10 stamina.
  * Magic missile that reduces stamina (and health?)
  * Possible: missile takes time to recharge... how long?
  * Possible: missile prevents healing for some time
+
+### Scenarios
+
+A scenario defines how enemies spawn in an arena.
+Most arenas will probably be compatible with most scenarios,
+but I guess some situations will be special (like a ravine with archers on the other side).
+
+ * Ambush - enemies spawn from the side when you're partway through
+ * Camp - enemies are clustered somewhere and not really paying attention to you
+ * Barricade - enemies entrenched. Maybe they wait for you to come to them
+ * Charge - enemies spawn at the other end and attack you
 
 ### Enemies
 

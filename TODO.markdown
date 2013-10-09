@@ -1,6 +1,6 @@
 # vlrtt TODO
 
-Don't read this is you want to be shocked and amazed by the final product.
+**Spoilers.** Don't read this if you want to be shocked and amazed by the final product.
 
 ## Gameplay
 

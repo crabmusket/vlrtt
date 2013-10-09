@@ -2,6 +2,7 @@ $CharacterHeight = 1.7;
 
 function Character::onAdd(%this, %obj) {
    %obj.setActionThread("stand_root");
+   %obj.setEnergyLevel(%obj.getDatablock().maxEnergy);
 }
 
 function Character::stopAll(%this, %obj) {

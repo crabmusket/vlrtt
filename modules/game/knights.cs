@@ -37,7 +37,6 @@ datablock PlayerData(KnightBase) {
 function Knight::onAdd(%this, %obj) {
    CharacterEvents.subscribe(%obj, CharacterDeath);
    %obj.side = Knights;
-   %obj.setEnergyLevel(100);
    Parent::onAdd(%this, %obj);
 }
 

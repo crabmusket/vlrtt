@@ -7,7 +7,6 @@ function Enemy::onAdd(%this, %obj) {
    KnightEvents.subscribe(%obj, KnightEnterSection);
    CharacterEvents.subscribe(%obj, CharacterDeath);
    %obj.side = Enemies;
-   %obj.setEnergyLevel(100);
    Parent::onAdd(%this, %obj);
 }
 

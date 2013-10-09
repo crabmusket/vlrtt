@@ -71,10 +71,10 @@ function Level::onStart(%this) {
    Nav.build(false);
 
    // Create four protagonists!
-   knight(Juliet,   "-6 0 0", Fighter);
-   knight(Kilo,     "0 0 0",  Fighter);
-   knight(Hotel,    "6 0 0",  Fighter);
-   knight(November, "0 -4 0", Mage);
+   knight(Hotel,  "0 -4 0", Mage);
+   knight(Juliet, "6 0 0",  Fighter);
+   knight(Kilo,   "0 0 0",  Fighter);
+   knight(Lionel, "-6 0 0", Fighter);
 }
 
 // METATORQUESCRIPT aaghhghghhahhgllhahghlah

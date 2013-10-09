@@ -7,6 +7,10 @@ function Character::onAdd(%this, %obj) {
 function Character::stopAll(%this, %obj) {
    %obj.setImageTrigger(0, false);
    %obj.clearPathDestination();
+   if(%obj.follow) {
+      cancel(%obj.follow);
+      %obj.follow = "";
+   }
 }
 
 function AIPlayer::stopAll(%this) {
@@ -34,7 +38,9 @@ function AIPlayer::follow(%obj, %follow) {
    if(isObject(%follow)) {
       %obj.setAimObject(%follow, "0 0" SPC $CharacterHeight);
       %obj.goTo(%follow.position, false);
-      %obj.schedule(500, follow, %follow);
+      %obj.follow = %obj.schedule(500, follow, %follow);
+   } else {
+      %obj.follow = "";
    }
 }
 

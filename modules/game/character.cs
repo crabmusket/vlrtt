@@ -6,6 +6,9 @@ function Character::onAdd(%this, %obj) {
 }
 
 function Character::stopAll(%this, %obj) {
+   if(%obj.combat) {
+      return;
+   }
    %obj.setImageTrigger(0, false);
    %obj.clearPathDestination();
    if(%obj.follow) {

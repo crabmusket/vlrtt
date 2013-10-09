@@ -61,7 +61,7 @@ function Wand::cast(%this, %obj, %target) {
    %p = new Projectile() {
       datablock = %db;
       initialVelocity = "0 0 -5";
-      initialPosition = VectorAdd(%target.getPosition(), "0 0" SPC 5);
+      initialPosition = VectorAdd(%target.getPosition(), "0 0" SPC 7);
       sourceObject = %obj;
       sourceSlot = 0;
    };

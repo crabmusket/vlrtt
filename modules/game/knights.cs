@@ -28,10 +28,13 @@ datablock PlayerData(KnightBase) {
    maxForwardSpeed = 5;
    maxSideSpeed = 5;
    maxBackwardSpeed = 5;
+
+   skill = 5;
 };
 
 function Knight::onAdd(%this, %obj) {
    CharacterEvents.subscribe(%obj, CharacterDeath);
+   %obj.side = Knights;
    Parent::onAdd(%this, %obj);
 }
 
@@ -44,7 +47,7 @@ function Knight::onReachPathDestination(%this, %obj) {
 
 function Knight::goTo(%this, %obj, %dest, %slowdown, %speed) {
    if(%speed $= "") {
-      %speed = 0.5;
+      %speed = 1;
    }
    if(%speed > 0.5) {
       %obj.clearAim();
@@ -107,15 +110,9 @@ function Shooter::attack(%this, %obj, %target) {
 }
 
 function Fighter::attack(%this, %obj, %target) {
+   %obj.setMoveSpeed(1);
    %obj.follow(%target);
-}
-
-function Fighter::onCollision(%this, %obj, %col) {
-   if(Enemies.contains(%col)) {
-      %col.damage(40);
-      %sep = VectorSub(%col.getPosition(), %obj.getPosition());
-      %col.applyImpulse(%col.getPosition(), VectorScale(%sep, 50));
-   }
+   %obj.attacking = %target;
 }
 
 function Mage::attack(%this, %obj, %target) {

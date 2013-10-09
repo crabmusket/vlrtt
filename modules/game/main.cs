@@ -19,6 +19,7 @@ exec("./weapons.cs");
 exec("./cover.cs");
 exec("./level.cs");
 exec("./playGui.gui");
+exec("./combat.cs");
 
 //-----------------------------------------------------------------------------
 // Called when all datablocks have been transmitted.

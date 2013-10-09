@@ -8,6 +8,7 @@ function BerserkerBrain::enterAttack(%this) {
    %knight = std.findClosest(Knights, %obj, %obj.getAimObject());
    if(%knight) {
       %obj.follow(%knight);
+      %obj.attacking = %knight;
    } else {
       %obj.stopAll();
    }

@@ -6,6 +6,7 @@ exec("./enemyTypes.cs");
 function Enemy::onAdd(%this, %obj) {
    KnightEvents.subscribe(%obj, KnightEnterSection);
    CharacterEvents.subscribe(%obj, CharacterDeath);
+   %obj.side = Enemies;
    Parent::onAdd(%this, %obj);
 }
 

@@ -78,7 +78,7 @@ function Character::onDestroyed(%this, %obj) {
 function Character::onDamaged(%this, %obj, %amount) {}
 
 function Character::onCollision(%this, %obj, %col) {
-   if(%obj.attacking == %col) {
+   if(%obj.combat $= "" && %col.combat $= "" && %obj.attacking == %col) {
       Combats.begin(%obj, %col, %col.attacking == %obj);
    }
 }
@@ -88,8 +88,6 @@ function AIPlayer::joinCombat(%obj, %combat) {
 }
 
 function Character::joinCombat(%this, %obj, %enemy) {
-   // Calculate stamina loss per second.
-   %sps = 5 * getMax(1, %enemy.getDataBlock().skill - %this.skill);
    // Focus on combat!
    %obj.stopAll();
    %obj.follow(%enemy);

@@ -40,5 +40,6 @@ datablock PlayerData(Berserker : KnightBase) {
    maxForwardSpeed = 7;
    maxSideSpeed = 5;
    maxBackwardSpeed = 5;
+   skill = 1;
 };
 

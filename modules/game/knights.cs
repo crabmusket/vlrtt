@@ -29,12 +29,15 @@ datablock PlayerData(KnightBase) {
    maxSideSpeed = 5;
    maxBackwardSpeed = 5;
 
+   maxEnergy = 100;
+
    skill = 5;
 };
 
 function Knight::onAdd(%this, %obj) {
    CharacterEvents.subscribe(%obj, CharacterDeath);
    %obj.side = Knights;
+   %obj.setEnergyLevel(100);
    Parent::onAdd(%this, %obj);
 }
 

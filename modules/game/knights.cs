@@ -72,8 +72,8 @@ function Fighter::onAdd(%this, %obj) {
    Parent::onAdd(%this, %obj);
 }
 
-datablock PlayerData(Healer  : KnightBase) {};
-function Healer::onAdd(%this, %obj) {
+datablock PlayerData(Mage  : KnightBase) {};
+function Mage::onAdd(%this, %obj) {
    %obj.mountImage(Wand, 0);
    Parent::onAdd(%this, %obj);
 }
@@ -118,7 +118,7 @@ function Fighter::onCollision(%this, %obj, %col) {
    }
 }
 
-function Healer::attack(%this, %obj, %target) {
+function Mage::attack(%this, %obj, %target) {
    %obj.getMountedImage(0).cast(%obj, %target);
 }
 

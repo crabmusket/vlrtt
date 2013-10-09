@@ -74,7 +74,7 @@ function Level::onStart(%this) {
    knight(Juliet,   "-6 0 0", Fighter);
    knight(Kilo,     "0 0 0",  Fighter);
    knight(Hotel,    "6 0 0",  Fighter);
-   knight(November, "0 -4 0", Healer);
+   knight(November, "0 -4 0", Mage);
 }
 
 // METATORQUESCRIPT aaghhghghhahhgllhahghlah

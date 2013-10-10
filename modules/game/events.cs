@@ -19,6 +19,12 @@ function event(%namespace, %action, %class) {
    );
 }
 
+function postEvent(%namespace, %action, %data) {
+   %manager = %namespace @ Events;
+   %event = %namespace @ %action;
+   %manager.postEvent(%event, %data);
+}
+
 //-----------------------------------------------------------------------------
 // Events related to all characters.
 

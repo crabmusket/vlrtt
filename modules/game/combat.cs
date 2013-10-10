@@ -24,7 +24,7 @@ function Character::onCombatBegin(%this, %obj, %data) {
             %max = %enemy.skill;
          }
       }
-      %sps = 5 * getMax(1, %max + %enemies - %obj.skill);
+      %sps = 5 * (getMax(1, %max - %obj.skill) + %enemies);
    } else {
       %sps = 5 * getMax(1, %enemy.skill - %obj.skill);
       %obj.updateEnergyLevel = %obj.schedule(getRandom(1, $UpdateEnergyPeriod), updateEnergy);

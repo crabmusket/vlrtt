@@ -3,14 +3,18 @@ new ScriptObject(Combats);
 $UpdateEnergyPeriod = 500; // Milliseconds.
 
 function Character::onCombatBegin(%this, %obj, %data) {
-   %subject = getWord(%data, 0);
-   if(%obj != %subject) {
+   if(%obj != getWord(%data, 0)) {
       return;
    }
+   %enemy = getWord(%data, 1);
 
    // Remember the new enemy.
-   %subject.fighting = %subject.fighting SPC %enemy;
-   %enemies = getWordCount(%subject.fighting);
+   if(%obj.fighting) {
+      %obj.fighting = %obj.fighting SPC %enemy;
+   } else {
+      %obj.fighting = %enemy;
+   }
+   %enemies = getWordCount(%obj.fighting);
 
    // Update SPS.
    if(%enemies > 1) {
@@ -20,20 +24,19 @@ function Character::onCombatBegin(%this, %obj, %data) {
             %max = %enemy.skill;
          }
       }
-      %sps = 5 * getMax(1, %max + %enemies - %subject.skill);
+      %sps = 5 * getMax(1, %max + %enemies - %obj.skill);
    } else {
-      %enemy = getWord(%data, 1);
-      %sps = 5 * getMax(1, %enemy.skill - %subject.skill);
-      %subject.updateEnergy = %obj.schedule(getRandom(1, $UpdateEnergyPeriod), updateEnergy);
+      %sps = 5 * getMax(1, %enemy.skill - %obj.skill);
+      %obj.updateEnergyLevel = %obj.schedule(getRandom(1, $UpdateEnergyPeriod), updateEnergy);
    }
-   %subject.setRechargeRate(-%sps/32);
+   %obj.setRechargeRate(-%sps/32);
 }
 
 function AIPlayer::updateEnergy(%obj) {
    if(%obj.fighting $= "") {
       return;
    }
-   %obj.schedule($UpdateEnergyPeriod, updateEnergy);
+   %obj.updateEnergyLevel = %obj.schedule($UpdateEnergyPeriod, updateEnergy);
 
    if(%obj.getEnergyLevel() <= 1) {
       postEvent(Combat, antExhausted /* lol */, %obj);
@@ -44,7 +47,7 @@ function Character::onCombatantExhausted(%this, %obj, %enemy) {
    if(%enemy.isAWordIn(%obj.fighting)) {
       // Strike a blow!
       %enemy.damage(getRandom(40, 120));
-      %subject.adrenaline(10);
+      %obj.adrenaline(10);
       %enemy.adrenaline(20);
    }
 }

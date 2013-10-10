@@ -1,9 +1,10 @@
 $CharacterHeight = 1.7;
 
 function Character::onAdd(%this, %obj) {
-   CombatEvents.subscribe(%obj, Begin);
-   CombatEvents.subscribe(%obj, Advantage);
-   CombatEvents.subscribe(%obj, Disengage);
+   CombatEvents.subscribe(%obj, CombatBegin);
+   CombatEvents.subscribe(%obj, CombatAdvantage);
+   CombatEvents.subscribe(%obj, CombatDisengage);
+   CombatEvents.subscribe(%obj, CombatantExhausted);
    %obj.setActionThread("stand_root");
    %obj.setEnergyLevel(%obj.getDatablock().maxEnergy);
    %obj.skill = %this.skill;

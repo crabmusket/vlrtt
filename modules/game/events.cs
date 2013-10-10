@@ -37,3 +37,12 @@ event(Character, Death);
 eventQueue(Knight);
 event(Knight, EnterSection);
 event(Knight, LeaveSection);
+
+//-----------------------------------------------------------------------------
+// Events related to combats.
+
+eventQueue(Combat);
+event(Combat, Begin);
+event(Combat, Advantage);
+event(Combat, Disengage);
+event(Combat, End);

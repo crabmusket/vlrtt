@@ -30,6 +30,10 @@ function Character::onCombatBegin(%this, %obj, %data) {
       %obj.updateEnergyLevel = %obj.schedule(getRandom(1, $UpdateEnergyPeriod), updateEnergy);
    }
    %obj.setRechargeRate(-%sps/32);
+
+   // Stop what you're doing!
+   %obj.stopAll();
+   %obj.setAimObject(%enemy);
 }
 
 function AIPlayer::updateEnergy(%obj) {
@@ -59,6 +63,7 @@ function Character::onCharacterDeath(%this, %obj, %character) {
 }
 
 function AIPlayer::removeEnemy(%obj, %enemy) {
+   // Remove enemy from list.
    %i = 0;
    foreach$(%c in %obj.fighting) {
       if(%c == %character) {
@@ -66,6 +71,14 @@ function AIPlayer::removeEnemy(%obj, %enemy) {
          break;
       }
       %i++;
+   }
+
+   // No enemies remaining?
+   if(!%obj.fighting) {
+      cancel(%obj.updateEnergyLevel);
+      %obj.updateEnergyLevel = "";
+      %obj.setRechargeRate(10/32);
+      %obj.stopAll();
    }
 }
 

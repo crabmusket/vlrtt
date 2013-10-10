@@ -86,17 +86,11 @@ function Character::onDestroyed(%this, %obj) {
 function Character::onDamaged(%this, %obj, %amount) {}
 
 function Character::onCollision(%this, %obj, %col) {
-   if(%obj.combat $= "" && %col.combat $= "" && %obj.attacking == %col) {
-      Combats.begin(%obj, %col, %col.attacking == %obj);
+   if(%obj.fighting $= "" && %obj.attacking == %col) {
+      if(%col.attacking != %obj) {
+         postEvent(Combat, "Advantage", %obj SPC %col);
+      }
+      postEvent(Combat, "Begin", %obj SPC %col);
+      postEvent(Combat, "Begin", %col SPC %obj);
    }
-}
-
-function AIPlayer::joinCombat(%obj, %combat) {
-   %obj.getDataBlock().joinCombat(%obj, %combat);
-}
-
-function Character::joinCombat(%this, %obj, %enemy) {
-   // Focus on combat!
-   %obj.stopAll();
-   %obj.follow(%enemy);
 }

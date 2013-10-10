@@ -1,5 +1,54 @@
 new ScriptObject(Combats);
 
+$UpdateENergyPeriod = 500; // Milliseconds.
+
+function Character::onCombatBegin(%this, %obj, %data) {
+   %subject = getWord(%data, 0);
+   if(%obj != %subject) {
+      return;
+   }
+
+   // Remember the new enemy.
+   %subject.fighting = %subject.fighting SPC %enemy;
+   %enemies = getWordCount(%subject.fighting);
+
+   // Update SPS.
+   if(%enemies > 1) {
+      %max = 0;
+      foreach$(%enemy in %obj.fighting) {
+         if(%enemy.skill > %max) {
+            %max = %enemy.skill;
+         }
+      }
+      %sps = 5 * getMax(1, %max + %enemies - %subject.skill);
+   } else {
+      %enemy = getWord(%data, 1);
+      %sps = 5 * getMax(1, %enemy.skill - %subject.skill);
+      %subject.updateEnergy = %obj.schedule(getRandom(1, $UpdateEnergyPeriod), updateEnergy);
+   }
+   %subject.setRechargeRate(-%sps/32);
+}
+
+function AIPlayer::updateEnergy(%obj) {
+   if(%obj.fighting $= "") {
+      return;
+   }
+   %obj.schedule($UpdateEnergyPeriod, updateEnergy);
+
+   if(%obj.getEnergyLevel() <= 1) {
+      postEvent(Combat, 
+}
+
+function AIPlayer::joinCombat(%obj, %combat) {
+   %obj.getDataBlock().joinCombat(%obj, %combat);
+}
+
+function Character::joinCombat(%this, %obj, %enemy) {
+   // Focus on combat!
+   %obj.stopAll();
+   %obj.follow(%enemy);
+}
+
 function Combats::begin(%this, %attacker, %defender, %mutual) {
    %c = new ScriptObject() {
       class = Combat;
@@ -31,8 +80,6 @@ function Combat::aftermath(%this, %obj) {
 }
 
 function Combat::prepare(%this, %attacker, %defender) {
-   %sps = 5 * getMax(1, %attacker.getDataBlock().skill - %defender.getDataBlock().skill);
-   %defender.setRechargeRate(-%sps/32);
 }
 
 function Combat::release(%this, %obj) {

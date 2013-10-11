@@ -3,7 +3,7 @@ $CharacterHeight = 1.7;
 function Character::onAdd(%this, %obj) {
    CombatEvents.subscribe(%obj, CombatBegin);
    CombatEvents.subscribe(%obj, CombatAdvantage);
-   CombatEvents.subscribe(%obj, CombatDisengage);
+   CombatEvents.subscribe(%obj, CombatantDisengage);
    CombatEvents.subscribe(%obj, CombatantExhausted);
    %obj.setActionThread("stand_root");
    %obj.setEnergyLevel(%obj.getDatablock().maxEnergy);
@@ -35,6 +35,10 @@ function Character::goTo(%this, %obj, %pos, %slowdown) {
    %obj.setActionThread("stand_root");
    // Beginning the movement immediately cancels the animation, so delay it.
    %obj.schedule(100, delayedGoTo, %pos, %slowdown);
+   // Disengage from any combats.
+   if(%obj.fighting) {
+      postEvent(Combat, "antDisengage", %obj);
+   }
 }
 
 function AIPlayer::delayedGoTo(%this, %pos, %slowdown) {

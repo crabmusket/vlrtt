@@ -45,5 +45,5 @@ eventQueue(Combat);
 event(Combat, Begin);
 event(Combat, Advantage);
 event(Combat, antExhausted);
-event(Combat, Disengage);
+event(Combat, antDisengage);
 event(Combat, End);

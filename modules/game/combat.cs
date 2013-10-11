@@ -56,10 +56,23 @@ function Character::onCombatantExhausted(%this, %obj, %enemy) {
    }
 }
 
+function Character::onCombatantDisengage(%this, %obj, %enemy) {
+   if(%enemy == %obj) {
+      %obj.removeEnemies();
+   } else if(%obj.fighting) {
+      %obj.removeEnemy(%enemy);
+   }
+}
+
 function Character::onCharacterDeath(%this, %obj, %character) {
    if(%obj.fighting) {
       %obj.removeEnemy(%character);
    }
+}
+
+function AIPlayer::removeEnemies(%obj) {
+   %obj.fighting = "";
+   %obj.stopFighting();
 }
 
 function AIPlayer::removeEnemy(%obj, %enemy) {
@@ -73,6 +86,13 @@ function AIPlayer::removeEnemy(%obj, %enemy) {
       %i++;
    }
 
+   // Clean up if there's no enemies left.
+   if(!%obj.fighting) {
+      %obj.stopFighting();
+   }
+}
+
+function AIPlayer::stopFighting(%obj) {
    // No enemies remaining?
    if(!%obj.fighting) {
       cancel(%obj.updateEnergyLevel);

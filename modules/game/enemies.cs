@@ -21,6 +21,12 @@ function Enemy::onCharacterDeath(%this, %obj, %dead) {
    }
 }
 
+function Enemy::stopAll(%this, %obj) {
+   Parent::stopAll(%this, %obj);
+   %obj.setAimLocation(VectorScale(Level.forwards, -1));
+   %obj.schedule(200, clearAim);
+}
+
 function Enemies::onStart(%this) {
    GameGroup.add(Enemies);
 

@@ -95,7 +95,7 @@ function Level::blankSection(%this, %soldiers, %deltas, %tanks) {
    // Enemies at random points.
    for(%i = 0; %i < %soldiers; %i++) {
       %pos = getRandom(-%s, %s) SPC getRandom(-%s, %s) SPC 0;
-      %g.add(Enemies.berserker(%pos));
+      %g.add(Enemies.brute(%pos));
    }
    return %g;
 }

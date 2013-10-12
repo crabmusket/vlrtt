@@ -3,13 +3,13 @@ singleton Material(EnemyMaterial) {
    mapTo = "enemyPlayer";
 };
 
-foreach$(%type in "Soldier Berserker") {
+foreach$(%type in $EnemyTypes) {
    eval(
 "function Enemies::"@%type@"(%this, %pos) {"     @
 "   %obj = new AIPlayer() {"                     @
 "      datablock = "@%type@";"                   @
-"      position = %pos;"                         @
 "      skin = enemy;"                            @
+"      position = %pos;"                         @
 "      rotation = \"0 0 1 180\";"                @
 "   };"                                          @
 "   AI.brain(%obj, "@%type@");"                  @
@@ -25,25 +25,33 @@ foreach$(%type in "Soldier Berserker") {
 datablock PlayerData(Soldier : KnightBase) {
    class = Enemy;
    debrisShapeName = "./shapes/enemyDebris.dae";
+
    maxForwardSpeed = 5;
    maxSideSpeed = 5;
    maxBackwardSpeed = 5;
+
+   skill = 2;
 };
 
 function Soldier::onAdd(%this, %obj) {
-   %obj.mountImage(RangedWeapon, 0);
    Parent::onAdd(%this, %obj);
 }
 
 //-----------------------------------------------------------------------------
-// Melee type
+// Big slow type.
 
-datablock PlayerData(Berserker : KnightBase) {
+datablock PlayerData(Brute : KnightBase) {
    class = Enemy;
    debrisShapeName = "./shapes/enemyDebris.dae";
-   maxForwardSpeed = 7;
-   maxSideSpeed = 5;
-   maxBackwardSpeed = 5;
+
+   maxForwardSpeed = 2;
+   maxSideSpeed = 2;
+   maxBackwardSpeed = 2;
+
    skill = 1;
 };
 
+function Brute::onAdd(%this, %obj) {
+   %obj.scale = "2 1.5 1.5";
+   Parent::onAdd(%this, %obj);
+}

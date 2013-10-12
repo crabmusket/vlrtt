@@ -1,5 +1,6 @@
 new SimSet(Enemies);
 
+$EnemyTypes = "Soldier Brute";
 include("game/ai");
 exec("./enemyTypes.cs");
 

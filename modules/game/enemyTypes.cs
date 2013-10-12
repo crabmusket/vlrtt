@@ -3,20 +3,24 @@ singleton Material(EnemyMaterial) {
    mapTo = "enemyPlayer";
 };
 
+foreach$(%type in "Soldier Berserker") {
+   eval(
+"function Enemies::"@%type@"(%this, %pos) {"     @
+"   %obj = new AIPlayer() {"                     @
+"      datablock = "@%type@";"                   @
+"      position = %pos;"                         @
+"      skin = enemy;"                            @
+"      rotation = \"0 0 1 180\";"                @
+"   };"                                          @
+"   AI.brain(%obj, "@%type@");"                  @
+"   Enemies.add(%obj);"                          @
+"   return %obj;"                                @
+"}"
+   );
+}
+
 //-----------------------------------------------------------------------------
 // Soldier type
-
-function soldier(%pos) {
-   %soldier = new AIPlayer() {
-      datablock = Soldier;
-      position = %pos;
-      skin = enemy;
-      rotation = "0 0 1 180";
-   };
-   AI.brain(%soldier, Soldier);
-   Enemies.add(%soldier);
-   return %soldier;
-}
 
 datablock PlayerData(Soldier : KnightBase) {
    class = Enemy;

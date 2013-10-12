@@ -20,11 +20,14 @@ datablock DebrisData(KnightDebris) {
 datablock PlayerData(KnightBase) {
    class = Knight;
    superclass = Character;
+
    shapeFile = "./shapes/soldier.dae";
-   maxDamage = 100;
-   destroyedLevel = 100;
    debrisShapeName = "./shapes/playerDebris.dae";
    debris = KnightDebris;
+
+   maxDamage = 100;
+   destroyedLevel = 100;
+
    maxForwardSpeed = 5;
    maxSideSpeed = 5;
    maxBackwardSpeed = 5;
@@ -59,19 +62,6 @@ function Knight::goTo(%this, %obj, %dest, %slowdown, %speed) {
    %obj.setMoveSpeed(%speed);
 }
 
-datablock PlayerData(Shooter : KnightBase) {};
-function Shooter::onAdd(%this, %obj) {
-   %obj.mountImage(RangedWeapon, 0);
-   Parent::onAdd(%this, %obj);
-}
-
-function Shooter::onCharacterDeath(%this, %obj, %dead) {
-   if(%dead $= %obj.getAimObject()) {
-      %obj.clearAim();
-      %obj.setImageTrigger(0, false);
-   }
-}
-
 datablock PlayerData(Fighter : KnightBase) {};
 function Fighter::onAdd(%this, %obj) {
    Parent::onAdd(%this, %obj);
@@ -103,27 +93,22 @@ function knight(%name, %pos, %role) {
 
 //-----------------------------------------------------------------------------
 
-function Shooter::attack(%this, %obj, %target) {
-   if(%obj.getMoveSpeed() > 0.5) {
-      %obj.setMoveSpeed(0.5);
-   }
-   %obj.setAimObject(%target, "0 0" SPC $CharacterHeight);
-   %obj.setImageTrigger(0, true);
-}
-
 function Fighter::attack(%this, %obj, %target) {
    %obj.setMoveSpeed(1);
    %obj.follow(%target);
    %obj.attacking = %target;
 }
 
+function Fighter::heal(%this, %obj, %target) {
+   %obj.goTo(%target.getPosition(), true, 1.0);
+   %obj.setImageTrigger(0, false);
+}
+
 function Mage::attack(%this, %obj, %target) {
    %obj.getMountedImage(0).cast(%obj, %target);
 }
 
-function Knight::heal(%this, %obj, %target) {
-   %obj.goTo(%target.getPosition(), true, 1.0);
-   %obj.setImageTrigger(0, false);
+function Mage::heal(%this, %obj, %target) {
 }
 
 function Knight::stopAll(%this, %obj) {
@@ -137,19 +122,19 @@ function Knight::stopAll(%this, %obj) {
 function Knights::onStart(%this) {
    GameGroup.add(%this);
 
-   // ActionMaps allows us to capture input.
    %this.selectMap = new ActionMap();
    %this.targetMap = new ActionMap();
 
    // Shortcut to selecting them all.
    %this.selectMap.bindCmd(keyboard, "a", "Knights.selectAll();", "");
 
-   // Selected knights.
+   // Knights selected in the current order.
    %this.selected = new SimSet();
 }
 
 function Knights::onEnd(%this) {
    Knights.selectMap.delete();
+   Knights.targetMap.delete();
    %this.selected.delete();
 }
 
@@ -170,14 +155,14 @@ function Knights::beginSelect(%this) {
    %this.nameKnights(true);
 }
 
-function Knights::beginTarget(%this) {
-   %this.targetMap.push();
-   %this.nameKnights(true);
-}
-
 function Knights::endSelect(%this) {
    %this.selectMap.pop();
    %this.nameKnights(false);
+}
+
+function Knights::beginTarget(%this) {
+   %this.targetMap.push();
+   %this.nameKnights(true);
 }
 
 function Knights::endTarget(%this) {

@@ -25,6 +25,16 @@ or they may both take a light blow.
 If one character had a skill of 10 and the other of 0, the combat would be over in 2 seconds,
 and the more-skilled character would have lost 10 stamina.
 
+### Special abilities
+
+Not sure how much I want to get into this, but there could be some cool ideas:
+
+ * Invisibility for a character allowing them to ambush
+ * Instant blow against enemies who are attacking someone else and are interrupted
+ * Defensive move that replenishes stamina
+ * Strike a blow when an enemy disengages
+ * Enemies flee when outnumbered or when their buddy is killed
+
 ### Mage
 
  * Healing spell

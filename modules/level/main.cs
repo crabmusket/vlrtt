@@ -12,7 +12,7 @@ function Level::onStart(%this) {
          canvasClearColor = "0 0 0";
       };
       new TSStatic(TheGround) {
-         shapeName = "./terrains/dips.dae";
+         shapeName = "./terrains/saddle.dae";
          collisionType = "Visible Mesh";
          position = "0 0 0";
          allowPlayerStep = true;

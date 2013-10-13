@@ -30,7 +30,6 @@ function Level::onStart(%this) {
    TheLevel.add(new NavMesh(Nav) {
       position = "0 0 0";
       scale = "5 5 10";
-      alwaysRender = true;
       cellSize = 0.1;
       tileSize = 10;
    });

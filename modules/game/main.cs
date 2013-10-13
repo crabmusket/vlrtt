@@ -8,6 +8,7 @@ include(trackingCamera);
 include(flyCamera);
 include(bottomPrint);
 include(navigation);
+include(level);
 
 // Scripts that make up this module.
 exec("./events.cs");
@@ -17,7 +18,6 @@ exec("./knights.cs");
 exec("./enemies.cs");
 exec("./weapons.cs");
 exec("./cover.cs");
-exec("./level.cs");
 exec("./playGui.gui");
 exec("./combat.cs");
 

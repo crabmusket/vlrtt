@@ -32,7 +32,7 @@ function GameConnection::onEnterGame(%client) {
       setFOV(50);
    } else {
       %c = TrackingCamera.init(%client, GameGroup, Knights, y);
-      %c.setTransform(Level.sectionSize*.75 SPC 0 SPC Level.sectionHeight / 2 SPC
+      %c.setTransform(30*.75 SPC 0 SPC 30 / 2 SPC
          "0.255082 0.205918 -0.944739 1.41418");
       TrackingCamera.controls(true);
       setFOV(50);

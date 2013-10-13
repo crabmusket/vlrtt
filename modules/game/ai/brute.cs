@@ -1,9 +1,9 @@
-new ScriptObject(BerserkerBrainTemplate) {
+new ScriptObject(BruteBrainTemplate) {
    transition[ready, playerNear] = attack;
    transition[attack, targetDeath] = attack;
 };
 
-function BerserkerBrain::enterAttack(%this) {
+function BruteBrain::enterAttack(%this) {
    %obj = %this.owner;
    %knight = std.findClosest(Knights, %obj, %obj.getAimObject());
    if(%knight) {

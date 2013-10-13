@@ -59,7 +59,7 @@ function Verbs::onStart(%this) {
    %this.globalMap.push();
 
    // Direction selection actions.
-   foreach$(%d in "w a s d") {
+   foreach$(%d in "w e d c s z a q") {
       %this.directionMap.bindCmd(keyboard, %d,
          "Verbs.direction ="@%d@"; Verbs.onEvent(directionSelected);");
    }
@@ -214,12 +214,17 @@ function Verbs::enterMove(%this) {
       case a: %dir = VectorScale(TheCamera.getRightVector(), -1);
       case s: %dir = VectorScale(TheCamera.getForwardVector(), -1);
       case d: %dir = TheCamera.getRightVector();
+
+      case q: %dir = VectorAdd(VectorScale(TheCamera.getRightVector(), -1), TheCamera.getForwardVector());
+      case e: %dir = VectorAdd(TheCamera.getRightVector(), TheCamera.getForwardVector());
+      case c: %dir = VectorAdd(TheCamera.getRightVector(), VectorScale(TheCamera.getForwardVector(), -1));
+      case z: %dir = VectorScale(VectorAdd(TheCamera.getRightVector(), TheCamera.getForwardVector()), -1);
    }
    // Make it horizontal.
    %dir = VectorNormalize(getWords(%dir, 0, 1) SPC 0);
 
    // Construct a new position to move to.
-   BottomPrintText.addText(" move up.", true);
+   BottomPrintText.addText(" move out.", true);
    foreach(%knight in Knights.selected) {
       %pos = rayCircle(%knight.getPosition(), %dir, 50);
       %pos = VectorSub(%pos, VectorScale(%dir, 2));

@@ -5,6 +5,7 @@
 // Module dependencies.
 include(stateMachine);
 include(trackingCamera);
+include(offsetCamera);
 include(flyCamera);
 include(bottomPrint);
 include(navigation);
@@ -31,10 +32,9 @@ function GameConnection::onEnterGame(%client) {
       FlyCamera.controls(true);
       setFOV(50);
    } else {
-      %c = TrackingCamera.init(%client, GameGroup, Knights, y);
-      %c.setTransform(30*.75 SPC 0 SPC 30 / 2 SPC
-         "0.255082 0.205918 -0.944739 1.41418");
-      TrackingCamera.controls(true);
+      %c = OffsetCamera.init(%client, GameGroup, Knights, "20 -3 10");
+      %c.setTransform("0 0 0" SPC "0.255082 0.205918 -0.944739 1.41418");
+      OffsetCamera.controls(true);
       setFOV(50);
    }
 

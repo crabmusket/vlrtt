@@ -16,16 +16,16 @@ new ScriptObject(Verbs) {
    transition[selected, heal] = healTarget;
    transition[selected, attack] = attackTarget;
    transition[selected, stop] = stop;
-   transition[selected, move] = moveForwards;
-   transition[selected, moveFast] = moveForwardsFast;
-   transition[selected, retreat] = retreat;
-   transition[selected, retreatFast] = retreatFast;
+   transition[selected, move] = selectDirection;
    transition[selected, cover] = coverTarget;
 
    // Must target someone for these verbs.
    transition[healTarget, knightTargeted] = heal;
    transition[attackTarget, enemyTargeted] = attack;
    transition[coverTarget, coverTargeted] = cover;
+
+   // Location targeting.
+   transition[selectDirection, directionSelected] = move;
 
    // Catch these events from every state and return to ready.
    transition[_, finish] = ready;
@@ -42,6 +42,7 @@ function Verbs::onStart(%this) {
    // Respond to keypresses.
    %this.map = new ActionMap();
    %this.globalMap = new ActionMap();
+   %this.directionMap = new ActionMap();
 
    // Add some verbs that allow the knights to perform actions.
    %this.define(",", "And");
@@ -52,11 +53,16 @@ function Verbs::onStart(%this) {
    %this.define("c", "Cover");
    %this.define("m", "Move");
    %this.define("r", "Retreat");
-   %this.define("shift m", "MoveFast");
-   %this.define("shift r", "RetreatFast");
 
+   // Keyboard actions that should be available in any state.
    %this.globalMap.bindCmd(keyboard, "ctrl c", "Verbs.onEvent(cancel);");
    %this.globalMap.push();
+
+   // Direction selection actions.
+   foreach$(%d in "w a s d") {
+      %this.directionMap.bindCmd(keyboard, %d,
+         "Verbs.direction ="@%d@"; Verbs.onEvent(directionSelected);");
+   }
 
    // Start up the state machine.
    %this.onEvent(ready);
@@ -65,6 +71,7 @@ function Verbs::onStart(%this) {
 function Verbs::onEnd(%this) {
    %this.map.delete();
    %this.globalMap.delete();
+   %this.directionMap.delete();
 }
 
 //-----------------------------------------------------------------------------
@@ -193,38 +200,44 @@ function Verbs::enterStop(%this) {
 
 //-----------------------------------------------------------------------------
 
-function Verbs::enterMoveForwards(%this) {
+function Verbs::enterSelectDirection(%this) {
+   %this.directionMap.push();
+}
+function Verbs::leaveSelectDirection(%this) {
+   %this.directionMap.pop();
+}
+
+function Verbs::enterMove(%this) {
+   // Get the movement direction from the letter.
+   switch$(%this.direction) {
+      case w: %dir = TheCamera.getForwardVector();
+      case a: %dir = VectorScale(TheCamera.getRightVector(), -1);
+      case s: %dir = VectorScale(TheCamera.getForwardVector(), -1);
+      case d: %dir = TheCamera.getRightVector();
+   }
+   // Make it horizontal.
+   %dir = VectorNormalize(getWords(%dir, 0, 1) SPC 0);
+
+   // Construct a new position to move to.
    BottomPrintText.addText(" move up.", true);
    foreach(%knight in Knights.selected) {
-      %knight.getDataBlock().goTo(%knight,
-         Level.getForwards(%knight.getPosition()), true, 0.5);
+      %pos = rayCircle(%knight.getPosition(), %dir, 50);
+      %pos = VectorSub(%pos, VectorScale(%dir, 2));
+      %knight.goTo(%pos, true, 0.5);
    }
    %this.endVerb();
 }
 
-function Verbs::enterMoveForwardsFast(%this) {
-   BottomPrintText.addText(" move up!", true);
-   foreach(%knight in Knights.selected) {
-      %knight.getDataBlock().goTo(%knight,
-         Level.getForwards(%knight.getPosition()), true, 1);
-   }
-   %this.endVerb();
-}
-
-function Verbs::enterRetreat(%this) {
-   BottomPrintText.addText(" retreat.", true);
-   foreach(%knight in Knights.selected) {
-      %knight.getDataBlock().goTo(%knight,
-         Level.getBackwards(%knight.getPosition()), true, 0.5);
-   }
-   %this.endVerb();
-}
-
-function Verbs::enterRetreatFast(%this) {
-   BottomPrintText.addText(" retreat!", true);
-   foreach(%knight in Knights.selected) {
-      %knight.getDataBlock().goTo(%knight,
-         Level.getBackwards(%knight.getPosition()), true, 1);
-   }
-   %this.endVerb();
+function rayCircle(%pos, %ray, %radius) {
+   // Ray/circle intersection: http://stackoverflow.com/a/1549997/945863
+   // Assume circle is centered at 0, 0, 0.
+   %Dx = getWord(%pos, 0);
+   %Dy = getWord(%pos, 1);
+   %a = mPow(VectorLen(%ray), 2);
+   %b = 2 * %Dx * getword(%ray, 0) + 2 * %Dy * getWord(%ray, 1);
+   %c = mPow(%Dx, 2) + mPow(%Dy, 2) - mPow(%radius, 2);
+   %sol = mSolveQuadratic(%a, %b, %c);
+   // The positive solution is the one we want.
+   %x = getMax(getWord(%sol, 1), getWord(%sol, 2));
+   return VectorAdd(%pos, VectorScale(%ray, %x));
 }

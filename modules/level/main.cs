@@ -11,18 +11,27 @@ function Level::onStart(%this) {
       new LevelInfo(TheLevelInfo) {
          canvasClearColor = "0 0 0";
       };
-      new TSStatic(TheGround) {
-         shapeName = "./terrains/saddle.dae";
-         collisionType = "Visible Mesh";
-         position = "0 0 0";
-         allowPlayerStep = true;
-      };
       new Sun(TheSun) {
          azimuth = 230;
          elevation = 45;
          color = "1 1 1";
          ambient = "0.5 0.5 0.5";
          castShadows = false;
+      };
+      new TSStatic(TheGround) {
+         shapeName = "./terrains/saddle.dae";
+         collisionType = "Visible Mesh";
+         position = "0 0 0";
+         allowPlayerStep = true;
+      };
+      new fxShapeReplicator(TheRocks) {
+         position = "0 0 0";
+         scale = "50 50 10";
+         shapeFile = "./terrains/rock.dae";
+         shapeCount = 200;
+         shapeRetries = 1;
+         allowOnStatics = true;
+         interactions = false;
       };
    });
 

@@ -14,27 +14,3 @@ function AI::brain(%this, %obj, %template) {
    %obj.brain.transition[null, ready] = ready;
    %obj.brain.onEvent(ready);
 }
-
-function Enemy::onKnightEnterSection(%this, %obj, %data) {
-   %knight = getWord(%data, 0);
-   %trigger = getWord(%data, 1);
-   if(%trigger.getGroup() == %obj.getGroup()) {
-      %obj.brain.onEvent(playerNear);
-   }
-}
-
-datablock TriggerData(SectionTrigger) {};
-
-function SectionTrigger::onEnterTrigger(%this, %trigger, %enter) {
-   if(!%enter.isIn(Knights)) {
-      return;
-   }
-   KnightEvents.postEvent(KnightEnterSection, %enter SPC %trigger);
-}
-
-function SectionTrigger::onLeaveTrigger(%this, %trigger, %leave) {
-   if(!Knights.contains(%leave)) {
-      return;
-   }
-   KnightEvents.postEvent(KnightLeaveSection, %leave SPC %trigger);
-}

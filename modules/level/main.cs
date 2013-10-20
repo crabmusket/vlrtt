@@ -5,6 +5,12 @@ new Material(TerrainMaterial) {
    diffuseColor[0] = "1 1 1";
 };
 
+new Material(RockMaterial) {
+   mapTo = baseRock;
+   diffuseColor[0] = "1 1 1";
+   emissive[0] = true;
+};
+
 function Level::onStart(%this) {
    // Set up basic objects.
    GameGroup.add(new SimGroup(TheLevel) {
@@ -32,6 +38,8 @@ function Level::onStart(%this) {
          shapeRetries = 1;
          allowOnStatics = true;
          interactions = false;
+         shapeRotateMax = "0 0 180";
+         seed = getRealTime();
       };
    });
 

@@ -25,4 +25,3 @@ new GuiBitmapCtrl(BottomPrintDlg) {
       tooltipprofile = GuiToolTipProfile;
    };
 };
-

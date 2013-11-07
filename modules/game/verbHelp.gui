@@ -1,0 +1,28 @@
+new GuiBitmapCtrl(VerbHelpDlg) {
+   bitmap = "../bottomPrint/hudfill.png";
+   wrap = false;
+   isContainer = false;
+   profile = CenterPrintProfile;
+   horizSizing = center;
+   vertSizing = top;
+   position = "237 619";
+   extent = "550 20";
+   minExtent = "8 8";
+   tooltipprofile = GuiToolTipProfile;
+
+   new GuiMLTextCtrl(VerbHelpText) {
+      lineSpacing = 2;
+      allowColorChars = true;
+      maxChars = -1;
+      isContainer = false;
+      horizSizing = center;
+      vertSizing = center;
+      position = "0 0";
+      extent = "546 12";
+      minExtent = "8 8";
+      visible = true;
+      tooltipprofile = GuiToolTipProfile;
+      text = "haaaaaaahahahahaha";
+   };
+};
+

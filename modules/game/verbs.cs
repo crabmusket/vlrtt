@@ -32,12 +32,15 @@ new ScriptObject(Verbs) {
    transition[_, cancel] = ready;
 };
 
+exec("./verbHelp.gui");
+
 function Verbs::define(%this, %key, %verb) {
    Verbs.map.bindCmd(keyboard, %key, "Verbs.onEvent(" @ %verb @ ");", "");
 }
 
 function Verbs::onStart(%this) {
    GameGroup.add(Verbs);
+   PlayGui.add(VerbHelpDlg);
 
    // Respond to keypresses.
    %this.map = new ActionMap();

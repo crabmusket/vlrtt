@@ -113,8 +113,7 @@ function Mage::heal(%this, %obj, %target) {
 
 function Knight::stopAll(%this, %obj) {
    Parent::stopAll(%this, %obj);
-   %obj.setAimLocation(Level.forwards);
-   %obj.schedule(200, clearAim);
+   %obj.clearAim();
 }
 
 //-----------------------------------------------------------------------------

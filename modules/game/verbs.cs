@@ -34,7 +34,8 @@ new ScriptObject(Verbs) {
 exec("./verbHelp.gui");
 
 function Verbs::define(%this, %key, %verb) {
-   Verbs.map.bindCmd(keyboard, %key, "Verbs.onEvent(" @ %verb @ ");", "");
+   %this.map.bindCmd(keyboard, %key, "Verbs.onEvent(" @ %verb @ ");", "");
+   %this.helpText[%verb] = %key @ "   " @ %verb @ "\n";
 }
 
 function Verbs::onStart(%this) {
@@ -64,6 +65,19 @@ function Verbs::onStart(%this) {
       %this.directionMap.bindCmd(keyboard, %d,
          "Verbs.direction ="@%d@"; Verbs.onEvent(directionSelected);");
    }
+   %this.helpText[directionSelected] =
+      "w      Away\n"     @
+      "a      Left\n"     @
+      "s      Towards\n"  @
+      "d      Right\n\n"  @
+      "qezc   Others";
+
+   %this.helpText[knightSelected] =
+      "h   Hotel\n"   @
+      "j   Juliet\n"  @
+      "k   Kilo\n"    @
+      "l   Lionel\n"  @
+      "a   All\n";
 
    // Start up the state machine.
    %this.onEvent(ready);
@@ -73,6 +87,35 @@ function Verbs::onEnd(%this) {
    %this.map.delete();
    %this.globalMap.delete();
    %this.directionMap.delete();
+}
+
+function Verbs::updateHelpDlg(%this) {
+   %len = %this.getDynamicFieldCount();
+   VerbHelpText.setText("");
+
+   for(%i = 0; %i < %len; %i++) {
+      %field = %this.getDynamicField(%i);
+      %value = getField(%field, 1);
+      %field = getField(%field, 0);
+
+      if(startsWith(%field, "transition")) {
+         %field = getSubStr(%field, 10);
+         %field = strReplace(%field, _, "\t");
+         %state = getField(%field, 0);
+         %event = getField(%field, 1);
+
+         if(%state !$= "" && %event !$= "") {
+            if(%state $= %this.state) {
+               VerbHelpText.addText(%this.helpText[%event], true);
+            }
+         }
+      }
+   }
+}
+
+function Verbs::onEvent(%this, %event) {
+   Parent::onEvent(%this, %event);
+   %this.updateHelpDlg();
 }
 
 //-----------------------------------------------------------------------------

@@ -3,10 +3,10 @@ new GuiBitmapCtrl(VerbHelpDlg) {
    wrap = false;
    isContainer = false;
    profile = CenterPrintProfile;
-   horizSizing = center;
+   horizSizing = right;
    vertSizing = top;
-   position = "237 619";
-   extent = "550 20";
+   position = "20 420";
+   extent = "130 200";
    minExtent = "8 8";
    tooltipprofile = GuiToolTipProfile;
 
@@ -18,11 +18,11 @@ new GuiBitmapCtrl(VerbHelpDlg) {
       profile = CenterPrintTextProfile;
       horizSizing = center;
       vertSizing = center;
-      position = "0 0";
-      extent = "546 12";
+      position = "5 5";
+      extent = "125 190";
       minExtent = "8 8";
       visible = true;
       tooltipprofile = GuiToolTipProfile;
-      text = "haaaaaaahahahahaha";
+      text = "haaaaaaahahahahaha" NL "2. yes";
    };
 };

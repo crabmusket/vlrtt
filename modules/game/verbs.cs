@@ -58,6 +58,7 @@ function Verbs::onStart(%this) {
 
    // Keyboard actions that should be available in any state.
    %this.globalMap.bindCmd(keyboard, "ctrl c", "Verbs.onEvent(cancel);");
+   %this.globalMap.bindCmd(keyboard, "?",      "VerbHelpDlg.setVisible(!VerbHelpDlg.isVisible());");
    %this.globalMap.push();
 
    // Direction selection actions.
@@ -126,6 +127,10 @@ function Verbs::updateHelpDlg(%this) {
    if(%this.state !$= ready) {
       VerbHelpText.addText("\nctrl c   Cancel\n", true);
    }
+
+   VerbHelpDlg.extent =
+      getWord(VerbHelpDlg.extent, 0) SPC
+      14 * getRecordCount(VerbHelpText.getText());
 }
 
 function Verbs::onEvent(%this, %event) {

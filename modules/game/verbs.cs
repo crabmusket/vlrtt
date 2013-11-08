@@ -73,10 +73,10 @@ function Verbs::onStart(%this) {
       "qezc   Others";
 
    %this.helpText[knightSelected] =
-      "h   Hotel\n"   @
-      "j   Juliet\n"  @
-      "k   Kilo\n"    @
-      "l   Lionel\n"  @
+      "h   Hotel\n"    @
+      "j   Juliet\n"   @
+      "k   Kilo\n"     @
+      "l   Lionel\n\n" @
       "a   All\n";
    %this.helpText[knightTargeted] =
       "h   Hotel\n"   @

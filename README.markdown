@@ -22,8 +22,7 @@ Once you've selected the characters you want to command, you can give them an or
 
  * `a` tells them to attack an enemy. Some characters have ranged attacks, others melee.
  * `c` means take cover at a specific location
- * `M` means move forwards (they'll just run towards the end of the level)
- * `R` means retreat (they'll run towards the beginning of the level)
+ * `m` means move (you'll then need to give them a direction with the WASD keys)
  * `h` means help or heal
 
 Note that if a command takes a capital letter, you actually need to hold down `shift` to issue it (caps lock doesn't work!).

@@ -56,16 +56,27 @@ Although what would be the benefits?
  * Possible: missile takes time to recharge... how long?
  * Possible: missile prevents healing for some time
 
+## Environment
+
+The linear level has been replaced with a circular arena, but it needs to be filled with stuff.
+It's also got rocks to cover the ground, so you can sort of see what's going on in all the white.
+
+ * Henge: rocks arranged in a ring
+ * Trees: randomly placed
+ * Ruins: somehow
+
 ### Scenarios
 
-A scenario defines how enemies spawn in an arena.
-Most arenas will probably be compatible with most scenarios,
-but I guess some situations will be special (like a ravine with archers on the other side).
+The scenario defines how enemies spawn in the arena.
+Scenarios should probably be wave-based so they can switch at defined intervals.
 
- * Ambush - enemies spawn from the side when you're partway through
+ * Ambush - enemies spawn from inside some sort of object?
  * Camp - enemies are clustered somewhere and not really paying attention to you
- * Barricade - enemies entrenched. Maybe they wait for you to come to them
+ * Barricade - enemies are entrenched, and wait for you to come to them
  * Charge - enemies spawn at the other end and attack you
+
+Maybe implement a high-level state machine that throws some sequence of scenarios at you to provide an overall engagement.
+And finish with a final boss.
 
 ### Enemies
 
@@ -76,15 +87,3 @@ but I guess some situations will be special (like a ravine with archers on the o
 
  * Unique spells
  * Unique-ish environment
-
-## Environment
-
- * Less waist-high-walls because less shooting
- * Arena-based?
- * Build custom arenas in Blender
- * Arrange arenas in random linear order
- * State machine to lay arenas out with rules
-
-## Commands
-
- * Help/heal: mage will cast healing spell, fighters will do what?

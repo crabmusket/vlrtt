@@ -25,6 +25,10 @@ or they may both take a light blow.
 If one character had a skill of 10 and the other of 0, the combat would be over in 2 seconds,
 and the more-skilled character would have lost 10 stamina.
 
+Possibility: random 'blunders' dependent on character skill and weapons?
+Could be frustrating.
+Effects could be anything from an instant blow to a stamina reduction.
+
 ### Special abilities
 
 Not sure how much I want to get into this, but there could be some cool ideas:
@@ -35,10 +39,20 @@ Not sure how much I want to get into this, but there could be some cool ideas:
  * Strike a blow when an enemy disengages
  * Enemies flee when outnumbered or when their buddy is killed
 
+### Weapons
+
+Using different weapons could be cool.
+Different statistics could be expressed in terms of a stamina penalty for using them.
+Although what would be the benefits?
+
+ * Stamina penalty on enemies as well
+ * Increased damage (but I want every blow to be potentially deadly anyway)
+ * Special effects like stunning?
+
 ### Mage
 
  * Healing spell
- * Magic missile that reduces stamina (and health?)
+ * Magic missile that reduces stamina (and health?) (instantly drains stamina?)
  * Possible: missile takes time to recharge... how long?
  * Possible: missile prevents healing for some time
 

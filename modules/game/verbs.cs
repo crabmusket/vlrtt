@@ -136,11 +136,9 @@ function Verbs::onEvent(%this, %event) {
 //-----------------------------------------------------------------------------
 
 function Verbs::onFinish(%this) {
-   BottomPrintText.event = BottomPrintText.schedule(1000, setText, "");
    Knights.deselectAll();
 }
 function Verbs::onCancel(%this) {
-   BottomPrintText.setText("");
    Knights.deselectAll();
 }
 
@@ -152,7 +150,6 @@ function Verbs::endVerb(%this) {
 // Event scripts
 
 function Verbs::onReady(%this) {
-   BottomPrintText.setText("   ");
 }
 function Verbs::enterReady(%this) {
    Knights.beginSelect();
@@ -162,16 +159,6 @@ function Verbs::leaveReady(%this) {
 }
 
 function Verbs::enterSelected(%this) {
-   if(BottomPrintText.event) {
-      cancel(BottomPrintText.event);
-      BottomPrintText.event = "";
-      BottomPrintText.setText("   ");
-   }
-   if(Knights.selected.size() == Knights.size()) {
-      BottomPrintText.addText(" Everyone,", true);
-   } else {
-      BottomPrintText.addText(" " @ Knights.selected.last().name @ ",", true);
-   }
    %this.map.push();
 }
 function Verbs::leaveSelected(%this) {
@@ -181,7 +168,6 @@ function Verbs::leaveSelected(%this) {
 //-----------------------------------------------------------------------------
 
 function Verbs::enterHealTarget(%this) {
-   BottomPrintText.addText(" heal", true);
    Knights.beginTarget();
 }
 function Verbs::leaveHealTarget(%this) {
@@ -189,7 +175,6 @@ function Verbs::leaveHealTarget(%this) {
 }
 
 function Verbs::enterHeal(%this) {
-   BottomPrintText.addText(" " @ %this.target.name, true);
    foreach(%knight in Knights.selected) {
       %knight.getDataBlock().heal(%knight, %this.target);
    }
@@ -200,7 +185,6 @@ function Verbs::enterHeal(%this) {
 //-----------------------------------------------------------------------------
 
 function Verbs::enterAttackTarget(%this) {
-   BottomPrintText.addText(" attack", true);
    Enemies.beginTarget();
 }
 function Verbs::leaveAttackTarget(%this) {
@@ -208,7 +192,6 @@ function Verbs::leaveAttackTarget(%this) {
 }
 
 function Verbs::enterAttack(%this) {
-   BottomPrintText.addText(" the enemy", true);
    foreach(%knight in Knights.selected) {
       %knight.getDataBlock().attack(%knight, %this.target);
    }
@@ -219,7 +202,6 @@ function Verbs::enterAttack(%this) {
 //-----------------------------------------------------------------------------
 
 function Verbs::enterCoverTarget(%this) {
-   BottomPrintText.addText(" take cover", true);
    Cover.beginTarget();
 }
 function Verbs::leaveCoverTarget(%this) {
@@ -227,7 +209,6 @@ function Verbs::leaveCoverTarget(%this) {
 }
 
 function Verbs::enterCover(%this) {
-   BottomPrintText.addText(" there!", true);
    foreach(%knight in Knights.selected) {
       %knight.getDataBlock().takeCover(%knight, %this.target);
    }
@@ -238,7 +219,6 @@ function Verbs::enterCover(%this) {
 //-----------------------------------------------------------------------------
 
 function Verbs::enterStop(%this) {
-   BottomPrintText.addText(" stop!", true);
    foreach(%knight in Knights.selected) {
       %knight.getDataBlock().stopAll(%knight);
    }
@@ -271,7 +251,6 @@ function Verbs::enterMove(%this) {
    %dir = VectorNormalize(getWords(%dir, 0, 1) SPC 0);
 
    // Construct a new position to move to.
-   BottomPrintText.addText(" move out.", true);
    foreach(%knight in Knights.selected) {
       %pos = rayCircle(%knight.getPosition(), %dir, 50);
       %pos = VectorSub(%pos, VectorScale(%dir, 2));

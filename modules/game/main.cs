@@ -65,7 +65,6 @@ function onStart() {
 
    // UI modules.
    Verbs.onStart();
-   BottomPrint.onStart();
 }
 
 //-----------------------------------------------------------------------------

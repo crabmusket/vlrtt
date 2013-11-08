@@ -12,7 +12,6 @@ new ScriptObject(Verbs) {
 
    // This is where most of the verbs live - after selecting a character.
    transition[selected, and] = ready;
-   transition[selected, test] = test;
    transition[selected, heal] = healTarget;
    transition[selected, attack] = attackTarget;
    transition[selected, stop] = stop;
@@ -49,7 +48,6 @@ function Verbs::onStart(%this) {
 
    // Add some verbs that allow the knights to perform actions.
    %this.define(",", "And");
-   %this.define(".", "Test");
    %this.define("h", "Heal");
    %this.define("a", "Attack");
    %this.define("s", "Stop");
@@ -120,18 +118,6 @@ function Verbs::enterSelected(%this) {
 }
 function Verbs::leaveSelected(%this) {
    %this.map.pop();
-}
-
-//-----------------------------------------------------------------------------
-
-function Verbs::enterTest(%this) {
-   // Do something with the selected knights.
-   echo("testing");
-   foreach(%knight in Knights.selected) {
-      echo("   " @ %knight);
-   }
-   // Start selection process again.
-   %this.endVerb();
 }
 
 //-----------------------------------------------------------------------------

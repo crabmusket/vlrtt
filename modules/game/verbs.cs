@@ -78,6 +78,17 @@ function Verbs::onStart(%this) {
       "k   Kilo\n"    @
       "l   Lionel\n"  @
       "a   All\n";
+   %this.helpText[knightTargeted] =
+      "h   Hotel\n"   @
+      "j   Juliet\n"  @
+      "k   Kilo\n"    @
+      "l   Lionel\n";
+
+   %this.helpText[coverTargeted] =
+   %this.helpText[enemyTargeted] =
+      "j   Closest\n"      @
+      "k   Next closest\n" @
+      "    etc...\n";
 
    // Start up the state machine.
    %this.onEvent(ready);
@@ -110,6 +121,10 @@ function Verbs::updateHelpDlg(%this) {
             }
          }
       }
+   }
+
+   if(%this.state !$= ready) {
+      VerbHelpText.addText("\nctrl c   Cancel\n", true);
    }
 }
 

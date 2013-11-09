@@ -1,5 +1,13 @@
 # Acknowledgments
 
+## Code
+
+ * Charlie Patterson's [Twillex][] engine
+
+ [Twillex]: http://www.garagegames.com/community/blogs/view/21480
+
+## Art
+
 The following art assets are from [Ron Kapaun's][ron] free [fantasy ruins][] sample pack.
 
  * `arch.dae`

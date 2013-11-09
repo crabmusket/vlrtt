@@ -1,6 +1,6 @@
 new ScriptObject(Level);
 
-new Material(TerrainMaterial) {
+singleton Material(TerrainMat) {
    mapTo = baseTerrain;
    diffuseColor[0] = "1 1 1";
 };

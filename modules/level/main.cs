@@ -5,10 +5,15 @@ singleton Material(TerrainMat) {
    diffuseColor[0] = "1 1 1";
 };
 
-new Material(RockMaterial) {
+singleton Material(RockMaterial) {
    mapTo = baseRock;
    diffuseColor[0] = "1 1 1";
    emissive[0] = true;
+};
+
+singleton Material(RuinMaterial) {
+   mapTo = baseRuin;
+   diffuseColor[0] = "1 1 1";
 };
 
 function Level::onStart(%this) {
@@ -17,6 +22,7 @@ function Level::onStart(%this) {
       new LevelInfo(TheLevelInfo) {
          canvasClearColor = "0 0 0";
       };
+
       new Sun(TheSun) {
          azimuth = 230;
          elevation = 45;
@@ -24,12 +30,14 @@ function Level::onStart(%this) {
          ambient = "0.5 0.5 0.5";
          castShadows = false;
       };
+
       new TSStatic(TheGround) {
          shapeName = "./terrains/saddle.dae";
          collisionType = "Visible Mesh";
          position = "0 0 0";
          allowPlayerStep = true;
       };
+
       new fxShapeReplicator(TheRocks) {
          position = "0 0 0";
          scale = "50 50 10";
@@ -41,6 +49,13 @@ function Level::onStart(%this) {
          shapeRotateMax = "0 0 180";
          seed = getRealTime();
       };
+   });
+
+   // Test shapes.
+   TheLevel.add(new TSStatic() {
+      shapeName = "./shapes/arch.dae";
+      collisionType = "Visible Mesh";
+      position = "0 0 -5";
    });
 
    // Add navmesh for entire level.

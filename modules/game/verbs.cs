@@ -266,7 +266,8 @@ function Verbs::enterMove(%this) {
 
 function rayCircle(%pos, %ray, %radius) {
    // Ray/circle intersection: http://stackoverflow.com/a/1549997/945863
-   // Assume circle is centered at 0, 0, 0.
+   // Assume circle is centered at 0, 0, 1.
+   %pos = getWords(%pos, 0, 1) SPC 1;
    %Dx = getWord(%pos, 0);
    %Dy = getWord(%pos, 1);
    %a = mPow(VectorLen(%ray), 2);

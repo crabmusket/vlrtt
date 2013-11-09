@@ -16,6 +16,11 @@ singleton Material(RuinMaterial) {
    diffuseColor[0] = "1 1 1";
 };
 
+singleton Material(TreeMaterial) {
+   mapTo = baseTree;
+   diffuseColor[0] = "1 1 1";
+};
+
 function Level::onStart(%this) {
    // Set up basic objects.
    GameGroup.add(new SimGroup(TheLevel) {
@@ -42,20 +47,32 @@ function Level::onStart(%this) {
          position = "0 0 0";
          scale = "50 50 10";
          shapeFile = "./terrains/rock.dae";
-         shapeCount = 200;
+         outerRadiusX = 50;
+         outerRadiusY = 50;
+         shapeCount = 100;
          shapeRetries = 1;
          allowOnStatics = true;
          interactions = false;
          shapeRotateMax = "0 0 180";
          seed = getRealTime();
       };
-   });
 
-   // Test shapes.
-   TheLevel.add(new TSStatic() {
-      shapeName = "./shapes/arch.dae";
-      collisionType = "Visible Mesh";
-      position = "0 0 -5";
+      new fxShapeReplicator(DeadTrees) {
+         position = "0 0 0";
+         scale = "50 50 10";
+         shapeFile = "./shapes/deadpine.dae";
+         shapeCount = 30;
+         shapeRetries = 1;
+         allowOnStatics = true;
+         interactions = false;
+         shapeRotateMax = "0 0 180";
+         zOffset = -0.5;
+         seed = getRealTime();
+         outerRadiusX = 50;
+         outerRadiusY = 50;
+         innerRadiusX = 10;
+         innerRadiusY = 10;
+      };
    });
 
    // Add navmesh for entire level.

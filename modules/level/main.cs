@@ -68,6 +68,20 @@ function Level::onStart(%this) {
    knight(Juliet, "6 0 10",  Fighter);
    knight(Kilo,   "0 0 10",  Fighter);
    knight(Lionel, "-6 0 10", Fighter);
+
+   // Create random enemy camps.
+   %numCamps = 5;
+   %soldiers = 3;
+   %brutes = 2;
+   %step = mDegToRad(360 / %numCamps);
+
+   for(%i = 0; %i < %numCamps; %i++) {
+      %angle = %step * %i;
+      // Pick a direction to spawn in.
+      %dir = mCos(%angle) SPC mSin(%angle);
+      // Get a position near the edge.
+      %pos = VectorScale(%dir, 40);
+   }
 }
 
 function SceneObject::displace(%this, %delta) {

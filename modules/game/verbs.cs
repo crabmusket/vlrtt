@@ -58,7 +58,7 @@ function Verbs::onStart(%this) {
 
    // Keyboard actions that should be available in any state.
    %this.globalMap.bindCmd(keyboard, "ctrl c", "Verbs.onEvent(cancel);");
-   %this.globalMap.bindCmd(keyboard, "?",      "VerbHelpDlg.setVisible(!VerbHelpDlg.isVisible());");
+   %this.globalMap.bindCmd(keyboard, "?",      "Verbs.toggleHelp();");
    %this.globalMap.push();
 
    // Direction selection actions.
@@ -101,6 +101,8 @@ function Verbs::onEnd(%this) {
    %this.directionMap.delete();
 }
 
+//-----------------------------------------------------------------------------
+
 function Verbs::updateHelpDlg(%this) {
    %len = %this.getDynamicFieldCount();
    VerbHelpText.setText("");
@@ -136,6 +138,18 @@ function Verbs::updateHelpDlg(%this) {
 function Verbs::onEvent(%this, %event) {
    Parent::onEvent(%this, %event);
    %this.updateHelpDlg();
+}
+
+function Verbs::toggleHelp(%this) {
+   if(VerbHelpDlg.tween) {
+      VerbHelpDlg.tween.delete();
+   }
+   VerbHelpDlg.deployed = !VerbHelpDlg.deployed;
+
+   VerbHelpDlg.tween = Tweens.toOnce(200, VerbHelpDlg,
+      VerbHelpDlg.deployed
+         ? "position:   20 252"
+         : "position: -200 252");
 }
 
 //-----------------------------------------------------------------------------

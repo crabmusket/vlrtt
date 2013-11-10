@@ -9,6 +9,7 @@ new GuiBitmapCtrl(VerbHelpDlg) {
    extent = "130 200";
    minExtent = "8 8";
    tooltipprofile = GuiToolTipProfile;
+   deployed = true;
 
    new GuiMLTextCtrl(VerbHelpText) {
       lineSpacing = 2;

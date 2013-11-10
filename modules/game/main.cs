@@ -3,6 +3,7 @@
 // up properly.
 
 // Module dependencies.
+include(twillex);
 include(stateMachine);
 include(trackingCamera);
 include(offsetCamera);
@@ -57,6 +58,10 @@ function onStart() {
    GlobalActionMap.bind(keyboard, "escape", "quit");
    GlobalActionMap.bind(keyboard, "alt f4", "quit");
 
+   // Global tweening engine.
+   Twillex::create(Tweens);
+   Tweens.startUpdates();
+
    // Gameplay modules.
    Knights.onStart();
    Enemies.onStart();
@@ -73,6 +78,8 @@ function onEnd() {
    Verbs.onEnd();
    Knights.onEnd();
    Enemies.onEnd();
+
+   Tweens.delete();
 
    // Delete the objects we created.
    GameGroup.delete();

@@ -1,26 +1,5 @@
 new ScriptObject(Level);
 
-singleton Material(TerrainMat) {
-   mapTo = baseTerrain;
-   diffuseColor[0] = "1 1 1";
-};
-
-singleton Material(RockMaterial) {
-   mapTo = baseRock;
-   diffuseColor[0] = "1 1 1";
-   emissive[0] = true;
-};
-
-singleton Material(RuinMaterial) {
-   mapTo = baseRuin;
-   diffuseColor[0] = "1 1 1";
-};
-
-singleton Material(TreeMaterial) {
-   mapTo = baseTree;
-   diffuseColor[0] = "1 1 1";
-};
-
 function Level::onStart(%this) {
    // Set up basic objects.
    GameGroup.add(new SimGroup(TheLevel) {
@@ -97,7 +76,29 @@ function SceneObject::displace(%this, %delta) {
 }
 
 //-----------------------------------------------------------------------------
-// A material to give the ground some colour (even if it's just white).
+// Lots of white materials :P.
+
 singleton Material(BlankWhite) {
+   diffuseColor[0] = "1 1 1";
+};
+
+singleton Material(TerrainMat) {
+   mapTo = baseTerrain;
+   diffuseColor[0] = "1 1 1";
+};
+
+singleton Material(RockMaterial) {
+   mapTo = baseRock;
+   diffuseColor[0] = "1 1 1";
+   emissive[0] = true;
+};
+
+singleton Material(RuinMaterial) {
+   mapTo = baseRuin;
+   diffuseColor[0] = "1 1 1";
+};
+
+singleton Material(TreeMaterial) {
+   mapTo = baseTree;
    diffuseColor[0] = "1 1 1";
 };

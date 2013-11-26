@@ -61,13 +61,16 @@ function Level::onStart(%this) {
       cellSize = 0.1;
       tileSize = 10;
    });
+
+   // Don't build asynchronously - we want the navmesh do be done before
+   // anything else happens.
    Nav.build(false);
 
-   // Create four protagonists!
-   knight(Hotel,  "0 -4 10", Mage);
-   knight(Juliet, "6 0 10",  Fighter);
-   knight(Kilo,   "0 0 10",  Fighter);
-   knight(Lionel, "-6 0 10", Fighter);
+   // Create our protagonist.
+   Knights.add(new AIPlayer(Knight) {
+      datablock = KnightBase;
+      position = "0 0 0";
+   });
 
    // Create random enemy camps.
    %numCamps = 5;

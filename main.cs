@@ -1,7 +1,9 @@
 //-----------------------------------------------------------------------------
 // Entry point to the engine. Everything begins here.
 
+// Make TorqueScript a bit more familiar to users of other languages.
 exec("ts/shim.cs");
+// Some useful functions.
 exec("ts/std.cs");
 
 // Seed the random generator.
@@ -14,8 +16,7 @@ trace(false);
 
 //-----------------------------------------------------------------------------
 // Load up scripts to initialise subsystems.
-include(sys);
-$modulePath = "modules";
+exec("sys/main.cs");
 
 // The canvas needs to be initialized before any gui scripts are run since
 // some of the controls assume that the canvas exists at load time.
@@ -35,13 +36,19 @@ function onGhostAlwaysObjectReceived() {}
 function onGhostAlwaysStarted() {}
 function updateTSShapeLoadProgress() {}
 
+// Convenience function: execute the main.cs file of some directory in modules/.
+function execModule(%name) {
+   exec("modules/" @ %name @ "/main.cs");
+}
+
 //-----------------------------------------------------------------------------
 // Load console.
-include(console);
-include(metrics);
+
+execModule("console");
+execModule("metrics");
 
 // Load up game code.
-include(game);
+execModule("game");
 
 // Called when we connect to the local game.
 function GameConnection::onConnect(%client) {
@@ -52,6 +59,7 @@ function GameConnection::onConnect(%client) {
 function GameConnection::onDataBlocksDone(%client) {
    // Start sending ghosts to the client.
    %client.activateGhosting();
+   // Enter game callback.
    %client.onEnterGame();
 }
 
@@ -61,7 +69,7 @@ new GameConnection(ServerConnection);
 // This calls GameConnection::onConnect.
 ServerConnection.connectLocal();
 
-// Start game-specific scripts.
+// Start game-specific scripts. Defined in modules/game/main.cs
 onStart();
 
 //-----------------------------------------------------------------------------

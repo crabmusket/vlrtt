@@ -18,7 +18,6 @@ datablock DebrisData(KnightDebris) {
 //-----------------------------------------------------------------------------
 // Basic protagonist datablock.
 datablock PlayerData(KnightBase) {
-   class = Knight;
    superclass = Character;
 
    shapeFile = "./shapes/soldier.dae";
@@ -37,20 +36,20 @@ datablock PlayerData(KnightBase) {
    skill = 5;
 };
 
-function Knight::onAdd(%this, %obj) {
+function KnightBase::onAdd(%this, %obj) {
    CharacterEvents.subscribe(%obj, CharacterDeath);
    %obj.side = Knights;
    Parent::onAdd(%this, %obj);
 }
 
-function Knight::onReachPathDestination(%this, %obj) {
+function KnightBase::onReachPathDestination(%this, %obj) {
    if(%obj.isTakingCover) {
       %obj.setActionThread("hide_root");
    }
    Parent::onReachPathDestination(%this, %obj);
 }
 
-function Knight::goTo(%this, %obj, %dest, %slowdown, %speed) {
+function KnightBase::goTo(%this, %obj, %dest, %slowdown, %speed) {
    if(%speed $= "") {
       %speed = 1;
    }
@@ -62,56 +61,15 @@ function Knight::goTo(%this, %obj, %dest, %slowdown, %speed) {
    %obj.setMoveSpeed(%speed);
 }
 
-datablock PlayerData(Fighter : KnightBase) {};
-function Fighter::onAdd(%this, %obj) {
-   Parent::onAdd(%this, %obj);
-}
-
-datablock PlayerData(Mage  : KnightBase) {};
-function Mage::onAdd(%this, %obj) {
-   %obj.mountImage(Wand, 0);
-   Parent::onAdd(%this, %obj);
-}
-
-function knight(%name, %pos, %role) {
-   // Create the object itself with a name, position and datablock.
-   %knight = new AIPlayer(%name) {
-      datablock = %role $= "" ? KnightBase : %role;
-      position = %pos;
-   };
-   Knights.add(%knight);
-
-   // Bind the knight's name's first letter to select it.
-   %action = getSubstr(%name, 0, 1);
-   Knights.selectMap.bindCmd(keyboard, %action, "Knights.select(" @ %name @ ");");
-
-   // Bind the same keypress to target the knight.
-   Knights.targetMap.bindCmd(keyboard, %action, "Knights.target(" @ %name @ ");");
-
-   return %knight;
-}
-
 //-----------------------------------------------------------------------------
 
-function Fighter::attack(%this, %obj, %target) {
+function KnightBase::attack(%this, %obj, %target) {
    %obj.setMoveSpeed(1);
    %obj.follow(%target);
    %obj.attacking = %target;
 }
 
-function Fighter::heal(%this, %obj, %target) {
-   %obj.goTo(%target.getPosition(), true, 1.0);
-   %obj.setImageTrigger(0, false);
-}
-
-function Mage::attack(%this, %obj, %target) {
-   %obj.getMountedImage(0).cast(%obj, %target);
-}
-
-function Mage::heal(%this, %obj, %target) {
-}
-
-function Knight::stopAll(%this, %obj) {
+function KnightBase::stopAll(%this, %obj) {
    Parent::stopAll(%this, %obj);
    %obj.clearAim();
 }
@@ -120,94 +78,10 @@ function Knight::stopAll(%this, %obj) {
 
 function Knights::onStart(%this) {
    GameGroup.add(%this);
-
-   %this.selectMap = new ActionMap();
-   %this.targetMap = new ActionMap();
-
-   // Shortcut to selecting them all.
-   %this.selectMap.bindCmd(keyboard, "a", "Knights.selectAll();", "");
-
-   // Knights selected in the current order.
-   %this.selected = new SimSet();
 }
 
 function Knights::onEnd(%this) {
-   Knights.selectMap.delete();
-   Knights.targetMap.delete();
-   %this.selected.delete();
 }
-
-//-----------------------------------------------------------------------------
-
-function Knights::nameKnights(%this, %name) {
-   foreach(%knight in Knights) {
-      if(%name) {
-         %knight.setShapeName(" " @ getSubstr(%knight.getName(), 0, 1) @ " ");
-      } else {
-         %knight.setShapeName("");
-      }
-   }
-}
-
-function Knights::beginSelect(%this) {
-   %this.selectMap.push();
-   %this.nameKnights(true);
-}
-
-function Knights::endSelect(%this) {
-   %this.selectMap.pop();
-   %this.nameKnights(false);
-}
-
-function Knights::beginTarget(%this) {
-   %this.targetMap.push();
-   %this.nameKnights(true);
-}
-
-function Knights::endTarget(%this) {
-   %this.targetMap.pop();
-   %this.nameKnights(false);
-}
-
-function Knights::select(%this, %knight, %noevent) {
-   %this.selected.add(%knight);
-   %knight.mountImage(Selectron, 1);
-   if(%noevent $= "") {
-      Verbs.onEvent(knightSelected);
-   }
-}
-
-function Knights::deselect(%this, %knight) {
-   %knight.unmountImage(1);
-   if(%this.selected.contains(%knight)) {
-      %this.selected.remove(%knight);
-   }
-}
-
-function Knights::selectAll(%this) {
-   foreach(%knight in Knights) {
-      %this.select(%knight, true);
-   }
-   Verbs.onEvent(knightSelected);
-}
-
-function Knights::deselectAll(%this) {
-   foreach(%knight in Knights) {
-      %this.deselect(%knight);
-   }
-}
-
-function Knights::target(%this, %knight) {
-   Verbs.target = %knight;
-   Verbs.onEvent(knightTargeted);
-}
-
-//-----------------------------------------------------------------------------
-
-datablock ShapeBaseImageData(Selectron) {
-   shapeFile = "./shapes/selectron.dae";
-   offset = "0 0 0.25";
-};
 
 //-----------------------------------------------------------------------------
 

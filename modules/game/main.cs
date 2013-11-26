@@ -3,14 +3,12 @@
 // up properly.
 
 // Module dependencies.
-include(twillex);
-include(stateMachine);
-include(trackingCamera);
-include(offsetCamera);
-include(flyCamera);
-include(bottomPrint);
-include(navigation);
-include(level);
+execModule("twillex");
+execModule("stateMachine");
+execModule("offsetCamera");
+execModule("bottomPrint");
+execModule("navigation");
+execModule("level");
 
 // Scripts that make up this module.
 exec("./events.cs");
@@ -18,26 +16,20 @@ exec("./verbs.cs");
 exec("./character.cs");
 exec("./knights.cs");
 exec("./enemies.cs");
-exec("./weapons.cs");
 exec("./cover.cs");
-exec("./playGui.gui");
 exec("./combat.cs");
+
+// GUIs.
+exec("./playGui.gui");
 
 //-----------------------------------------------------------------------------
 // Called when all datablocks have been transmitted.
 function GameConnection::onEnterGame(%client) {
-   // Select camera.
-   if($flyCamera) {
-      %c = FlyCamera.init(%client, GameGroup);
-      %c.setTransform("0 0 10 0 0 1 0");
-      FlyCamera.controls(true);
-      setFOV(50);
-   } else {
-      %c = OffsetCamera.init(%client, GameGroup, Knights, "20 -3 10");
-      %c.setTransform("0 0 0" SPC "0.255082 0.205918 -0.944739 1.41418");
-      OffsetCamera.controls(true);
-      setFOV(50);
-   }
+   // Create a camera for the client to view the game.
+   %c = OffsetCamera.init(%client, GameGroup, Knights, "20 -3 10");
+   %c.setTransform("0 0 0" SPC "0.255082 0.205918 -0.944739 1.41418");
+   OffsetCamera.controls(true);
+   setFOV(50);
 
    // Activate HUD which allows us to see the game. This should technically be
    // a commandToClient, but since the client and server are on the same

@@ -7,16 +7,11 @@ new ScriptObject(Verbs) {
    state = null;
    transition[null, ready] = ready;
 
-   // Top-level commands. Usually involves selecting a knight.
-   transition[ready, knightSelected] = selected;
-
-   // This is where most of the verbs live - after selecting a character.
-   transition[selected, and] = ready;
-   transition[selected, heal] = healTarget;
-   transition[selected, attack] = attackTarget;
-   transition[selected, stop] = stop;
-   transition[selected, move] = selectDirection;
-   transition[selected, cover] = coverTarget;
+   // Verbs are your only transitions out of the ready state.
+   transition[ready, attack] = attackTarget;
+   transition[ready, stop] = stop;
+   transition[ready, move] = selectDirection;
+   transition[ready, cover] = coverTarget;
 
    // Must target someone for these verbs.
    transition[healTarget, knightTargeted] = heal;
@@ -72,18 +67,6 @@ function Verbs::onStart(%this) {
       "s      Towards\n"  @
       "d      Right\n\n"  @
       "qezc   Others";
-
-   %this.helpText[knightSelected] =
-      "h   Hotel\n"    @
-      "j   Juliet\n"   @
-      "k   Kilo\n"     @
-      "l   Lionel\n\n" @
-      "a   All\n";
-   %this.helpText[knightTargeted] =
-      "h   Hotel\n"   @
-      "j   Juliet\n"  @
-      "k   Kilo\n"    @
-      "l   Lionel\n";
 
    %this.helpText[coverTargeted] =
    %this.helpText[enemyTargeted] =
@@ -155,10 +138,8 @@ function Verbs::toggleHelp(%this) {
 //-----------------------------------------------------------------------------
 
 function Verbs::onFinish(%this) {
-   Knights.deselectAll();
 }
 function Verbs::onCancel(%this) {
-   Knights.deselectAll();
 }
 
 function Verbs::endVerb(%this) {
@@ -171,34 +152,10 @@ function Verbs::endVerb(%this) {
 function Verbs::onReady(%this) {
 }
 function Verbs::enterReady(%this) {
-   Knights.beginSelect();
-}
-function Verbs::leaveReady(%this) {
-   Knights.endSelect();
-}
-
-function Verbs::enterSelected(%this) {
    %this.map.push();
 }
-function Verbs::leaveSelected(%this) {
+function Verbs::leaveReady(%this) {
    %this.map.pop();
-}
-
-//-----------------------------------------------------------------------------
-
-function Verbs::enterHealTarget(%this) {
-   Knights.beginTarget();
-}
-function Verbs::leaveHealTarget(%this) {
-   Knights.endTarget();
-}
-
-function Verbs::enterHeal(%this) {
-   foreach(%knight in Knights.selected) {
-      %knight.getDataBlock().heal(%knight, %this.target);
-   }
-   %this.target = "";
-   %this.endVerb();
 }
 
 //-----------------------------------------------------------------------------
@@ -211,9 +168,7 @@ function Verbs::leaveAttackTarget(%this) {
 }
 
 function Verbs::enterAttack(%this) {
-   foreach(%knight in Knights.selected) {
-      %knight.getDataBlock().attack(%knight, %this.target);
-   }
+   Knight.getDataBlock().attack(Knight, %this.target);
    %this.target = "";
    %this.endVerb();
 }
@@ -228,9 +183,7 @@ function Verbs::leaveCoverTarget(%this) {
 }
 
 function Verbs::enterCover(%this) {
-   foreach(%knight in Knights.selected) {
-      %knight.getDataBlock().takeCover(%knight, %this.target);
-   }
+   Knight.getDataBlock().takeCover(Knight, %this.target);
    %this.target = "";
    %this.endVerb();
 }
@@ -238,9 +191,7 @@ function Verbs::enterCover(%this) {
 //-----------------------------------------------------------------------------
 
 function Verbs::enterStop(%this) {
-   foreach(%knight in Knights.selected) {
-      %knight.getDataBlock().stopAll(%knight);
-   }
+   Knight.getDataBlock().stopAll(Knight);
    %this.endVerb();
 }
 
@@ -270,11 +221,9 @@ function Verbs::enterMove(%this) {
    %dir = VectorNormalize(getWords(%dir, 0, 1) SPC 0);
 
    // Construct a new position to move to.
-   foreach(%knight in Knights.selected) {
-      %pos = rayCircle(%knight.getPosition(), %dir, 50);
-      %pos = VectorSub(%pos, VectorScale(%dir, 2));
-      %knight.goTo(%pos, true, 0.5);
-   }
+   %pos = rayCircle(Knight.getPosition(), %dir, 50);
+   %pos = VectorSub(%pos, VectorScale(%dir, 2));
+   Knight.goTo(%pos, true, 0.5);
    %this.endVerb();
 }
 

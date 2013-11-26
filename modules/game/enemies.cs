@@ -1,7 +1,7 @@
 new SimSet(Enemies);
 
 $EnemyTypes = "Soldier Brute";
-include("game/ai");
+execModule("game/ai");
 exec("./enemyTypes.cs");
 
 function Enemy::onAdd(%this, %obj) {

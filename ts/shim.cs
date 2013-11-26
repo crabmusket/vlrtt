@@ -18,11 +18,6 @@ function SimSet::first(%this) {
    return %this.size() ? %this.getObject(0) : "";
 }
 
-function include(%path) {
-   %prefix = $modulePath !$= "" ? $modulePath @ "/" : "";
-   exec(%prefix @ %path @ "/main.cs");
-}
-
 function SimObject::can(%this, %method) {
    return %this.isMethod(%method);
 }

@@ -1,5 +1,9 @@
 function StateMachine::onEvent(%this, %event) {
-   // See if there's a transition callback ssociated with this event.
+   if(%event $= "event") {
+      return;
+   }
+
+   // See if there's a transition callback associated with this event.
    %script = "on" @ %event;
    if(%this.isMethod(%script)) {
       %this.call(%script);

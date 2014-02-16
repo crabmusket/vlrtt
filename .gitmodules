@@ -1,0 +1,3 @@
+[submodule "modules/tasman"]
+	path = modules/tasman
+	url = git@github.com:eightyeight/tasman.git
